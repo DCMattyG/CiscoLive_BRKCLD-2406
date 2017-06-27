@@ -1,0 +1,22 @@
+{
+    "moduleName": "CreateVPCInterfacePolicyGroupConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": {
+                                        "apicAccount": "ACISIM",
+                                        "name": "VPC-Interface-Pol-Group",
+                                        "description": "VPC Interface Policy Group",
+                                        "linkLevelPolicy": "ACISIM@LinkLevel-Pol-10G",
+                                        "cdpPolicy": "ACISIM@CDP-Pol-ON",
+                                        "lldpPolicy": "ACISIM@LLDP-Pol-ON",
+                                        "attachedEntryProfile": "ACISIM@aep-physical",
+                                        "portChannelPolicy": "ACISIM@PortChannel-Pol-LACP"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/VPC Interface Policy Group"
+}

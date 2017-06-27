@@ -1,0 +1,34 @@
+{
+    "moduleName": "ucsLanConnectivityPolicy",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": {
+                                        "name": "clus-lan-con-pol",
+                                        "descr": "Cisco Live LAN Connectivity Policy",
+                                        "accountName": "UCSPE",
+                                        "org": "org-root",
+                                        "spVNIC": [
+                                                    {
+                                                        "adaptorProfileName": "clus-side-a",
+                                                        "nwTemplName": "vnic-tmp-clus-a",
+                                                        "name": "vnic-tmp-clus-a",
+                                                        "order": "1",
+                                                        "status": "created"
+                                                    },
+                                                    {
+                                                        "adaptorProfileName": "clus-side-b",
+                                                        "nwTemplName": "vnic-tmp-clus-b",
+                                                        "name": "vnic-tmp-clus-b",
+                                                        "order": "2",
+                                                        "status": "created"
+                                                    }
+                                                ]
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/ucsLanConnectivityPolicy"
+}

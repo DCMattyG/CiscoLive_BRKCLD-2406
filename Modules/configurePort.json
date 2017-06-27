@@ -1,0 +1,19 @@
+{
+    "moduleName": "ConfigurePort",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "NETWORK_CONFIG_PORT",
+    "modulePayload": {
+                        "param0": {
+                                        "netdevice": "Default Pod@10.0.0.23",
+                                        "port": "fc1/1",
+                                        "description": "Connection to SAN",
+                                        "enable": "true",
+                                        "copyRunToStartConfig": "false"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/ConfigurePort"
+}

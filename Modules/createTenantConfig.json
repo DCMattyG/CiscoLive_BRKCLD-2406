@@ -1,0 +1,18 @@
+{
+    "moduleName": "CreateTenantConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "APIC_TENANT_CREATE",
+    "modulePayload": {
+                        "param0": {
+                                        "apicAccount": "ACISIM",
+                                        "name": "CiscoLive",
+                                        "description": "Cisco Live Tenant",
+                                        "monitoringPolicy": "ACISIM@common@default"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/TENANT_CREATE"
+}

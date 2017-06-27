@@ -1,0 +1,21 @@
+{
+    "moduleName": "CreatePrivateNetworkConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "APIC_TENANT_PRIVATE_NETWORK_CREATE",
+    "modulePayload": {
+                        "param0": {
+                                        "tenantName": "ACISIM@CiscoLive",
+                                        "privateNetwork": "CLUS-VRF",
+                                        "polEnforce": "unenforced",
+                                        "privateNetworkDescription": "Cisco Live VRF",
+                                        "bgpTimers": "ACISIM@common@default",
+                                        "ospfTimers": "ACISIM@common@default",
+                                        "monPolicy": "ACISIM@common@default"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/TENANT_PRIVATE_NETWORK"
+}

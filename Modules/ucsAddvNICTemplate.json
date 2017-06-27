@@ -1,0 +1,26 @@
+{
+    "moduleName": "UcsAddvNICTemplate",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "UCS_ADD_VNIC_TEMPLATE",
+    "modulePayload": {
+                        "param0": {
+                                        "name": "vnic-tmp-clus-a",
+                                        "descr": "string",
+                                        "org": "UCSPE;org-root",
+                                        "switchId": "A",
+                                        "enableFailover": "false",
+                                        "targetAdapter": "true",
+                                        "targetVM": "false",
+                                        "templType": "updating-template",
+                                        "vlanIdentityList": "UCSPE;fabric/lan/net-VLAN10",
+                                        "nativeVlan": "default",
+                                        "mtu": "1500",
+                                        "identPoolName": "UCSPE;org-root;org-root/mac-pool-clus-mac-pool-a;clus-mac-pool-a"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/ucsVnicTemplate"
+}

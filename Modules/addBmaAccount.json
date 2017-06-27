@@ -1,0 +1,28 @@
+{
+    "moduleName": "AddBmaAccount",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "ADD_BMA_ACCOUNT",
+    "modulePayload": {
+                        "param0": {
+                                        "bmaName": "BMA",
+                                        "bmaDescription": "BMA Account",
+                                        "multiNicEnable": "true",
+                                        "serverIP": "0.0.0.0",
+                                        "pxeServerIP": "0.0.0.0",
+                                        "bmaUserName": "root",
+                                        "bmaPassword": "pxeboot",
+                                        "SambaEnable": "false",
+                                        "sambaPassword": "",
+                                        "reconfirmSambaPassword": "",
+                                        "bmaLocation": "",
+                                        "defaultBMA": "true",
+                                        "startServices": "true",
+                                        "inventoryNodeIP": "0.0.0.0"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/PXEServerIdentity"
+}

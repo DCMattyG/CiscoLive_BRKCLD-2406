@@ -1,0 +1,18 @@
+{
+    "moduleName": "UcsModifyOrgPermissionsConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "UCS_MODIFY_VLAN_VLANGROUP_ORG_PERMISSION",
+    "modulePayload": {
+                        "param0": {
+                                        "vlanType": "VLAN",
+                                        "vlanGroup": "",
+                                        "vlan": "UCSPE;fabric/lan/net-VLAN50",
+                                        "orgList": "UCSPE;org-root"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/ucsVlanGroup"
+}

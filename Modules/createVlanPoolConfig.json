@@ -1,0 +1,19 @@
+{
+    "moduleName": "CreateVlanPoolConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": {
+                                        "apicAccount": "ACISIM",
+                                        "vlanPoolName": "CLUS-VLAN-POOL",
+                                        "description": "Cisco Live Physical VLAN Pool",
+                                        "allocationMode": "Static Allocation",
+                                        "range": "1-10"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/Vlan Pool"
+}

@@ -1,0 +1,26 @@
+﻿{
+    "moduleName": "createInfraAccount",
+    "moduleDesc": "Here is a description of this module",
+    "modulePayload": {
+                        "param0": {
+                                        "accountName": "string",
+                                        "podName": "string",
+                                        "accountCategory": "int",
+                                        "accountType": "string",
+                                        "deviceCategory": "string",
+                                        "description": "string",
+                                        "contact": "string",
+                                        "location": "string",
+                                        "destinationIPAddress": "string",
+                                        "login": "string",
+                                        "password": "string",
+                                        "protocol": "string",
+                                        "port": "int"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "json",
+    "apiCall": "/app/api/rest?formatType=json&opName=accounts:userAPICreateInfraAccount&opData="
+}

@@ -1,0 +1,25 @@
+{
+    "moduleName": "CreateTenantBridgeDomain",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "CREATE_TENANT_BRIDGE_DOMAIN",
+    "modulePayload": {
+                        "param0": {
+                                        "tenantName": "ACISIM@CiscoLive",
+                                        "name": "CLUS-BD",
+                                        "description": "Cisco Live Bridge Domain",
+                                        "network": "ACISIM@CiscoLive@CLUS-VRF",
+                                        "forwarding": "Optimize",
+                                        "l2Unicast": "Flood",
+                                        "l2Multicast": "Flood",
+                                        "arpFlooding": "false",
+                                        "unicastRouting": "true",
+                                        "customMacAddress": "false",
+                                        "monPolicy": "ACISIM@common@default"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/TenantBridgeDomain"
+}

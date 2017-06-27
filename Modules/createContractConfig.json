@@ -1,0 +1,19 @@
+{
+    "moduleName": "CreateContractConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "APIC_TENANT_CONTRACT_CREATE",
+    "modulePayload": {
+                        "param0": {
+                                        "tenantName": "ACISIM@CiscoLive",
+                                        "contractName": "ALLOW_ALL",
+                                        "contractDescription": "Allow All Traffic",
+                                        "scope": "application-profile",
+                                        "priority": "level1"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/TENANT_CONTRACT"
+}

@@ -1,0 +1,18 @@
+{
+    "moduleName": "ConfigureFeature",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "NETWORK_CONFIGURE_FEATURE",
+    "modulePayload": {
+                        "param0": {
+                                        "netdevice": "Default Pod@10.0.0.23",
+                                        "enable": "true",
+                                        "featureName": "Default Pod@10.0.0.23@npiv@1",
+                                        "copyRunToStartConfig": "false"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/ConfigureFeature"
+}

@@ -1,0 +1,19 @@
+{
+    "moduleName": "createUcsServerPoolPolicy",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "CREATE_UCS_SERVER_POOL_POLICY",
+    "modulePayload": {
+                        "param0": {
+                                        "name": "clus-blade-pol",
+                                        "descr": "Cisco Live Blade Server Pool Policy",
+                                        "orgIdentity": "UCSPE;org-root",
+                                        "qualIdentity": "UCSPE;org-root;org-root/blade-qualifier-clus-blade-qual",
+                                        "poolDn": "UCSPE;org-root;org-root/compute-pool-clus-svr-pool"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/ucsServerPoolPolicy"
+}

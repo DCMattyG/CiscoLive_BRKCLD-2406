@@ -1,0 +1,23 @@
+{
+    "moduleName": "ucsIpPoolBlock",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": {
+                                        "accountName": "UCSPE",
+                                        "from": "10.0.0.110",
+                                        "size": "32",
+                                        "subnet": "255.255.255.0",
+                                        "defGw": "10.0.0.1",
+                                        "primDns": "171.68.226.120",
+                                        "secDns": "171.70.168.183",
+                                        "org": "org-root"
+
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/ucsIpPoolBlock"
+}

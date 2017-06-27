@@ -1,0 +1,32 @@
+{
+    "moduleName": "CreateUcsIPPool",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "CREATE_UCS_IP_POOL",
+    "modulePayload": {
+                        "param0": {
+                                        "ippoolName": "clus-ext-mgmt",
+                                        "descr": "Cisco Live Management IPs",
+                                        "orgIdentity": "UCSPE;org-root",
+                                        "assignmentOrder": "sequential",
+                                        "addIPv6Block": "false",
+                                        "ipv6BlockFromAddress": "",
+                                        "ipv6BlockSize": "",
+                                        "ipv6BlockPrefix": "",
+                                        "ipv6BlockDefaultGateway": "",
+                                        "ipv6BlockPrimaryDns": "",
+                                        "ipv6BlockSecondaryDns": "",
+                                        "addIPv4Block": "true",
+                                        "ipv4BlockFromAddress": "10.0.0.110",
+                                        "ipv4BlockSize": "32",
+                                        "ipv4BlockSubnetMask": "255.255.255.0",
+                                        "ipv4BlockDefaultGateway": "10.0.0.1",
+                                        "ipv4BlockPrimaryDns": "171.68.226.120",
+                                        "ipv4BlockSecondaryDns": "171.70.168.183"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/ucsIpPool"
+}

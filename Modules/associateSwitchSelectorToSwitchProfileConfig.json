@@ -1,0 +1,18 @@
+{
+    "moduleName": "AssociateSwitchSelectorToSwitchProfileConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "ASSOCIATE_SWITCH_SELECTOR_TO_SWITCH_PROFILE",
+    "modulePayload": {
+                        "param0": {
+                                        "switchProfile": "ACISIM@SwitchProf-LAB",
+                                        "name": "101-102",
+                                        "leave": "ACISIM@101@topology/pod-1/node-101,ACISIM@102@topology/pod-1/node-102",
+                                        "policyGrp": ""
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/SwitchSelectorToSwitchProfile"
+}

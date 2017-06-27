@@ -1,0 +1,23 @@
+{
+    "moduleName": "AddMemberToSANZoneConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "NETWORK_ADD_SAN_ZONE_MEMBER",
+    "modulePayload": {
+                        "param0": {
+                                        "device": "Default Pod@10.0.0.23",
+                                        "sanZoneIdentity": "10.0.0.23;10;CLUS_ZONE",
+                                        "type": "pWWN",
+                                        "smartZoneType": "both",
+                                        "fcalias": "",
+                                        "member": "20:00:00:25:aa:bb:cc:dd",
+                                        "devAliasName": "",
+                                        "enhanced": "true",
+                                        "copyRunToStartConfig": "false"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/AddMemberToSANZoneConfig"
+}

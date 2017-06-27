@@ -1,0 +1,18 @@
+{
+    "moduleName": "ucsCreateServerPool",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "UCS_CREATE_SERVER_POOL",
+    "modulePayload": {
+                        "param0": {
+                                        "poolName": "clus-svr-pool",
+                                        "poolDescription": "Cisco Live Server Pool",
+                                        "orgIdentity": "UCSPE;org-root",
+                                        "serverPoolList": ""
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/ucsServerPool"
+}

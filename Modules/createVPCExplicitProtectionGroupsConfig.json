@@ -1,0 +1,20 @@
+{
+    "moduleName": "CreateVPCExplicitProtectionGroupsConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "CREATE_VPC_EXPLICIT_PROTECTION_GROUPS",
+    "modulePayload": {
+                        "param0": {
+                                        "apicAccount": "ACISIM",
+                                        "name": "VPC-PROT-GRP-01",
+                                        "id": "1",
+                                        "vpcDomainPolicy": "ACISIM@default",
+                                        "switchOne": "ACISIM@101@leaf101",
+                                        "switchTwo": "ACISIM@102@leaf102"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/VPC Explicit Protection Groups"
+}

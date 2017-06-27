@@ -1,0 +1,21 @@
+{
+    "moduleName": "ucsWwnPool",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": {
+                                        "name": "clus-wwnn-pool",
+                                        "descr": "Cisco Live WWNN Pool",
+                                        "accountName": "UCSPE",
+                                        "org": "org-root",
+                                        "firstAddress": "20:00:00:25:B5:00:00:00",
+                                        "size": "32",
+                                        "purpose": "node-wwn-assignment"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/ucsWwnPool"
+}

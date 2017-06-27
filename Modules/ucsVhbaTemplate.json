@@ -1,0 +1,23 @@
+{
+    "moduleName": "ucsVhbaTemplate",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": {
+                                        "name": "clus-vhba-tmpl-a",
+                                        "descr": "Cisco Live vHBA Template",
+                                        "accountName": "UCSPE",
+                                        "org": "org-root",
+                                        "switchId": "A",
+                                        "vSAN": "VSAN20",
+                                        "templType": "updating-template",
+                                        "maxDataFieldSize": "2048",
+                                        "wwnPool": "clus-wwpn-pool-a"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/ucsVhbaTemplate"
+}

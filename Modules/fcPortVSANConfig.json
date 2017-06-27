@@ -1,0 +1,20 @@
+{
+    "moduleName": "FCPortVSANConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "NETWORK_FCPORT_VSAN_CONFIG",
+    "modulePayload": {
+                        "param0": {
+                                        "netdevice": "Default Pod@10.0.0.23",
+                                        "port": "",
+                                        "fcPort": "Default Pod@10.0.0.23@fc1/1",
+                                        "vsanId": "10",
+                                        "copyRunToStartConfig": "false",
+                                        "enable": "true"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/FCPortVSANConfig"
+}

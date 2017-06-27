@@ -1,0 +1,21 @@
+{
+    "moduleName": "AddPhysicalNetworkDeviceConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "ADD_NETWORK_ELEMENT",
+    "modulePayload": {
+                        "param0": {
+                                        "podName": "Default Pod",
+                                        "deviceCategory": "Cisco Nexus OS",
+                                        "serverAddress": "0.0.0.0",
+                                        "protocol": "ssh",
+                                        "port": "22",
+                                        "username": "admin",
+                                        "password": "password"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/AddPhysicalNetworkDeviceConfig"
+}

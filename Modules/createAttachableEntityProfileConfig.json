@@ -1,0 +1,19 @@
+{
+    "moduleName": "CreateAttachableEntityProfileConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "CREATE_FABRIC_ATTACHABLE_ENTITY_PROFILE",
+    "modulePayload": {
+                        "param0": {
+                                        "apicAccount": "ACISIM",
+                                        "name": "CLUS-AEP",
+                                        "description": "Cisco Live Attachable Entity Profile",
+                                        "domainProfile": "",
+                                        "interfacePolicyGroup": ""
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/EntityProfile"
+}

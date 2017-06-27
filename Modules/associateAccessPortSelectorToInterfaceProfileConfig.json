@@ -1,0 +1,19 @@
+{
+    "moduleName": "AssociateAccessPortSelectorToInterfaceProfileConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "ASSOCIATE_ACCESS_PORT_SELECTOR_TO_INTERFACE_PROFILE",
+    "modulePayload": {
+                        "param0": {
+                                        "interfaceProfile": "ACISIM@Interface-Profile-LAB",
+                                        "name": "Int-Sel-1-20",
+                                        "description": "Interface Selector 1/20",
+                                        "interfaceIDs": "1/20",
+                                        "interfacePolicyGrp": "ACISIM@VPC-Interface-Pol-Group@uni/infra/funcprof/accbundle-VPC-Interface-Pol-Group"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/AccessPortSelectorToInterfaceProfile"
+}

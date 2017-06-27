@@ -1,0 +1,18 @@
+{
+    "moduleName": "CreatePhysicalDomainConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": {
+                                        "apicAccount": "ACISIM",
+                                        "name": "CLUS-PHYS-DOM",
+                                        "entityProfile": "ACISIM@aep-physical",
+                                        "vlanPool": "ACISIM@vlan-pool-phys@static"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/PhysicalDomain"
+}

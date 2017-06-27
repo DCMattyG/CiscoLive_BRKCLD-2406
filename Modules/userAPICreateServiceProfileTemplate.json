@@ -1,0 +1,34 @@
+{
+    "moduleName": "userAPICreateServiceProfileTemplate",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": "UCSPE",
+                        "param1": "",
+                        "param2": "",
+                        "param3": {
+                                        "spTemplateName": "ESX_Template",
+                                        "storagePolicyName": "clus-stor-pol",
+                                        "networkPolicyName": "clus-net-pol",
+                                        "OrgName": "org-root",
+                                        "spTemplateType": "Updating-Template",
+                                        "serverPowerState": "down",
+                                        "uuidPool":     {
+                                                            "name": "uuid-pool-clus",
+                                                            "desc": "",
+                                                            "tscifnum": "-1",
+                                                            "rackNum": "-1",
+                                                            "size": "-1"
+                                                        },
+                                        "bootPolicy":   {
+                                                            "name":"clus-boot-pol",
+                                                            "descr": "",
+                                                            "enforceVnicName": "",
+                                                            "rebootOnUpdate": "",
+                                                            "devices": null
+                                                        }
+                                    }
+                    },
+    "apiType": "json",
+    "apiCall": "/app/api/rest?formatType=json&opName=ucsm:userAPICreateServiceProfileTemplate&opData="
+}
