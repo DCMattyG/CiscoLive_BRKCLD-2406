@@ -24,15 +24,25 @@
     "MDSA": {
                 "name": "MDS-A",
                 "descr": "MDS-A Account",
-                "ipAddress": "10.0.0.23",
+                "ipAddress": "10.0.0.21",
                 "userName": "admin",
                 "password": "password"
             },
     "MDSB": {
                 "name": "MDS-B",
                 "descr": "MDS-B Account",
-                "ipAddress": "10.0.0.23",
+                "ipAddress": "10.0.0.22",
                 "userName": "admin",
                 "password": "password"
+            },
+    "PURE": {
+                "name": "Pure",
+                "descr": "Pure Account",
+                "ipAddress": "10.0.0.30",
+                "userName": "pureuser",
+                "password": "pureuser"
+            },
+    "VM":   {
+                "password": "P@$$w0rd"
             }
 }

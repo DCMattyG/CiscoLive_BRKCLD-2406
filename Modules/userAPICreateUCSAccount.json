@@ -4,8 +4,8 @@
     "operationType": "",
     "modulePayload": {
                         "param0": {
-                                        "accountName": "ACI",
-                                        "description": "ACI Account",
+                                        "accountName": "UCS",
+                                        "description": "UCS Account",
                                         "podType": "Default Pod",
                                         "createUcsmAccount": "true",
                                         "authenticationType": "Locally Authenticated",

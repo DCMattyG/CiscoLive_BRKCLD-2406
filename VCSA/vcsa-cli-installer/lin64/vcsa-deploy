@@ -1,0 +1,5 @@
+#!/bin/bash
+ROOT=$(dirname $(readlink -f $(which "$0")))
+
+export LD_LIBRARY_PATH=$ROOT/openssl-1.0.2j/lib/:$ROOT/libffi-3.0.9/lib/
+exec $ROOT/vcsa-deploy.bin "$@"

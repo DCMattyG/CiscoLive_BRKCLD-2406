@@ -12,13 +12,20 @@ catch {
     Write-Host "Error while loading supporting PowerShell Scripts" 
 }
 
-
 $accounts = Get-Content $basePath\Infra\accounts.json | Out-String | ConvertFrom-JSON
 
+<######################>
+<#                    #>
+<# Set Deploy Options #>
+<#                    #>
+<######################>
+
+$setProxy = $false
 $deployAccounts = $false
-$deployUCS = $false
-$deployACI = $false
-$deployMDS = $false
+$deployUCS = $true
+$deployACI = $true
+$deployMDS = $true
+$deployServers = $true
 
 <######################>
 <#                    #>
@@ -28,6 +35,20 @@ $deployMDS = $false
 
 $ucsdPod = "Default Pod"
 #$ucsOrg = "root"
+
+<# Collect Start Time #>
+$StartDTE = Get-Date
+$StartDTE.ToUniversalTime()
+
+<#######################>
+<#                     #>
+<#    Disable Proxy    #>
+<#                     #>
+<#######################>
+
+if($setProxy) {
+    Set-Itemproperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' -name ProxyEnable -value 0
+}
 
 <#############################>
 <#                           #>
@@ -66,9 +87,13 @@ $aciAccount = Create-UCSDModule $modulePath "userAPICreateInfraAccount"
 
 $aciAccount.modulePayload.param0.accountName = $accounts.ACI.name
 $aciAccount.modulePayload.param0.description = $accounts.ACI.descr
+$aciAccount.modulePayload.param0.accountCategory = "4"
+$aciAccount.modulePayload.param0.accountType = "APIC"
 $aciAccount.modulePayload.param0.destinationIPAddress = $accounts.ACI.ipAddress
 $aciAccount.modulePayload.param0.login = $accounts.ACI.userName
 $aciAccount.modulePayload.param0.password = $accounts.ACI.password
+$aciAccount.modulePayload.param0.protocol = "https"
+$aciAccount.modulePayload.param0.port = "443"
 
 if($deployAccounts) {
     Call-UCSDAPI $aciAccount
@@ -90,7 +115,51 @@ $mdsAccountb.modulePayload.param0.password = $accounts.MDSB.password
 
 if($deployAccounts) {
     Call-UCSDAPI $mdsAccountA
-    #Call-UCSDAPI $mdsAccountB
+    Call-UCSDAPI $mdsAccountB
+}
+
+<# Add Pure Account
+$pureAccount = Create-UCSDModule $modulePath "userAPICreateInfraAccount"
+
+$pureAccount.modulePayload.param0.accountName = $accounts.PURE.name
+$pureAccount.modulePayload.param0.description = $accounts.PURE.descr
+$pureAccount.modulePayload.param0.accountCategory = "2"
+#$pureAccount.modulePayload.param0.deviceCategory = "Storage"
+$pureAccount.modulePayload.param0.accountType = "FlashArray"
+$pureAccount.modulePayload.param0.destinationIPAddress = $accounts.PURE.ipAddress
+$pureAccount.modulePayload.param0.login = $accounts.PURE.userName
+$pureAccount.modulePayload.param0.password = $accounts.PURE.password
+$pureAccount.modulePayload.param0.protocol = "https"
+$pureAccount.modulePayload.param0.port = "0"
+
+if($deployAccounts) {
+    Call-UCSDAPI $pureAccount
+}
+#>
+
+<# Add VMWare Account
+$vmAccount = Create-UCSDModule $modulePath "userAPICreateInfraAccount"
+
+$vmAccount.modulePayload.param0.accountName = "vSphere01"
+$vmAccount.modulePayload.param0.description = "vSphere Account 01"
+$vmAccount.modulePayload.param0.accountCategory = "5"
+#$pureAccount.modulePayload.param0.deviceCategory = "Storage"
+$vmAccount.modulePayload.param0.accountType = "VMWare"
+$vmAccount.modulePayload.param0.destinationIPAddress = "10.0.0.15"
+$vmAccount.modulePayload.param0.login = "administrator@vsphere.local"
+$vmAccount.modulePayload.param0.password = $accounts.VM.password
+$vmAccount.modulePayload.param0.protocol = "https"
+$vmAccount.modulePayload.param0.port = "443"
+
+if($deployAccounts) {
+    #Call-UCSDAPI $vmAccount
+}
+#>
+
+if($deployAccounts) {
+    <# Pause for Device Inventory #>
+    Write-Host "Waiting 30 seconds for device inventory..."
+    Start-Sleep -s 30
 }
 
 <#########################>
@@ -155,9 +224,26 @@ if($deployUCS) {
     Call-UCSDAPI $ucsPortchannelB
 }
 
-<#################################################################>
-<# UCS Enable Port Channels Manually #>
-<#################################################################>
+<# Enable UCS Port Channels #>
+$ucsPortchannelEnableA = Create-UCSDModule $modulePath "enableUcsLanPortChannel"
+$ucsPortchannelEnableB = Create-UCSDModule $modulePath "enableUcsLanPortChannel"
+
+$ucsPortChannelEnableA.modulePayload.param0.apiAction = "enablePort"
+$ucsPortchannelEnableA.apiCall = ("/cloupia/api-v2/datacenter/'" + $ucsdPod + "'/account/" + $accounts.UCS.name + "/ucsLanPortChannel/'fabric/lan/A/pc-" + [int]$ucsPortchannelA.modulePayload.param0.portId + "'")
+
+$ucsPortChannelEnableB.modulePayload.param0.apiAction = "enablePort"
+$ucsPortchannelEnableB.apiCall = ("/cloupia/api-v2/datacenter/'" + $ucsdPod + "'/account/" + $accounts.UCS.name + "/ucsLanPortChannel/'fabric/lan/B/pc-" + [int]$ucsPortchannelB.modulePayload.param0.portId + "'")
+
+if($deployUCS) {
+    Call-UCSDAPI $ucsPortchannelEnableA
+    Call-UCSDAPI $ucsPortchannelEnableB
+}
+
+<# Pause for Port Channel Discovery #>
+if($deployUCS) {
+    Write-Host "Waiting 1 minute for port channel turn-up..."
+    Start-Sleep -s 60
+}
 
 <# UCS Create VLANs #>
 $ucsVLAN02 = Create-UCSDModule $modulePath "ucsCreateVlan"
@@ -178,6 +264,29 @@ $ucsVLAN10.modulePayload.param0.dualVLAN = "10"
 if($deployUCS) {
     Call-UCSDAPI $ucsVLAN02
     Call-UCSDAPI $ucsVLAN10
+}
+
+<#################################################################>
+<# UCS Enable Global VLAN Permissions Manually #>
+<#################################################################>
+
+<# Modify VLAN Org Permissions #>
+$ucsPermVLAN02 = Create-UCSDModule $modulePath "UcsModifyOrgPermissionsConfig"
+$ucsPermVLAN10 = Create-UCSDModule $modulePath "UcsModifyOrgPermissionsConfig"
+
+$ucsPermVLAN02.modulePayload.param0.vlanType = "VLAN"
+$ucsPermVLAN02.modulePayload.param0.vlanGroup = ""
+$ucsPermVLAN02.modulePayload.param0.vlan = ($accounts.UCS.name + ";fabric/lan/net-" + $ucsVLAN02.modulePayload.param0.name)
+$ucsPermVLAN02.modulePayload.param0.orgList = ($accounts.UCS.name + ";" + $ucsOrg)
+
+$ucsPermVLAN10.modulePayload.param0.vlanType = "VLAN"
+$ucsPermVLAN10.modulePayload.param0.vlanGroup = ""
+$ucsPermVLAN10.modulePayload.param0.vlan = ($accounts.UCS.name + ";fabric/lan/net-" + $ucsVLAN10.modulePayload.param0.name)
+$ucsPermVLAN10.modulePayload.param0.orgList = ($accounts.UCS.name + ";" + $ucsOrg)
+
+if($deployUCS) {
+    Call-UCSDAPI $ucsPermVLAN02
+    Call-UCSDAPI $ucsPermVLAN10
 }
 
 <# UCS Create VSANs #>
@@ -202,6 +311,10 @@ if($deployUCS) {
     Call-UCSDAPI $ucsVSAN20
     Call-UCSDAPI $ucsVSAN30
 }
+
+<#################################################################>
+<# UCS Tag VSAN's on FC Ports Manually #>
+<#################################################################>
 
 <# UCS Create UUID Pool #>
 $ucsUUIDPool = Create-UCSDModule $modulePath "ucsUuidPool"
@@ -1353,6 +1466,12 @@ if($deployACI) {
     #Call-UCSDAPI $aciContractToEPG
 }
 
+if($deployACI) {
+    <# Pause for Flood & Learn #>
+    Write-Host "Waiting 5 minutes for flood & learn..."
+    Start-Sleep -s 300
+}
+
 <#########################>
 <#                       #>
 <# Configure MDS Devices #>
@@ -1361,42 +1480,205 @@ if($deployACI) {
 
 <# MDS Enable Features #>
 $mdsFeaturesA = Create-UCSDModule $modulePath "configureFeature"
-#$mdsFeaturesA = Create-UCSDModule $modulePath "configureFeature"
+$mdsFeaturesB = Create-UCSDModule $modulePath "configureFeature"
+
+$mdsFeaturesA.modulePayload.param0.netdevice = ($ucsdPod + "@" + $accounts.MDSA.ipAddress)
+$mdsFeaturesA.modulePayload.param0.featureName = ($ucsdPod + "@" + $accounts.MDSA.ipAddress + "@npiv@1")
+$mdsFeaturesA.modulePayload.param0.enable = "true"
+$mdsFeaturesA.modulePayload.param0.copyRunToStartConfig = "false"
+
+$mdsFeaturesB.modulePayload.param0.netdevice = ($ucsdPod + "@" + $accounts.MDSB.ipAddress)
+$mdsFeaturesB.modulePayload.param0.featureName = ($ucsdPod + "@" + $accounts.MDSB.ipAddress + "@npiv@1")
+$mdsFeaturesB.modulePayload.param0.enable = "true"
+$mdsFeaturesB.modulePayload.param0.copyRunToStartConfig = "false"
 
 if($deployMDS) {
-    #Call-UCSDAPI $mdsFeaturesA
-    #Call-UCSDAPI $mdsFeaturesB
+    Call-UCSDAPI $mdsFeaturesA
+    Call-UCSDAPI $mdsFeaturesB
 }
 
 <# MDS Create VSANs #>
 $mdsVSANA = Create-UCSDModule $modulePath "createVSANConfig"
-#$mdsVSANB = Create-UCSDModule $modulePath "createVSANConfig"
+$mdsVSANB = Create-UCSDModule $modulePath "createVSANConfig"
+
+$mdsVSANA.modulePayload.param0.netdevice = ($ucsdPod + "@" + $accounts.MDSA.ipAddress)
+$mdsVSANA.modulePayload.param0.vsanId = "20"
+$mdsVSANA.modulePayload.param0.vsanName = "VSAN20"
+$mdsVSANA.modulePayload.param0.enhance = "true"
+$mdsVSANA.modulePayload.param0.copyRunToStartConfig = "false"
+
+$mdsVSANB.modulePayload.param0.netdevice = ($ucsdPod + "@" + $accounts.MDSB.ipAddress)
+$mdsVSANB.modulePayload.param0.vsanId = "30"
+$mdsVSANB.modulePayload.param0.vsanName = "VSAN30"
+$mdsVSANB.modulePayload.param0.enhance = "true"
+$mdsVSANB.modulePayload.param0.copyRunToStartConfig = "false"
 
 if($deployMDS) {
-    #Call-UCSDAPI $mdsVSANA
-    #Call-UCSDAPI $mdsVSANB
+    Call-UCSDAPI $mdsVSANA
+    Call-UCSDAPI $mdsVSANB
 }
 
 <# MDS Attach VSAN to Ports #>
-$mdsVSANPortA = Create-UCSDModule $modulePath "fcPortVSANConfig"
-#$mdsVSANPortB = Create-UCSDModule $modulePath "fcPortVSANConfig"
+$mdsVSANPortA1 = Create-UCSDModule $modulePath "fcPortVSANConfig"
+$mdsVSANPortA2 = Create-UCSDModule $modulePath "fcPortVSANConfig"
+$mdsVSANPortA3 = Create-UCSDModule $modulePath "fcPortVSANConfig"
+$mdsVSANPortA4 = Create-UCSDModule $modulePath "fcPortVSANConfig"
+$mdsVSANPortB1 = Create-UCSDModule $modulePath "fcPortVSANConfig"
+$mdsVSANPortB2 = Create-UCSDModule $modulePath "fcPortVSANConfig"
+$mdsVSANPortB3 = Create-UCSDModule $modulePath "fcPortVSANConfig"
+$mdsVSANPortB4 = Create-UCSDModule $modulePath "fcPortVSANConfig"
+
+$mdsVSANPortA1.modulePayload.param0.netdevice = ($ucsdPod + "@" + $accounts.MDSA.ipAddress)
+$mdsVSANPortA1.modulePayload.param0.fcPort = ($ucsdPod + "@" + $accounts.MDSA.ipAddress + "@fc1/1")
+$mdsVSANPortA1.modulePayload.param0.vsanId = "20"
+$mdsVSANPortA1.modulePayload.param0.copyRunToStartConfig = "false"
+$mdsVSANPortA1.modulePayload.param0.enable = "true"
+
+$mdsVSANPortA2.modulePayload.param0.netdevice = ($ucsdPod + "@" + $accounts.MDSA.ipAddress)
+$mdsVSANPortA2.modulePayload.param0.fcPort = ($ucsdPod + "@" + $accounts.MDSA.ipAddress + "@fc1/2")
+$mdsVSANPortA2.modulePayload.param0.vsanId = "20"
+$mdsVSANPortA2.modulePayload.param0.copyRunToStartConfig = "false"
+$mdsVSANPortA2.modulePayload.param0.enable = "true"
+
+$mdsVSANPortA3.modulePayload.param0.netdevice = ($ucsdPod + "@" + $accounts.MDSA.ipAddress)
+$mdsVSANPortA3.modulePayload.param0.fcPort = ($ucsdPod + "@" + $accounts.MDSA.ipAddress + "@fc1/13")
+$mdsVSANPortA3.modulePayload.param0.vsanId = "20"
+$mdsVSANPortA3.modulePayload.param0.copyRunToStartConfig = "false"
+$mdsVSANPortA3.modulePayload.param0.enable = "true"
+
+$mdsVSANPortA4.modulePayload.param0.netdevice = ($ucsdPod + "@" + $accounts.MDSA.ipAddress)
+$mdsVSANPortA4.modulePayload.param0.fcPort = ($ucsdPod + "@" + $accounts.MDSA.ipAddress + "@fc1/14")
+$mdsVSANPortA4.modulePayload.param0.vsanId = "20"
+$mdsVSANPortA4.modulePayload.param0.copyRunToStartConfig = "false"
+$mdsVSANPortA4.modulePayload.param0.enable = "true"
+
+$mdsVSANPortB1.modulePayload.param0.netdevice = ($ucsdPod + "@" + $accounts.MDSB.ipAddress)
+$mdsVSANPortB1.modulePayload.param0.fcPort = ($ucsdPod + "@" + $accounts.MDSB.ipAddress + "@fc1/1")
+$mdsVSANPortB1.modulePayload.param0.vsanId = "30"
+$mdsVSANPortB1.modulePayload.param0.copyRunToStartConfig = "false"
+$mdsVSANPortB1.modulePayload.param0.enable = "true"
+
+$mdsVSANPortB2.modulePayload.param0.netdevice = ($ucsdPod + "@" + $accounts.MDSB.ipAddress)
+$mdsVSANPortB2.modulePayload.param0.fcPort = ($ucsdPod + "@" + $accounts.MDSB.ipAddress + "@fc1/2")
+$mdsVSANPortB2.modulePayload.param0.vsanId = "30"
+$mdsVSANPortB2.modulePayload.param0.copyRunToStartConfig = "false"
+$mdsVSANPortB2.modulePayload.param0.enable = "true"
+
+$mdsVSANPortB3.modulePayload.param0.netdevice = ($ucsdPod + "@" + $accounts.MDSB.ipAddress)
+$mdsVSANPortB3.modulePayload.param0.fcPort = ($ucsdPod + "@" + $accounts.MDSB.ipAddress + "@fc1/13")
+$mdsVSANPortB3.modulePayload.param0.vsanId = "30"
+$mdsVSANPortB3.modulePayload.param0.copyRunToStartConfig = "false"
+$mdsVSANPortB3.modulePayload.param0.enable = "true"
+
+$mdsVSANPortB4.modulePayload.param0.netdevice = ($ucsdPod + "@" + $accounts.MDSB.ipAddress)
+$mdsVSANPortB4.modulePayload.param0.fcPort = ($ucsdPod + "@" + $accounts.MDSB.ipAddress + "@fc1/14")
+$mdsVSANPortB4.modulePayload.param0.vsanId = "30"
+$mdsVSANPortB4.modulePayload.param0.copyRunToStartConfig = "false"
+$mdsVSANPortB4.modulePayload.param0.enable = "true"
 
 if($deployMDS) {
-    #Call-UCSDAPI $mdsVSANPortA
-    #Call-UCSDAPI $mdsVSANPortB
+    Call-UCSDAPI $mdsVSANPortA1
+    Call-UCSDAPI $mdsVSANPortA2
+    Call-UCSDAPI $mdsVSANPortA3
+    Call-UCSDAPI $mdsVSANPortA4
+    Call-UCSDAPI $mdsVSANPortB1
+    Call-UCSDAPI $mdsVSANPortB2
+    Call-UCSDAPI $mdsVSANPortB3
+    Call-UCSDAPI $mdsVSANPortB4
 }
 
 <# MDS Enable Ports #>
-$mdsPortConfigA = Create-UCSDModule $modulePath "configurePort"
-#$mdsPortConfigB = Create-UCSDModule $modulePath "configurePort"
+$mdsPortConfigA1 = Create-UCSDModule $modulePath "configurePort"
+$mdsPortConfigA2 = Create-UCSDModule $modulePath "configurePort"
+$mdsPortConfigA3 = Create-UCSDModule $modulePath "configurePort"
+$mdsPortConfigA4 = Create-UCSDModule $modulePath "configurePort"
+$mdsPortConfigB1 = Create-UCSDModule $modulePath "configurePort"
+$mdsPortConfigB2 = Create-UCSDModule $modulePath "configurePort"
+$mdsPortConfigB3 = Create-UCSDModule $modulePath "configurePort"
+$mdsPortConfigB4 = Create-UCSDModule $modulePath "configurePort"
+
+$mdsPortConfigA1.modulePayload.param0.netdevice = ($ucsdPod + "@" + $accounts.MDSA.ipAddress)
+$mdsPortConfigA1.modulePayload.param0.port = "fc1/1"
+$mdsPortConfigA1.modulePayload.param0.description = "Connection to SAN"
+$mdsPortConfigA1.modulePayload.param0.enable = "true"
+$mdsPortConfigA1.modulePayload.param0.copyRunToStartConfig = "false"
+
+$mdsPortConfigA2.modulePayload.param0.netdevice = ($ucsdPod + "@" + $accounts.MDSA.ipAddress)
+$mdsPortConfigA2.modulePayload.param0.port = "fc1/2"
+$mdsPortConfigA2.modulePayload.param0.description = "Connection to SAN"
+$mdsPortConfigA2.modulePayload.param0.enable = "true"
+$mdsPortConfigA2.modulePayload.param0.copyRunToStartConfig = "false"
+
+$mdsPortConfigA3.modulePayload.param0.netdevice = ($ucsdPod + "@" + $accounts.MDSA.ipAddress)
+$mdsPortConfigA3.modulePayload.param0.port = "fc1/13"
+$mdsPortConfigA3.modulePayload.param0.description = "Connection to UCS"
+$mdsPortConfigA3.modulePayload.param0.enable = "true"
+$mdsPortConfigA3.modulePayload.param0.copyRunToStartConfig = "false"
+
+$mdsPortConfigA4.modulePayload.param0.netdevice = ($ucsdPod + "@" + $accounts.MDSA.ipAddress)
+$mdsPortConfigA4.modulePayload.param0.port = "fc1/14"
+$mdsPortConfigA4.modulePayload.param0.description = "Connection to UCS"
+$mdsPortConfigA4.modulePayload.param0.enable = "true"
+$mdsPortConfigA4.modulePayload.param0.copyRunToStartConfig = "false"
+
+$mdsPortConfigB1.modulePayload.param0.netdevice = ($ucsdPod + "@" + $accounts.MDSB.ipAddress)
+$mdsPortConfigB1.modulePayload.param0.port = "fc1/1"
+$mdsPortConfigB1.modulePayload.param0.description = "Connection to SAN"
+$mdsPortConfigB1.modulePayload.param0.enable = "true"
+$mdsPortConfigB1.modulePayload.param0.copyRunToStartConfig = "false"
+
+$mdsPortConfigB2.modulePayload.param0.netdevice = ($ucsdPod + "@" + $accounts.MDSB.ipAddress)
+$mdsPortConfigB2.modulePayload.param0.port = "fc1/2"
+$mdsPortConfigB2.modulePayload.param0.description = "Connection to SAN"
+$mdsPortConfigB2.modulePayload.param0.enable = "true"
+$mdsPortConfigB2.modulePayload.param0.copyRunToStartConfig = "false"
+
+$mdsPortConfigB3.modulePayload.param0.netdevice = ($ucsdPod + "@" + $accounts.MDSB.ipAddress)
+$mdsPortConfigB3.modulePayload.param0.port = "fc1/13"
+$mdsPortConfigB3.modulePayload.param0.description = "Connection to UCS"
+$mdsPortConfigB3.modulePayload.param0.enable = "true"
+$mdsPortConfigB3.modulePayload.param0.copyRunToStartConfig = "false"
+
+$mdsPortConfigB4.modulePayload.param0.netdevice = ($ucsdPod + "@" + $accounts.MDSB.ipAddress)
+$mdsPortConfigB4.modulePayload.param0.port = "fc1/14"
+$mdsPortConfigB4.modulePayload.param0.description = "Connection to UCS"
+$mdsPortConfigB4.modulePayload.param0.enable = "true"
+$mdsPortConfigB4.modulePayload.param0.copyRunToStartConfig = "false"
 
 if($deployMDS) {
-    #Call-UCSDAPI $mdsPortConfigA
-    #Call-UCSDAPI $mdsPortConfigB
+    Call-UCSDAPI $mdsPortConfigA1
+    Call-UCSDAPI $mdsPortConfigA2
+    Call-UCSDAPI $mdsPortConfigA3
+    Call-UCSDAPI $mdsPortConfigA4
+    Call-UCSDAPI $mdsPortConfigB1
+    Call-UCSDAPI $mdsPortConfigB2
+    Call-UCSDAPI $mdsPortConfigB3
+    Call-UCSDAPI $mdsPortConfigB4
+}
+
+<# MDS Create ZoneSets #>
+$mdsZoneSetA = Create-UCSDModule $modulePath "createSanZoneSet"
+$mdsZoneSetB = Create-UCSDModule $modulePath "createSanZoneSet"
+
+$mdsZoneSetA.modulePayload.param0.netdevice = ($ucsdPod + "@" + $accounts.MDSA.ipAddress)
+$mdsZoneSetA.modulePayload.param0.name = "CLUS-ZONESET-A"
+$mdsZoneSetA.modulePayload.param0.vsan = ($ucsdPod + "@" + $accounts.MDSA.ipAddress + "@" + $mdsVSANPortA1.modulePayload.param0.vsanId)
+$mdsZoneSetA.modulePayload.param0.enhanced = "true"
+$mdsZoneSetA.modulePayload.param0.copyToStartup = "false"
+
+$mdsZoneSetB.modulePayload.param0.netdevice = ($ucsdPod + "@" + $accounts.MDSB.ipAddress)
+$mdsZoneSetB.modulePayload.param0.name = "CLUS-ZONESET-B"
+$mdsZoneSetB.modulePayload.param0.vsan = ($ucsdPod + "@" + $accounts.MDSB.ipAddress + "@" + $mdsVSANPortB1.modulePayload.param0.vsanId)
+$mdsZoneSetB.modulePayload.param0.enhanced = "true"
+$mdsZoneSetB.modulePayload.param0.copyToStartup = "false"
+
+if($deployMDS) {
+    Call-UCSDAPI $mdsZoneSetA
+    Call-UCSDAPI $mdsZoneSetB
 }
 
 <# MDS Create SAN Zone #>
-$mdsSANZoneA = Create-UCSDModule $modulePath "createSanZone"
+#$mdsSANZoneA = Create-UCSDModule $modulePath "createSanZone"
 #$mdsSANZoneB = Create-UCSDModule $modulePath "createSanZone"
 
 if($deployMDS) {
@@ -1405,7 +1687,7 @@ if($deployMDS) {
 }
 
 <# MDS Add Zone Members #>
-$mdsZoneMemberA = Create-UCSDModule $modulePath "addMemberToSANZoneConfig"
+#$mdsZoneMemberA = Create-UCSDModule $modulePath "addMemberToSANZoneConfig"
 #$mdsZoneMemberB = Create-UCSDModule $modulePath "addMemberToSANZoneConfig"
 
 if($deployMDS) {
@@ -1413,17 +1695,8 @@ if($deployMDS) {
     #Call-UCSDAPI $mdsZoneMemberB
 }
 
-<# MDS Create ZoneSets #>
-$mdsZoneSetA = Create-UCSDModule $modulePath "createSanZoneSet"
-#$mdsZoneSetB = Create-UCSDModule $modulePath "createSanZoneSet"
-
-if($deployMDS) {
-    #Call-UCSDAPI $mdsZoneSetA
-    #Call-UCSDAPI $mdsZoneSetB
-}
-
 <# MDS Add Zone to ZoneSets #>
-$mdsZoneToZoneSetA = Create-UCSDModule $modulePath "addSANZoneToSetConfig"
+#$mdsZoneToZoneSetA = Create-UCSDModule $modulePath "addSANZoneToSetConfig"
 #$mdsZoneToZoneSetB = Create-UCSDModule $modulePath "addSANZoneToSetConfig"
 
 if($deployMDS) {
@@ -1432,10 +1705,173 @@ if($deployMDS) {
 }
 
 <# MDS ActivateZoneSets #>
-$mdsActivateZoneSetA = Create-UCSDModule $modulePath "activateSANZoneSetConfig"
+#$mdsActivateZoneSetA = Create-UCSDModule $modulePath "activateSANZoneSetConfig"
 #$mdsActivateZoneSetB = Create-UCSDModule $modulePath "activateSANZoneSetConfig"
 
 if($deployMDS) {
     #Call-UCSDAPI $mdsActivateZoneSetA
     #Call-UCSDAPI $mdsActivateZoneSetB
 }
+
+<##########################>
+<#                        #>
+<#   Deploy ESX Servers   #>
+<#                        #>
+<##########################>
+
+<# MDS Enable Features #>
+$bmDeployServerRackA = Create-UCSDModule $modulePath "userAPISubmitWorkflowServiceRequest"
+$bmDeployServerBladeA = Create-UCSDModule $modulePath "userAPISubmitWorkflowServiceRequest"
+$bmDeployServerBladeB = Create-UCSDModule $modulePath "userAPISubmitWorkflowServiceRequest"
+$bmDeployServerBladeC = Create-UCSDModule $modulePath "userAPISubmitWorkflowServiceRequest"
+$bmDeployServerBladeD = Create-UCSDModule $modulePath "userAPISubmitWorkflowServiceRequest"
+$bmDeployServerBladeE = Create-UCSDModule $modulePath "userAPISubmitWorkflowServiceRequest"
+$bmDeployServerBladeF = Create-UCSDModule $modulePath "userAPISubmitWorkflowServiceRequest"
+$bmDeployServerBladeG = Create-UCSDModule $modulePath "userAPISubmitWorkflowServiceRequest"
+$bmDeployServerBladeH = Create-UCSDModule $modulePath "userAPISubmitWorkflowServiceRequest"
+
+$bmDeployServerRackA.modulePayload.param0 = "Bare Metal Deploy v2"
+$bmDeployServerRackA.modulePayload.param1.list[1].value = "ESX-SERVER-00"
+$bmDeployServerRackA.modulePayload.param1.list[3].value = "ESX_Template_Rack"
+$bmDeployServerRackA.modulePayload.param1.list[4].value = "UCSM6248;org-root;org-root/compute-pool-CLUS-RACK-POOL"
+$bmDeployServerRackA.modulePayload.param1.list[5].value = "UCSM6248;org-root;org-root/blade-qualifier-CLUS-RACK-QUAL"
+$bmDeployServerRackA.modulePayload.param1.list[8].value = "10.0.0.210"
+$bmDeployServerRackA.modulePayload.param1.list[9].value = "255.255.255.0"
+$bmDeployServerRackA.modulePayload.param1.list[10].value = "10.0.0.1"
+$bmDeployServerRackA.modulePayload.param1.list[11].value = "ESX-SERVER-00"
+$bmDeployServerRackA.modulePayload.param1.list[13].value = "0"
+$bmDeployServerRackA.modulePayload.param1.list[25].value = "ESX-SERVER-00-A"
+$bmDeployServerRackA.modulePayload.param1.list[26].value = "ESX-SERVER-00-B"
+
+$bmDeployServerBladeA.modulePayload.param0 = "Bare Metal Deploy v2"
+$bmDeployServerBladeA.modulePayload.param1.list[1].value = "ESX-SERVER-01"
+$bmDeployServerBladeA.modulePayload.param1.list[3].value = "ESX_Template_Blade"
+$bmDeployServerBladeA.modulePayload.param1.list[4].value = "UCSM6248;org-root;org-root/compute-pool-CLUS-BLADE-POOL"
+$bmDeployServerBladeA.modulePayload.param1.list[5].value = "UCSM6248;org-root;org-root/blade-qualifier-CLUS-BLADE-QUAL"
+$bmDeployServerBladeA.modulePayload.param1.list[8].value = "10.0.0.211"
+$bmDeployServerBladeA.modulePayload.param1.list[9].value = "255.255.255.0"
+$bmDeployServerBladeA.modulePayload.param1.list[10].value = "10.0.0.1"
+$bmDeployServerBladeA.modulePayload.param1.list[11].value = "ESX-SERVER-01"
+$bmDeployServerBladeA.modulePayload.param1.list[13].value = "0"
+$bmDeployServerBladeA.modulePayload.param1.list[25].value = "ESX-SERVER-01-A"
+$bmDeployServerBladeA.modulePayload.param1.list[26].value = "ESX-SERVER-01-B"
+
+$bmDeployServerBladeB.modulePayload.param0 = "Bare Metal Deploy v2"
+$bmDeployServerBladeB.modulePayload.param1.list[1].value = "ESX-SERVER-02"
+$bmDeployServerBladeB.modulePayload.param1.list[3].value = "ESX_Template_Blade"
+$bmDeployServerBladeB.modulePayload.param1.list[4].value = "UCSM6248;org-root;org-root/compute-pool-CLUS-BLADE-POOL"
+$bmDeployServerBladeB.modulePayload.param1.list[5].value = "UCSM6248;org-root;org-root/blade-qualifier-CLUS-BLADE-QUAL"
+$bmDeployServerBladeB.modulePayload.param1.list[8].value = "10.0.0.212"
+$bmDeployServerBladeB.modulePayload.param1.list[9].value = "255.255.255.0"
+$bmDeployServerBladeB.modulePayload.param1.list[10].value = "10.0.0.1"
+$bmDeployServerBladeB.modulePayload.param1.list[11].value = "ESX-SERVER-02"
+$bmDeployServerBladeB.modulePayload.param1.list[13].value = "0"
+$bmDeployServerBladeB.modulePayload.param1.list[25].value = "ESX-SERVER-02-A"
+$bmDeployServerBladeB.modulePayload.param1.list[26].value = "ESX-SERVER-02-B"
+
+$bmDeployServerBladeC.modulePayload.param0 = "Bare Metal Deploy v2"
+$bmDeployServerBladeC.modulePayload.param1.list[1].value = "ESX-SERVER-03"
+$bmDeployServerBladeC.modulePayload.param1.list[3].value = "ESX_Template_Blade"
+$bmDeployServerBladeC.modulePayload.param1.list[4].value = "UCSM6248;org-root;org-root/compute-pool-CLUS-BLADE-POOL"
+$bmDeployServerBladeC.modulePayload.param1.list[5].value = "UCSM6248;org-root;org-root/blade-qualifier-CLUS-BLADE-QUAL"
+$bmDeployServerBladeC.modulePayload.param1.list[8].value = "10.0.0.213"
+$bmDeployServerBladeC.modulePayload.param1.list[9].value = "255.255.255.0"
+$bmDeployServerBladeC.modulePayload.param1.list[10].value = "10.0.0.1"
+$bmDeployServerBladeC.modulePayload.param1.list[11].value = "ESX-SERVER-03"
+$bmDeployServerBladeC.modulePayload.param1.list[13].value = "0"
+$bmDeployServerBladeC.modulePayload.param1.list[25].value = "ESX-SERVER-03-A"
+$bmDeployServerBladeC.modulePayload.param1.list[26].value = "ESX-SERVER-03-B"
+
+$bmDeployServerBladeD.modulePayload.param0 = "Bare Metal Deploy v2"
+$bmDeployServerBladeD.modulePayload.param1.list[1].value = "ESX-SERVER-04"
+$bmDeployServerBladeD.modulePayload.param1.list[3].value = "ESX_Template_Blade"
+$bmDeployServerBladeD.modulePayload.param1.list[4].value = "UCSM6248;org-root;org-root/compute-pool-CLUS-BLADE-POOL"
+$bmDeployServerBladeD.modulePayload.param1.list[5].value = "UCSM6248;org-root;org-root/blade-qualifier-CLUS-BLADE-QUAL"
+$bmDeployServerBladeD.modulePayload.param1.list[8].value = "10.0.0.214"
+$bmDeployServerBladeD.modulePayload.param1.list[9].value = "255.255.255.0"
+$bmDeployServerBladeD.modulePayload.param1.list[10].value = "10.0.0.1"
+$bmDeployServerBladeD.modulePayload.param1.list[11].value = "ESX-SERVER-04"
+$bmDeployServerBladeD.modulePayload.param1.list[13].value = "0"
+$bmDeployServerBladeD.modulePayload.param1.list[25].value = "ESX-SERVER-04-A"
+$bmDeployServerBladeD.modulePayload.param1.list[26].value = "ESX-SERVER-04-B"
+
+$bmDeployServerBladeE.modulePayload.param0 = "Bare Metal Deploy v2"
+$bmDeployServerBladeE.modulePayload.param1.list[1].value = "ESX-SERVER-05"
+$bmDeployServerBladeE.modulePayload.param1.list[3].value = "ESX_Template_Blade"
+$bmDeployServerBladeE.modulePayload.param1.list[4].value = "UCSM6248;org-root;org-root/compute-pool-CLUS-BLADE-POOL"
+$bmDeployServerBladeE.modulePayload.param1.list[5].value = "UCSM6248;org-root;org-root/blade-qualifier-CLUS-BLADE-QUAL"
+$bmDeployServerBladeE.modulePayload.param1.list[8].value = "10.0.0.215"
+$bmDeployServerBladeE.modulePayload.param1.list[9].value = "255.255.255.0"
+$bmDeployServerBladeE.modulePayload.param1.list[10].value = "10.0.0.1"
+$bmDeployServerBladeE.modulePayload.param1.list[11].value = "ESX-SERVER-05"
+$bmDeployServerBladeE.modulePayload.param1.list[13].value = "0"
+$bmDeployServerBladeE.modulePayload.param1.list[25].value = "ESX-SERVER-05-A"
+$bmDeployServerBladeE.modulePayload.param1.list[26].value = "ESX-SERVER-05-B"
+
+$bmDeployServerBladeF.modulePayload.param0 = "Bare Metal Deploy v2"
+$bmDeployServerBladeF.modulePayload.param1.list[1].value = "ESX-SERVER-06"
+$bmDeployServerBladeF.modulePayload.param1.list[3].value = "ESX_Template_Blade"
+$bmDeployServerBladeF.modulePayload.param1.list[4].value = "UCSM6248;org-root;org-root/compute-pool-CLUS-BLADE-POOL"
+$bmDeployServerBladeF.modulePayload.param1.list[5].value = "UCSM6248;org-root;org-root/blade-qualifier-CLUS-BLADE-QUAL"
+$bmDeployServerBladeF.modulePayload.param1.list[8].value = "10.0.0.216"
+$bmDeployServerBladeF.modulePayload.param1.list[9].value = "255.255.255.0"
+$bmDeployServerBladeF.modulePayload.param1.list[10].value = "10.0.0.1"
+$bmDeployServerBladeF.modulePayload.param1.list[11].value = "ESX-SERVER-06"
+$bmDeployServerBladeF.modulePayload.param1.list[13].value = "0"
+$bmDeployServerBladeF.modulePayload.param1.list[25].value = "ESX-SERVER-06-A"
+$bmDeployServerBladeF.modulePayload.param1.list[26].value = "ESX-SERVER-06-B"
+
+$bmDeployServerBladeG.modulePayload.param0 = "Bare Metal Deploy v2"
+$bmDeployServerBladeG.modulePayload.param1.list[1].value = "ESX-SERVER-07"
+$bmDeployServerBladeG.modulePayload.param1.list[3].value = "ESX_Template_Blade"
+$bmDeployServerBladeG.modulePayload.param1.list[4].value = "UCSM6248;org-root;org-root/compute-pool-CLUS-BLADE-POOL"
+$bmDeployServerBladeG.modulePayload.param1.list[5].value = "UCSM6248;org-root;org-root/blade-qualifier-CLUS-BLADE-QUAL"
+$bmDeployServerBladeG.modulePayload.param1.list[8].value = "10.0.0.217"
+$bmDeployServerBladeG.modulePayload.param1.list[9].value = "255.255.255.0"
+$bmDeployServerBladeG.modulePayload.param1.list[10].value = "10.0.0.1"
+$bmDeployServerBladeG.modulePayload.param1.list[11].value = "ESX-SERVER-07"
+$bmDeployServerBladeG.modulePayload.param1.list[13].value = "0"
+$bmDeployServerBladeG.modulePayload.param1.list[25].value = "ESX-SERVER-07-A"
+$bmDeployServerBladeG.modulePayload.param1.list[26].value = "ESX-SERVER-07-B"
+
+$bmDeployServerBladeH.modulePayload.param0 = "Bare Metal Deploy v2"
+$bmDeployServerBladeH.modulePayload.param1.list[1].value = "ESX-SERVER-08"
+$bmDeployServerBladeH.modulePayload.param1.list[3].value = "ESX_Template_Blade"
+$bmDeployServerBladeH.modulePayload.param1.list[4].value = "UCSM6248;org-root;org-root/compute-pool-CLUS-BLADE-POOL"
+$bmDeployServerBladeH.modulePayload.param1.list[5].value = "UCSM6248;org-root;org-root/blade-qualifier-CLUS-BLADE-QUAL"
+$bmDeployServerBladeH.modulePayload.param1.list[8].value = "10.0.0.218"
+$bmDeployServerBladeH.modulePayload.param1.list[9].value = "255.255.255.0"
+$bmDeployServerBladeH.modulePayload.param1.list[10].value = "10.0.0.1"
+$bmDeployServerBladeH.modulePayload.param1.list[11].value = "ESX-SERVER-08"
+$bmDeployServerBladeH.modulePayload.param1.list[13].value = "0"
+$bmDeployServerBladeH.modulePayload.param1.list[25].value = "ESX-SERVER-08-A"
+$bmDeployServerBladeH.modulePayload.param1.list[26].value = "ESX-SERVER-08-B"
+
+if($deployServers) {
+    Call-UCSDAPI $bmDeployServerRackA
+    Call-UCSDAPI $bmDeployServerBladeA
+    Call-UCSDAPI $bmDeployServerBladeB
+    Call-UCSDAPI $bmDeployServerBladeC
+    Call-UCSDAPI $bmDeployServerBladeD
+    Call-UCSDAPI $bmDeployServerBladeE
+    Call-UCSDAPI $bmDeployServerBladeF
+    Call-UCSDAPI $bmDeployServerBladeG
+    Call-UCSDAPI $bmDeployServerBladeH
+}
+
+<######################>
+<#                    #>
+<#    Enable Proxy    #>
+<#                    #>
+<######################>
+
+if($setProxy) {
+    Set-Itemproperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings' -name ProxyEnable -value 1
+}
+
+<# Collect Finish Time #>
+$EndDTE = Get-Date
+$EndDTE.ToUniversalTime()
+
+<# Print Script Runtime #>
+$EndDTE - $StartDTE

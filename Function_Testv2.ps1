@@ -188,12 +188,20 @@ function Call-UCSDAPI($module) {
         $xmlURL = "https://$ucsdAddr" + $module.getAPI()
         $xmlHeader = "<?xml version=`"1.0`" encoding=`"utf-8`"?>"
         $request = $xmlHeader + $module.toXML()
+        $method = ""
+
+        if($module.GetOperationType() -eq "UPDATE") {
+            $method = "Put"
+        }
+        else {
+            $method = "Post"
+        }
 
         Write-Host "`$xmlURL: " $xmlURL
         Write-Host "`$xmlHeader: " $xmlHeader
         Write-Host "`$request: " $request
-        Write-Host "`$result = Invoke-WebRequest -Uri $xmlUrl -Method Post -Body $request -Headers @{`"X-Cloupia-Request-Key`"=`"$cloupiaKey`"} -ContentType 'application/xml'"
-        $result = Invoke-WebRequest -Uri $xmlUrl -Method Post -Body $request -Headers @{"X-Cloupia-Request-Key"="$cloupiaKey"} -ContentType 'application/xml'
+        Write-Host "`$result = Invoke-WebRequest -Uri $xmlUrl -Method $method -Body $request -Headers @{`"X-Cloupia-Request-Key`"=`"$cloupiaKey`"} -ContentType 'application/xml'"
+        $result = Invoke-WebRequest -Uri $xmlUrl -Method $method -Body $request -Headers @{"X-Cloupia-Request-Key"="$cloupiaKey"} -ContentType 'application/xml'
     }
     elseif($module.GetAPIType() -eq "json") {
         $request = "https://" + $ucsdAddr + $module.getAPI() + $module.toJSON()

@@ -1,0 +1,15 @@
+{
+    "moduleName": "ucsLanPortChannel",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "UPDATE",
+    "modulePayload": {
+                        "param0": {
+                                        "apiAction": "enablePort"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/datacenter/'Default Pod'/account/UCSM6248/ucsLanPortChannel/'fabric/lan/A/pc-1'"
+}
