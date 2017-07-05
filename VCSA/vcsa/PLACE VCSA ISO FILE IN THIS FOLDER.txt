@@ -1,0 +1,1 @@
+Please place your VCSA ISO file into this folder. I recommend at least VCSA 6.5e due to bug fixes included in that version and beyond.
