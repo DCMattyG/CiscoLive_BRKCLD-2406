@@ -5,8 +5,8 @@ $ucsdAddr = "10.0.0.80"
 $cloupiaKey = "F5B1B5577CCA44CEB4F45088CFED5814"
 
 try {
-    . ("$basePath\SSL_Helper.ps1")
-    . ("$basePath\Function_Testv2.ps1")
+    . ("$basePath\Helper\SSL_Helper.ps1")
+    . ("$basePath\Helper\UCSD_Module.ps1")
 }
 catch {
     Write-Host "Error while loading supporting PowerShell Scripts" 
