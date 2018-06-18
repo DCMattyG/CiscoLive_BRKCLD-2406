@@ -1,0 +1,35 @@
+{
+    "moduleName": "ucsSanConnectivityPolicy",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": {
+                                        "name": "clus-san-con-pol",
+                                        "descr": "Cisco Live SAN Connection Policy",
+                                        "accountName": "UCSPE",
+                                        "org": "org-root",
+                                        "identPoolName": "clus-wwnn-pool",
+                                        "spVHBA": [  
+                                                    {
+                                                        "nwTemplName": "clus-vhba-tmpl-a",
+                                                        "name": "clus-vhba-a",
+                                                        "order": "1",
+                                                        "spDn": "org-root",
+                                                        "status": "created"
+                                                    },
+                                                     {
+                                                        "nwTemplName": "clus-vhba-tmpl-b",
+                                                        "name": "clus-vhba-b",
+                                                        "order": "2",
+                                                        "spDn": "org-root",
+                                                        "status": "created"
+                                                    }
+                                                ]
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/ucsSanConnectivityPolicy"
+}

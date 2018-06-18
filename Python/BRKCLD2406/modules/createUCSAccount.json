@@ -1,0 +1,21 @@
+{
+    "moduleName": "createUCSAccount",
+    "moduleDesc": "Here is a description of this module",
+    "modulePayload": {
+                        "param0": {
+                                        "accountName": "string",
+                                        "podType": "string",
+                                        "createUcsmAccount": "bool",
+                                        "userId": "string",
+                                        "passwd": "string",
+                                        "server": "string",
+                                        "protocol": "string",
+                                        "port": "int"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "json",
+    "apiCall": "/app/api/rest?formatType=json&opName=ucsm:userAPICreateUCSAccount&opData="
+}

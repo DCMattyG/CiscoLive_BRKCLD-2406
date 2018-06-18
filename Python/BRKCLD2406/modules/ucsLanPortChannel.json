@@ -1,0 +1,29 @@
+{
+    "moduleName": "ucsLanPortChannel",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": {
+                                        "accountName": "UCSPE",
+                                        "adminState": "enabled",
+                                        "switchId": "A",
+                                        "name": "PC01",
+                                        "portId": "001",
+                                        "portList": [
+                                                        {
+                                                            "slotId": "1",
+                                                            "portId": "1"
+                                                        },
+                                                        {
+                                                            "slotId": "1",
+                                                            "portId": "2"
+                                                        }
+                                                    ]
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/ucsLanPortChannel"
+}

@@ -1,0 +1,18 @@
+{
+    "moduleName": "CreateCDPInterfacePolicyConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": {
+                                        "apicAccount": "ACISIM",
+                                        "cdpInterfaceName": "CDP-Pol-ON",
+                                        "description": "CDP On",
+                                        "adminState": "enabled"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/CDP Interface Policy"
+}

@@ -1,0 +1,25 @@
+{
+    "moduleName": "userAPICreateUCSAccount",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": {
+                                        "accountName": "UCS",
+                                        "description": "UCS Account",
+                                        "podType": "Default Pod",
+                                        "createUcsmAccount": "true",
+                                        "authenticationType": "Locally Authenticated",
+                                        "ucsmManageServerType": "All Servers",
+                                        "userId": "admin",
+                                        "passwd": "password",
+                                        "server": "0.0.0.0",
+                                        "protocol": "https",
+                                        "port": 443
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "json",
+    "apiCall": "/app/api/rest?formatType=json&opName=ucsm:userAPICreateUCSAccount&opData="
+}

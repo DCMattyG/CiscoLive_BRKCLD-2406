@@ -1,0 +1,19 @@
+{
+    "moduleName": "NetworkDeviceCLICommandConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "NETWORK_DEVICE_CLI",
+    "modulePayload": {
+                        "param0": {
+                                        "netDevice": "Default Pod@10.0.0.21",
+                                        "copyRunToStartConfig": "false",
+                                        "cliCommands": "end\nconfigure terminal\ninterface port-channel 12\nchannel mode active\nswitchport rate-mode dedicated",
+                                        "UndoCliCommands": "end\nconfigure terminal\nno interface port-channel 12",
+                                        "error": "end\nconfigure terminal\nno interface port-channel 12"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/NetworkDeviceCLICommandConfig"
+}

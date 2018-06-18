@@ -1,0 +1,20 @@
+{
+    "moduleName": "createLocalDiskConfigurationPolicy",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "CREATE_LOCAL_DISK_CONFIGURATION_POLICY",
+    "modulePayload": {
+                        "param0": {
+                                        "name": "clus-local-disk",
+                                        "descr": "Cisco Live Local Disk Config Policy",
+                                        "orgIdentity": "UCSPE;org-root",
+                                        "mode": "raid-mirrored",
+                                        "protectConfig": "false",
+                                        "flexFlashState": "disable"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/ucsLocalDiskConfigurationPolicy"
+}

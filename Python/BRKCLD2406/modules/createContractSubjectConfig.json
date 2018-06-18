@@ -1,0 +1,21 @@
+{
+    "moduleName": "CreateContractSubjectConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": {
+                                        "contract": "ACISIM@CiscoLive@ALLOW_ALL",
+                                        "type": "Normal",
+                                        "contractSubjectName": "subj-allow-all",
+                                        "contractDescription": "Allow All Traffic",
+                                        "reverseFilterPorts": "true",
+                                        "applyBothDirections": "true",
+                                        "qos": "level1"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/ContractSubject"
+}

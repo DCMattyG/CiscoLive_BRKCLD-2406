@@ -1,0 +1,22 @@
+{
+    "moduleName": "ucsUuidPool",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": {
+                                        "name": "uuid-pool-clus",
+                                        "descr": "Cisco Live UUID Pool",
+                                        "prefix": "other",
+                                        "otherPrefix": "00000000-0000-0000",
+                                        "accountName": "UCSPE",
+                                        "org": "org-root",
+                                        "firstMACAddress": "0000-000000000001",
+                                        "size": "32"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/ucsUuidPool"
+}

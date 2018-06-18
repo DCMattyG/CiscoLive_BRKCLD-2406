@@ -1,0 +1,27 @@
+{
+    "moduleName": "CreateCluster",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": {
+                                        "accountName": "vSphere",
+                                        "dcName": "CLUS-DC",
+                                        "clusterName": "CLUS_CLUSTER",
+                                        "isDRSEnabled": "false",
+                                        "drsAutomationLevel": "Fully Automated",
+                                        "vmotionRate": "3",
+                                        "powerManagementMode": "Off",
+                                        "hostPowerActionRate": "3",
+                                        "isAdmissionControlEnabled": "false",
+                                        "isDASEnabled": "false",
+                                        "dasOption1": "",
+                                        "dasOption1Value": "",
+                                        "swapFileLocation": "Store in Directory"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/vmwareCluster"
+}

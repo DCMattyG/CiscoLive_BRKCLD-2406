@@ -1,0 +1,24 @@
+{
+    "moduleName": "CreatePortChannelPolicyConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "APIC_FABRIC_CREATE_PORT_CHANNEL_POLICY",
+    "modulePayload": {
+                        "param0": {
+                                        "apicAccount": "ACISIM",
+                                        "interfaceName": "PortChannel-Pol-LACP",
+                                        "description": "LACP ON",
+                                        "mode": "LACP Active",
+                                        "standbyPorts": "true",
+                                        "convergence": "true",
+                                        "memberPorts": "false",
+                                        "individualPorts": "true",
+                                        "minLinks": "1",
+                                        "maxLinks": "16"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/Port Channel Policy"
+}

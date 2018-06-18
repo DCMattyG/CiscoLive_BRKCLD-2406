@@ -1,0 +1,21 @@
+{
+    "moduleName": "CreateEPGConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "APIC_TENANT_EPG_CREATE",
+    "modulePayload": {
+                        "param0": {
+                                        "approfName": "ACISIM@CiscoLive@CLUS_APP",
+                                        "epgName": "CLUS_VLAN_001",
+                                        "epgDescription": "Cisco Live EPG VLAN1",
+                                        "qos": "unspecified",
+                                        "customQos": "ACISIM@common@default",
+                                        "bridgeDomain": "ACISIM@CiscoLive@CLUS-BD",
+                                        "monPolicy": "ACISIM@common@default"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/TENANT_EPG"
+}

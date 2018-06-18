@@ -1,0 +1,18 @@
+{
+    "moduleName": "AddContractToEPGConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "APIC_TENANT_ADD_CONTRACT_TO_EPG",
+    "modulePayload": {
+                        "param0": {
+                                        "epg": "ACISIM@CiscoLive@CLUS_APP@CLUS_VLAN_001",
+                                        "contractType": "Consumed Contract",
+                                        "contract": "ACISIM@CiscoLive@ALLOW_ALL",
+                                        "qos": "unspecified"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/Contract To EPG"
+}

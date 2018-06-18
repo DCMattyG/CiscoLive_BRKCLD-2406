@@ -1,0 +1,19 @@
+{
+    "moduleName": "ActivateSANZoneSetConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "NETWORK_ACTIVATE_SAN_ZONE",
+    "modulePayload": {
+                        "param0": {
+                                        "device": "Default Pod@10.0.0.23",
+                                        "name": "10.0.0.23;10;CLUS_ZONESET",
+                                        "activate": "true",
+                                        "enhanced": "true",
+                                        "copyRunToStartConfig": "false"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/ActivateSANZoneSetConfig"
+}

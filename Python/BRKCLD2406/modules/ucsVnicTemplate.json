@@ -1,0 +1,25 @@
+{
+    "moduleName": "ucsVnicTemplate",
+    "moduleDesc": "Here is a description of this module",
+    "modulePayload": {
+                        "param0": {
+                                        "name": "string",
+                                        "descr": "string",
+                                        "org": "string",
+                                        "switchId": "string",
+                                        "enableFailover": "bool",
+                                        "targetAdapter": "bool",
+                                        "targetVM": "bool",
+                                        "templType": "string",
+                                        "vlanIdentityList": "string",
+                                        "nativeVlan": "string",
+                                        "mtu": "int",
+                                        "identPoolName": "string"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/ucsVnicTemplate"
+}

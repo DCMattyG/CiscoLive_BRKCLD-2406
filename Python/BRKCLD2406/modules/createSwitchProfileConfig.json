@@ -1,0 +1,16 @@
+{
+    "moduleName": "CreateSwitchProfileConfig",
+    "moduleDesc": "Here is a description of this module",
+    "modulePayload": {
+                        "param0": {
+                                        "apicAccount": "ACISIM",
+                                        "switchProfileName": "SwitchProf-LAB",
+                                        "description": "Lab Switch Profile"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/Switch Profile"
+}

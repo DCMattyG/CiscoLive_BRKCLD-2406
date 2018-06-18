@@ -1,0 +1,31 @@
+{
+    "moduleName": "CreateTenantFilterRuleConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "APIC_TENANT_FILTER_RULE_CREATE",
+    "modulePayload": {
+                        "param0": {
+                                        "filterName": "ACISIM@CiscoLive@filter-allow-all",
+                                        "filterRuleName": "rule-allow-all",
+                                        "description": "Allow All Traffic",
+                                        "enthernetType": "unspecified",
+                                        "arpFlag": "unspecified",
+                                        "ipProtocol": "unspecified",
+                                        "allowFragment": "false",
+                                        "sourcePortStart": "unspecified",
+                                        "sourcePortStartCustom": "",
+                                        "sourcePortend": "unspecified",
+                                        "sourcePortendCustom": "",
+                                        "destinationPortStart": "unspecified",
+                                        "destinationPortStartCustom": "",
+                                        "destinationPortEnd": "unspecified",
+                                        "destinationPortEndCustom": "",
+                                        "tcpSessionRule": "unspecified",
+                                        "enableStatefull": "false"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/TENANT_FILTER_RULE"
+}

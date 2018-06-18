@@ -1,0 +1,19 @@
+{
+    "moduleName": "CreateVSANConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": {
+                                        "netdevice": "Default Pod@10.0.0.23",
+                                        "vsanId": "10",
+                                        "vsanName": "VSAN10",
+                                        "enhance": "true",
+                                        "copyRunToStartConfig": "false"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/VSAN"
+}

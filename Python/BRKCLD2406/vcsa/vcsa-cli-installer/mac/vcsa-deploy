@@ -1,0 +1,5 @@
+#!/bin/bash
+ROOT=$(cd $(dirname "$0") && pwd -P)
+
+export DYLD_LIBRARY_PATH=$ROOT/openssl-1.0.2k/lib/:$ROOT/libffi-3.0.13/lib/
+exec $ROOT/vcsa-deploy.bin "$@"

@@ -1,0 +1,19 @@
+{
+    "moduleName": "InterfacePortChannelConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "NETWORK_INTERFACE_PORT_CHANNEL",
+    "modulePayload": {
+                        "param0": {
+                                        "netdevice": "Default Pod@10.0.0.21",
+                                        "port": "Default Pod@10.0.0.21@Fibre Channel@fc1/13",
+                                        "portChannel": "Default Pod@10.0.0.21@Fibre@port-channel20",
+                                        "copyRunToStartConfig": "false",
+                                        "enable": "true"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/InterfacePortChannelConfig"
+}

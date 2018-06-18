@@ -1,0 +1,22 @@
+{
+    "moduleName": "ucsStoragePolicy",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": {
+                                        "policyName": "clus-stor-pol",
+                                        "policyDescription": "Cisco Live Storage Policy",
+                                        "ucsAcctName": "UCSPE",
+                                        "orgName": "org-root",
+                                        "localDiskConfigPolicy": "clus-local-disk",
+                                        "connectivityType": "Use SAN Connectivity Policy",
+                                        "noOfVhba": "0",
+                                        "sanConnPolicy": "clus-san-con-pol"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/ucsStoragePolicy"
+}

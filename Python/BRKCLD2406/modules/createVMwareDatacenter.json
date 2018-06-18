@@ -1,0 +1,16 @@
+{
+    "moduleName": "CreateVMwareDatacenter",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": {
+                                        "accountName": "vSphere",
+                                        "dcName": "CLUS-DC"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/vmwareDC"
+}

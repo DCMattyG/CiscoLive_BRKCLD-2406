@@ -1,0 +1,13 @@
+{
+    "moduleName": "userAPIGetWorkflowStatus",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": "0000",
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "json",
+    "apiCall": "/app/api/rest?formatType=json&opName=userAPIGetWorkflowStatus&opData="
+}

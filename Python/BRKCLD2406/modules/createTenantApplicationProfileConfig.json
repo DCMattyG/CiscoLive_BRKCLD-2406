@@ -1,0 +1,19 @@
+{
+    "moduleName": "CreateTenantApplicationProfileConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "APIC_TENANT_APPLN_PROFILE_CREATE",
+    "modulePayload": {
+                        "param0": {
+                                        "tenantName": "ACISIM@CiscoLive",
+                                        "applnProfileName": "CLUS_APP",
+                                        "description": "Cisco Live App",
+                                        "priority": "level1",
+                                        "monitorPolicy": "ACISIM@common@default"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/TENANT_APPLN_PROFILE"
+}

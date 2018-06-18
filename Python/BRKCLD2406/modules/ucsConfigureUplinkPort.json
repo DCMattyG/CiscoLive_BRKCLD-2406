@@ -1,0 +1,15 @@
+{
+    "moduleName": "UCSConfigureUplinkPort",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "UCS_CONFIGURE_UPLINKPORT",
+    "modulePayload": {
+                        "param0": {
+                                        "ethernetPort": "UCSPE;sys/switch-B/slot-2/switch-ether/port-1"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/ucsSwitchPort"
+}

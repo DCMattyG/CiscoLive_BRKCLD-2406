@@ -1,0 +1,20 @@
+{
+    "moduleName": "CreateLinkLevelPolicyConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": {
+                                        "apicAccount": "ACISIM",
+                                        "linkLevelName": "LinkLevel-Pol-10G",
+                                        "description": "Link Level 10G",
+                                        "autoNegotiation": "on",
+                                        "speed": "10G",
+                                        "linkDebounceInterval": "100"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/Link Level Policy"
+}

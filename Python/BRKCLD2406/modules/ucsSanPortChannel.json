@@ -1,0 +1,28 @@
+{
+    "moduleName": "ucsSanPortChannel",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": {
+                                        "accountName": "UCSPE",
+                                        "switchId": "A",
+                                        "name": "FC20",
+                                        "portId": "020",
+                                        "portList": [
+                                                        {
+                                                            "slotId": "1",
+                                                            "portId": "31"
+                                                        },
+                                                        {
+                                                            "slotId": "1",
+                                                            "portId": "32"
+                                                        }
+                                                    ]
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/ucsSanPortChannel"
+}

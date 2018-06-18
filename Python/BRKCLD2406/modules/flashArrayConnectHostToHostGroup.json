@@ -1,0 +1,17 @@
+{
+    "moduleName": "FlashArrayConnectHostToHostGroup",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "Connect_Host_To_HostGroup",
+    "modulePayload": {
+                        "param0": {
+                                        "accountName": "PURE",
+                                        "hostName": "ESX-SERVER-00",
+                                        "hostGroupName": "ESX-HOSTS"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/FlashArray_HostGroup"
+}

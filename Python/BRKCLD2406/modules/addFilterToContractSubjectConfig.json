@@ -1,0 +1,19 @@
+{
+    "moduleName": "AddFilterToContractSubjectConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "APIC_TENANT_ADD_FILTER_TO_CONTRACT_SUBJECT",
+    "modulePayload": {
+                        "param0": {
+                                        "contractSubject": "ACISIM@CiscoLive@ALLOW_ALL@subj-allow-all",
+                                        "filter": "ACISIM@CiscoLive@filter-allow-all",
+                                        "applyBothDirections": "true",
+                                        "filterConsumerToProvider": "",
+                                        "filterProviderToConsumer": ""
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/Filter To Contract Subject"
+}

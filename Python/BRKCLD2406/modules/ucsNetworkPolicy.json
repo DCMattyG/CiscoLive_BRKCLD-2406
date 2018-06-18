@@ -1,0 +1,21 @@
+{
+    "moduleName": "ucsNetworkPolicy",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": {
+                                        "policyName": "clus-net-pol",
+                                        "policyDescription": "Cisco Live Network Policy",
+                                        "accountName": "UCSPE",
+                                        "orgDn": "org-root",
+                                        "connectivityType": "Use LAN Connectivity Policy",
+                                        "lanConnPolicy": "clus-lan-con-pol",
+                                        "expertNoOfVnics": "0"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/ucsNetworkPolicy"
+}

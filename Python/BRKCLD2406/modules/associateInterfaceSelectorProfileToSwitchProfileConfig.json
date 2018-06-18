@@ -1,0 +1,16 @@
+{
+    "moduleName": "AssociateInterfaceSelectorProfileToSwitchProfileConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "ASSOCIATE_INTERFACE_SELECTOR_PROFILE_TO_SWITCH_PROFILE",
+    "modulePayload": {
+                        "param0": {
+                                        "switchProfile": "ACISIM@SwitchProf-LAB",
+                                        "interfaceSelPfName": "ACISIM@Interface-Profile-LAB"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/InterfaceSelectorProfileToSwitchProfile"
+}

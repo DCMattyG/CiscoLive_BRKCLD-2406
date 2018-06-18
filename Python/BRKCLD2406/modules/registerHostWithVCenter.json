@@ -1,0 +1,23 @@
+{
+    "moduleName": "RegisterHostwithvCenter",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "REGISTER_HOST_WITH_VCENTER",
+    "modulePayload": {
+                        "param0": {
+                                        "accountName": "vSphere",
+                                        "isPXEHost": "false",
+                                        "PXEBootRequestId": "",
+                                        "hostNode": "10.0.0.211",
+                                        "userName": "root",
+                                        "password": "password",
+                                        "hostLicense": "",
+                                        "associationType": "CLUSTER",
+                                        "clusterOrDC": "CLUS-CLUSTER"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/vmwareHost"
+}

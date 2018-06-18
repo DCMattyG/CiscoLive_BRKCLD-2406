@@ -1,0 +1,323 @@
+{
+  "autodeploy.ext.managementport": {
+    "default": 6502,
+    "external": true,
+    "infrastructure": false,
+    "management": true
+  },
+  "autodeploy.ext.serviceport": {
+    "default": 6501,
+    "external": true,
+    "infrastructure": false,
+    "management": true
+  },
+  "netdumper.ext.serviceport": {
+    "default": 6500,
+    "external": true,
+    "infrastructure": false,
+    "management": true
+  },
+  "rhttpproxy.ext.port1": {
+    "default": 80,
+    "external": true,
+    "infrastructure": true,
+    "management": true
+  },
+  "rhttpproxy.ext.port2": {
+    "default": 443,
+    "external": true,
+    "infrastructure": true,
+    "management": true
+  },
+  "sshd.ext.port1": {
+    "default": 22,
+    "external": true,
+    "infrastructure": true,
+    "management": true,
+    "appliance-only": true
+  },
+  "sts.int.port1": {
+    "default": 7080,
+    "external": false,
+    "infrastructure": true,
+    "management": false,
+    "configurable": false
+  },
+  "sts.ext.port1": {
+    "default": 7444,
+    "external": true,
+    "infrastructure": true,
+    "management": false
+  },
+  "vmafd.ext.port1": {
+    "default": 2020,
+    "external": true,
+    "infrastructure": true,
+    "management": true,
+    "configurable": false
+  },
+  "vmca.ext.port1": {
+    "default": 2014,
+    "external": true,
+    "infrastructure": true,
+    "management": false,
+    "configurable": false
+  },
+  "vmdir.dcerpc.ext.port1": {
+    "default": 2012,
+    "external": true,
+    "infrastructure": true,
+    "management": false,
+    "configurable": false
+  },
+  "vmdir.ext.port1": {
+    "default": 389,
+    "external": true,
+    "infrastructure": true,
+    "management": false,
+    "configurable": false
+  },
+  "vmdir.ext.port2": {
+    "default": 636,
+    "external": true,
+    "infrastructure": true,
+    "management": false,
+    "configurable": false
+  },
+  "vmdir.compatibility.ext.port1": {
+    "default": 11711,
+    "external": true,
+    "infrastructure": true,
+    "management": false,
+    "configurable": false
+  },
+  "vmdir.compatibility.ext.port2": {
+    "default": 11712,
+    "external": true,
+    "infrastructure": true,
+    "management": false,
+    "configurable": false
+  },
+  "vmkdc.ext.port1": {
+    "default": 88,
+    "external": true,
+    "infrastructure": true,
+    "management": false,
+    "configurable": false
+  },
+  "vmdns.ext.port1": {
+    "default": 53,
+    "external": true,
+    "infrastructure": true,
+    "management": false,
+    "configurable": false
+  },
+  "vmdns.ext.port2": {
+    "default": 2015,
+    "external": true,
+    "infrastructure": true,
+    "management": false,
+    "configurable": false
+  },
+  "vpxd.ext.port1": {
+    "default": 902,
+    "external": true,
+    "infrastructure": false,
+    "management": true
+  },
+  "vsphere-client.ext.port1": {
+    "default": 9443,
+    "external": true,
+    "infrastructure": false,
+    "management": true
+  },
+  "cis-license.int.http": {
+    "default": 12080,
+    "external": false,
+    "infrastructure": false,
+    "management": true
+  },
+  "cm.int.cmhttp": {
+    "default": 18090,
+    "external": false,
+    "infrastructure": true,
+    "management": true
+  },
+  "eam.int.http": {
+    "default": 15005,
+    "external": false,
+    "infrastructure": false,
+    "management": true
+  },
+  "eam.int.https": {
+    "default": 15006,
+    "external": false,
+    "infrastructure": false,
+    "management": true
+  },
+  "vpxd-svcs.int.http": {
+    "default": 10080,
+    "external": false,
+    "infrastructure": false,
+    "management": true
+  },
+  "mbcs.int.http": {
+    "default": 10201,
+    "external": false,
+    "infrastructure": false,
+    "management": true
+  },
+  "netdumper.int.webport": {
+    "default": 8000,
+    "external": false,
+    "infrastructure": false,
+    "management": true
+  },
+  "perfcharts.int.https": {
+    "default": 13080,
+    "external": false,
+    "infrastructure": false,
+    "management": true
+  },
+  "sca.int.scahttp": {
+    "default": 18091,
+    "external": false,
+    "infrastructure": true,
+    "management": true
+  },
+  "sps.int.pbmhttp": {
+    "default": 8190,
+    "external": false,
+    "infrastructure": false,
+    "management": true
+  },
+  "sps.int.pbmhttps": {
+    "default": 8191,
+    "external": false,
+    "infrastructure": false,
+    "management": true
+  },
+  "sps.int.smshttp": {
+    "default": 22000,
+    "external": false,
+    "infrastructure": false,
+    "management": true
+  },
+  "sps.int.smshttps": {
+    "default": 22100,
+    "external": false,
+    "infrastructure": false,
+    "management": true
+  },
+  "sps.int.spshttp": {
+    "default": 21000,
+    "external": false,
+    "infrastructure": false,
+    "management": true
+  },
+  "sps.int.spshttps": {
+    "default": 21100,
+    "external": false,
+    "infrastructure": false,
+    "management": true
+  },
+  "syslog.ext.port": {
+    "default": 514,
+    "external": true,
+    "infrastructure": true,
+    "management": true,
+    "appliance-only": false
+  },
+  "syslog.ext.tls.port": {
+    "default": 1514,
+    "external": true,
+    "infrastructure": true,
+    "management": true,
+    "appliance-only": false
+  },
+  "syslog.int.http": {
+    "default": 14080,
+    "external": false,
+    "infrastructure": true,
+    "management": true,
+    "appliance-only": true
+  },
+  "vapi.int.endpoint-http": {
+    "default": 12346,
+    "external": false,
+    "infrastructure": false,
+    "management": true
+  },
+  "vapi.int.endpoint-https": {
+    "default": 12347,
+    "external": false,
+    "infrastructure": false,
+    "management": true
+  },
+  "vapi.int.metadata-http": {
+    "default": 4298,
+    "external": false,
+    "infrastructure": false,
+    "management": true
+  },
+  "vpostgres.int.healthstat_port": {
+    "default": 5444,
+    "external": false,
+    "infrastructure": false,
+    "management": true
+  },
+  "vpostgres.int.server_port": {
+    "default": 5432,
+    "external": false,
+    "infrastructure": false,
+    "management": true
+  },
+  "vpxd.int.sdk-port": {
+    "default": 8085,
+    "external": false,
+    "infrastructure": false,
+    "management": true
+  },
+  "vpxd.int.sdk-tunnel-port": {
+    "default": 8089,
+    "external": false,
+    "infrastructure": false,
+    "management": true
+  },
+  "vpxd.int.invsvc-feed-port": {
+    "default": 8095,
+    "external": false,
+    "infrastructure": false,
+    "management": true
+  },
+  "vsm.int.http": {
+    "default": 15007,
+    "external": false,
+    "infrastructure": false,
+    "management": true
+  },
+  "vsm.int.https": {
+    "default": 15008,
+    "external": false,
+    "infrastructure": false,
+    "management": true
+  },
+  "imagebuilder.int.vmomi": {
+    "default": 8098,
+    "external": false,
+    "infrastructure": false,
+    "management": true
+  },
+  "imagebuilder.int.http": {
+    "default": 8099,
+    "external": false,
+    "infrastructure": false,
+    "management": true
+  },
+  "vsan-health.int.endpoint-http": {
+    "default": 8006,
+    "external": false,
+    "infrastructure": false,
+    "management": true
+  }
+}

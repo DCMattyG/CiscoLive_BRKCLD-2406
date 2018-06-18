@@ -1,0 +1,19 @@
+{
+    "moduleName": "CreateSanZoneSet",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "NETWORK_CREATE_SAN_ZONE_SET",
+    "modulePayload": {
+                        "param0": {
+                                        "netdevice": "Default Pod@10.0.0.23",
+                                        "name": "CLUS_ZONESET",
+                                        "vsan": "Default Pod@10.0.0.23@10",
+                                        "enhanced": "true",
+                                        "copyToStartup": "false"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/CreateSanZoneSet"
+}

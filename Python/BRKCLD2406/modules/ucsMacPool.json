@@ -1,0 +1,20 @@
+{
+    "moduleName": "ucsMacPool",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": {
+                                        "name": "clus-mac-pool-a",
+                                        "desc": "Cisco Live MAC Pool Side A",
+                                        "accountName": "UCSPE",
+                                        "org": "org-root",
+                                        "firstMACAddress": "00:25:B5:00:0A:00",
+                                        "size": "32"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/ucsMacPool"
+}

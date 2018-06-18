@@ -1,0 +1,19 @@
+{
+    "moduleName": "ucsCreateVlan",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": {
+                                        "name": "VLAN10",
+                                        "accountName": "UCSPE",
+                                        "physicalInfra": "true",
+                                        "vlanType": "dual",
+                                        "dualVLAN": "10"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/ucsVlan"
+}

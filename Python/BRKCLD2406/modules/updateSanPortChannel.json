@@ -1,0 +1,20 @@
+{
+    "moduleName": "ucsSanPortChannel",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "UPDATE",
+    "modulePayload": {
+                        "param0": {
+                                        "apiAction": "assignVsan",
+                                        "accountName": "UCSPE",
+                                        "switchId": "A",
+                                        "name": "FC20",
+                                        "portId": "020",
+                                        "vsan": "VSAN20"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/datacenter/'Default Pod'/account/UCSM/ucsSanPortChannel/'fabric/san/A/pc-20'"
+}

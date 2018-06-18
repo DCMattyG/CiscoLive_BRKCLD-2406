@@ -1,0 +1,19 @@
+{
+    "moduleName": "CreateLLDPInterfacePolicyConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": {
+                                        "apicAccount": "ACISIM",
+                                        "lldpInterfaceName": "LLDP-Pol-ON",
+                                        "description": "LLDP On",
+                                        "receiveState": "enabled",
+                                        "transmitState": "enabled"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/LLDP Interface Policy"
+}

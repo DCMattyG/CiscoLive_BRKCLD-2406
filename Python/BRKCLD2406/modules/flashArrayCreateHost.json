@@ -1,0 +1,18 @@
+{
+    "moduleName": "FlashArrayCreateHost",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "Create_Host",
+    "modulePayload": {
+                        "param0": {
+                                        "accountName": "PURE",
+                                        "hostName": "ESX-SERVER",
+                                        "wwns": "20:00:00:25:B5:00:00:00,20:00:00:25:B5:00:00:00",
+                                        "iqns": ""
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/FlashArray_Host"
+}

@@ -1,0 +1,17 @@
+{
+    "moduleName": "CreateInterfaceProfileConfig",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "APIC_TENANT_INTERFACE_PROFILE_CREATE",
+    "modulePayload": {
+                        "param0": {
+                                        "apicAccount": "ACISIM",
+                                        "name": "Interface-Profile-LAB",
+                                        "description": "Lab Interface Profile"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/APIC Interface Profile"
+}

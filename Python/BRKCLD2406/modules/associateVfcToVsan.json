@@ -1,0 +1,19 @@
+{
+    "moduleName": "AssociateVfc",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "ASSOCIATE_VFC_VSAN",
+    "modulePayload": {
+                        "param0": {
+                                        "netdevice": "Default Pod@10.0.0.21",
+                                        "vfcId": "Default Pod@10.0.0.21@Fibre@port-channel20",
+                                        "vsanId": "Default Pod@10.0.0.21@20",
+                                        "copyRunToStartConfig": "false",
+                                        "enable": "true"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/AssociateVfcToVsan"
+}

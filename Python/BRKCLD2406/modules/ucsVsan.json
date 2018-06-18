@@ -1,0 +1,20 @@
+{
+    "moduleName": "ucsVsan",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": {
+                                        "name": "VSAN20",
+                                        "id": "20",
+                                        "accountName": "UCSPE",
+                                        "vsanType": "SAN Cloud",
+                                        "switchId": "A",
+                                        "fcoeVlan": "20"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/ucsVsan"
+}

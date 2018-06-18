@@ -1,0 +1,27 @@
+{
+    "moduleName": "userAPICreateInfraAccount",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": {
+                                        "accountName": "ACI",
+                                        "podName": "Default Pod",
+                                        "accountCategory": "4",
+                                        "accountType": "APIC",
+                                        "deviceCategory": "",
+                                        "description": "ACI Account",
+                                        "contact": "",
+                                        "location": "",
+                                        "destinationIPAddress": "0.0.0.0",
+                                        "login": "admin",
+                                        "password": "password",
+                                        "protocol": "https",
+                                        "port": "443"
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "json",
+    "apiCall": "/app/api/rest?formatType=json&opName=accounts:userAPICreateInfraAccount&opData="
+}

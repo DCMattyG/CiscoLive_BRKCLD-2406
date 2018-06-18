@@ -1,0 +1,136 @@
+{
+    "moduleName": "userAPISubmitWorkflowServiceRequest",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "modulePayload": {
+                        "param0": "Bare Metal Deploy v2",
+                        "param1": {
+                                        "list": [
+                                                    {
+                                                        "name": "UCS_Inventory_Account",
+                                                        "value": "UCSM"
+                                                    },
+                                                    {
+                                                        "name": "SP_Name",
+                                                        "value": "ESX-SERVER-01"
+                                                    },
+                                                    {
+                                                        "name": "UCS_Org",
+                                                        "value": "UCSM;org-root"
+                                                    },
+                                                    {
+                                                        "name": "SP_Template",
+                                                        "value": "ESX_Template_Rack"
+                                                    },
+                                                    {
+                                                        "name": "Server_Pool",
+                                                        "value": "UCSM;org-root;org-root/compute-pool-CLUS-RACK-POOL"
+                                                    },
+                                                    {
+                                                        "name": "Server_Pool_Qual",
+                                                        "value": "UCSM;org-root;org-root/blade-qualifier-CLUS-RACK-QUAL"
+                                                    },
+                                                    {
+                                                        "name": "PXE_Boot_Policy",
+                                                        "value": "UCSM;org-root;org-root/boot-policy-CLUS-BOOT-LAN"
+                                                    },
+                                                    {
+                                                        "name": "PXE_OS",
+                                                        "value": "ESX65-U2"
+                                                    },
+                                                    {
+                                                        "name": "Server_IP_Address",
+                                                        "value": "10.0.0.100"
+                                                    },
+                                                    {
+                                                        "name": "Server_Netmask",
+                                                        "value": "255.255.255.0"
+                                                    },
+                                                    {
+                                                        "name": "Server_Gateway",
+                                                        "value": "10.0.0.1"
+                                                    },
+                                                    {
+                                                        "name": "Server_Hostname",
+                                                        "value": "ESX-SERVER-01"
+                                                    },
+                                                    {
+                                                        "name": "Server_DNS",
+                                                        "value": "171.68.226.120"
+                                                    },
+                                                    {
+                                                        "name": "MGMT_VLAN",
+                                                        "value": ""
+                                                    },
+                                                    {
+                                                        "name": "Root_Passwd",
+                                                        "value": "password"
+                                                    },
+                                                    {
+                                                        "name": "Server_Timezone",
+                                                        "value": "America/Los_Angeles"
+                                                    },
+                                                    {
+                                                        "name": "Default_Boot_Policy",
+                                                        "value": "UCSM;org-root;org-root/boot-policy-CLUS-BOOT-HDD"
+                                                    },
+                                                    {
+                                                        "name": "Pure_C0_FC0",
+                                                        "value": "52:4A:93:7F:74:F8:AA:00"
+                                                    },
+                                                    {
+                                                        "name": "Pure_C0_FC1",
+                                                        "value": "52:4A:93:7F:74:F8:AA:01"
+                                                    },
+                                                    {
+                                                        "name": "Pure_C1_FC0",
+                                                        "value": "52:4A:93:7F:74:F8:AA:10"
+                                                    },
+                                                    {
+                                                        "name": "Pure_C1_FC1",
+                                                        "value": "52:4A:93:7F:74:F8:AA:11"
+                                                    },
+                                                    {
+                                                        "name": "Zoneset_Name_A",
+                                                        "value": "Default Pod;20;CLUS-ZONESET-A"
+                                                    },
+                                                    {
+                                                        "name": "Zoneset_Name_B",
+                                                        "value": "Default Pod;30;CLUS-ZONESET-B"
+                                                    },
+                                                    {
+                                                        "name": "Storage_Network_Device_A",
+                                                        "value": "Default Pod@10.0.0.21"
+                                                    },
+                                                    {
+                                                        "name": "Storage_Network_Device_B",
+                                                        "value": "Default Pod@10.0.0.22"
+                                                    },
+                                                    {
+                                                        "name": "SAN_Zone_A",
+                                                        "value": "ESX-ZONE-A"
+                                                    },
+                                                    {
+                                                        "name": "SAN_Zone_B",
+                                                        "value": "ESX-ZONE-B"
+                                                    },
+                                                    {
+                                                        "name": "VSAN_A",
+                                                        "value": "20"
+                                                    },
+                                                    {
+                                                        "name": "VSAN_B",
+                                                        "value": "30"
+                                                    },
+                                                    {
+                                                        "name": "Pure_Account",
+                                                        "value": "PURE"
+                                                    }
+                                                ]
+                                    },
+                        "param2": "-1",
+                        "param3": ""
+                    },
+    "apiType": "json",
+    "apiCall": "/app/api/rest?formatType=json&opName=userAPISubmitWorkflowServiceRequest&opData="
+}

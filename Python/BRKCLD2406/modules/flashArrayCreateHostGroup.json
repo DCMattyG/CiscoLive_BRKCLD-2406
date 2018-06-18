@@ -1,0 +1,18 @@
+{
+    "moduleName": "FlashArrayCreateHostGroup",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "Create_HostGroup",
+    "modulePayload": {
+                        "param0": {
+                                        "accountName": "PURE",
+                                        "hostGroupPreName": "CLUS-GROUP",
+                                        "startNumber": "",
+                                        "endNumber": ""
+                                    },
+                        "param1": "",
+                        "param2": "",
+                        "param3": ""
+                    },
+    "apiType": "xml",
+    "apiCall": "/cloupia/api-v2/FlashArray_HostGroup"
+}

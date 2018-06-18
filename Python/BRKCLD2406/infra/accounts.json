@@ -1,0 +1,48 @@
+{
+    "BMA":  {
+                "name": "BMA66",
+                "descr": "BMA Version 6.6",
+                "ipAddress": "10.0.0.81",
+                "pxeAddress": "10.10.0.81",
+                "userName": "root",
+                "password": "pxeboot"
+            },
+    "UCS":  {
+                "name": "UCSM",
+                "descr": "UCSM Account",
+                "ipAdddress": "10.0.0.100",
+                "userName": "admin",
+                "password": "password"
+            },
+    "ACI":  {
+                "name": "ACI",
+                "descr": "ACI Account",
+                "ipAddress": "10.0.0.151",
+                "userName": "admin",
+                "password": "password"
+            },
+    "MDSA": {
+                "name": "MDS-A",
+                "descr": "MDS-A Account",
+                "ipAddress": "10.0.0.21",
+                "userName": "admin",
+                "password": "password"
+            },
+    "MDSB": {
+                "name": "MDS-B",
+                "descr": "MDS-B Account",
+                "ipAddress": "10.0.0.22",
+                "userName": "admin",
+                "password": "password"
+            },
+    "PURE": {
+                "name": "PURE",
+                "descr": "Pure Account",
+                "ipAddress": "10.0.0.30",
+                "userName": "pureuser",
+                "password": "pureuser"
+            },
+    "VM":   {
+                "password": "P@$$w0rd"
+            }
+}
