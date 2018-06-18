@@ -2,13 +2,13 @@
 DOCSTRING
 """
 
-# import json
+import json
 import time
 import datetime
-from winreg import *
+from winreg import SetValueEx, OpenKeyEx, ConnectRegistry, HKEY_CURRENT_USER, KEY_ALL_ACCESS, REG_DWORD
 import threading
-from subprocess import call, Popen, PIPE, DEVNULL
-from ucsd_module.module import *
+from subprocess import Popen, DEVNULL
+from ucsd_module import JsonObj, set_ucsd_addr, get_ucsd_addr, set_cloupia_key, get_resource_path, create_ucsd_module, call_ucsd_api
 
 #################
 #               #
@@ -22,7 +22,7 @@ set_ucsd_addr(UCSD_ADDR)
 CLOUPIA_KEY = "56593F1D37DD4BECB284C4CEFF74CFFA"
 set_cloupia_key(CLOUPIA_KEY)
 
-ACCOUNTS_FILE = open(get_resource_path("infra") + "accounts.json", "r")
+ACCOUNTS_FILE = open(get_resource_path("resources") + "accounts.json", "r")
 ACCOUNTS_JSON = json.loads(ACCOUNTS_FILE.read())
 
 ACCOUNTS = JsonObj(ACCOUNTS_JSON)
@@ -2457,7 +2457,7 @@ if DEPLOY_VCENTER:
 
     max_time = time.time() + 3600
 
-    new_call = Popen(['cmd', '/c', '..\\vcsa\\vcsa-cli-installer\\win32\\vcsa-deploy.exe', 'install', '--no-esx-ssl-verify', '--accept-eula', '--acknowledge-ceip', '..\\vcsa\\vcsa-cli-installer\\templates\\embedded_vCSA_on_ESXi_CLUS.json'], stdout=DEVNULL)
+    new_call = Popen(['cmd', '/c', '..\\bin\\vcsa\\vcsa-cli-installer\\win32\\vcsa-deploy.exe', 'install', '--no-esx-ssl-verify', '--accept-eula', '--acknowledge-ceip', '..\\vcsa\\vcsa-cli-installer\\templates\\embedded_vCSA_on_ESXi_CLUS.json'], stdout=DEVNULL)
 
     while new_call.poll() == None and time.time() < max_time:
         for i in range(20):
