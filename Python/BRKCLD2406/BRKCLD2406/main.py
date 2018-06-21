@@ -2,19 +2,37 @@
 DOCSTRING
 """
 
+import os
 import json
 import time
+import platform
 import datetime
-from winreg import SetValueEx, OpenKeyEx, ConnectRegistry, HKEY_CURRENT_USER, KEY_ALL_ACCESS, REG_DWORD
 import threading
 from subprocess import Popen, DEVNULL
 from ucsd_module import JsonObj, set_ucsd_addr, get_ucsd_addr, set_cloupia_key, get_resource_path, create_ucsd_module, call_ucsd_api
+
+# Import "winreg" on Windows systems
+try:
+    from winreg import SetValueEx, OpenKeyEx, ConnectRegistry, HKEY_CURRENT_USER, KEY_ALL_ACCESS, REG_DWORD
+except ImportError:
+    pass
 
 #################
 #               #
 #  Set Globals  #
 #               #
 #################
+
+OS = platform.system()
+
+if OS == "Windows":
+    print("Windows Operating System detected!")
+elif OS == "Linux":
+    print("Linux Operating System detected!")
+elif OS == "Darwin":
+    print("Mac Operating System detected!")
+else:
+    print("Operating System not detected!")
 
 UCSD_ADDR = "10.0.0.80"
 set_ucsd_addr(UCSD_ADDR)
@@ -26,6 +44,18 @@ ACCOUNTS_FILE = open(get_resource_path("resources") + "accounts.json", "r")
 ACCOUNTS_JSON = json.loads(ACCOUNTS_FILE.read())
 
 ACCOUNTS = JsonObj(ACCOUNTS_JSON)
+
+########################
+#                      #
+#  Modify Permissions  #
+#                      #
+########################
+
+# Set permissions on files in Linux operating systems
+if OS == "Linux":
+    os.chmod("../bin/vcsa-cli-installer/lin64/vcsa-deploy", 0o777)
+    os.chmod("../bin/vcsa-cli-installer/lin64/vcsa-deploy.bin", 0o777)
+    os.chmod("../bin/vcsa-cli-installer/lin64/vcsa-deploy.bin", 0o777)
 
 ########################
 #                      #
@@ -2457,7 +2487,10 @@ if DEPLOY_VCENTER:
 
     max_time = time.time() + 3600
 
-    new_call = Popen(['cmd', '/c', '..\\bin\\vcsa\\vcsa-cli-installer\\win32\\vcsa-deploy.exe', 'install', '--no-esx-ssl-verify', '--accept-eula', '--acknowledge-ceip', '..\\vcsa\\vcsa-cli-installer\\templates\\embedded_vCSA_on_ESXi_CLUS.json'], stdout=DEVNULL)
+    if OS == "Windows":
+        new_call = Popen(['cmd', '/c', '..\\bin\\vcsa\\vcsa-cli-installer\\win32\\vcsa-deploy.exe', 'install', '--no-esx-ssl-verify', '--accept-eula', '--acknowledge-ceip', '..\\bin\\vcsa\\vcsa-cli-installer\\templates\\embedded_vCSA_on_ESXi_CLUS.json'], stdout=DEVNULL)
+    elif OS == "Linux" or OS == "Darwin":
+        new_call = Popen(['../bin/vcsa/vcsa-cli-installer/win32/vcsa-deploy.exe', 'install', '--no-esx-ssl-verify', '--accept-eula', '--acknowledge-ceip', '../bin/vcsa/vcsa-cli-installer/templates/embedded_vCSA_on_ESXi_CLUS.json'], stdout=DEVNULL)
 
     while new_call.poll() == None and time.time() < max_time:
         for i in range(20):
@@ -2652,3 +2685,6 @@ END_TIME = datetime.datetime.now()
 # Print Script Runtime #
 print()
 print('Duration: {}'.format(END_TIME - START_TIME))
+
+# TEST #
+new_call = Popen(['../bin/vcsa/vcsa-cli-installer/win32/vcsa-deploy.exe', 'install', '--no-esx-ssl-verify', '--accept-eula', '--acknowledge-ceip', '../bin/vcsa/vcsa-cli-installer/templates/embedded_vCSA_on_ESXi_CLUS.json'], stdout=DEVNULL)
