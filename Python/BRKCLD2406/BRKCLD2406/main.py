@@ -5,11 +5,10 @@ DOCSTRING
 import os
 import json
 import time
-import platform
 import datetime
 import threading
 from subprocess import Popen, DEVNULL
-from ucsd_module import JsonObj, set_ucsd_addr, get_ucsd_addr, set_cloupia_key, get_resource_path, create_ucsd_module, call_ucsd_api
+from ucsd_module import JsonObj, get_os, set_ucsd_addr, get_ucsd_addr, set_cloupia_key, get_resource_path, create_ucsd_module, call_ucsd_api
 
 # Import "winreg" on Windows systems
 try:
@@ -23,7 +22,7 @@ except ImportError:
 #               #
 #################
 
-OS = platform.system()
+OS = get_os()
 
 if OS == "Windows":
     print("Windows Operating System detected!")
@@ -40,6 +39,9 @@ set_ucsd_addr(UCSD_ADDR)
 CLOUPIA_KEY = "56593F1D37DD4BECB284C4CEFF74CFFA"
 set_cloupia_key(CLOUPIA_KEY)
 
+print("Resource Path:")
+print(get_resource_path("resources"))
+
 ACCOUNTS_FILE = open(get_resource_path("resources") + "accounts.json", "r")
 ACCOUNTS_JSON = json.loads(ACCOUNTS_FILE.read())
 
@@ -53,8 +55,8 @@ ACCOUNTS = JsonObj(ACCOUNTS_JSON)
 
 # Set permissions on files in Linux operating systems
 if OS == "Linux":
+    print("Modifying file permissions...")
     os.chmod("../bin/vcsa-cli-installer/lin64/vcsa-deploy", 0o777)
-    os.chmod("../bin/vcsa-cli-installer/lin64/vcsa-deploy.bin", 0o777)
     os.chmod("../bin/vcsa-cli-installer/lin64/vcsa-deploy.bin", 0o777)
 
 ########################
@@ -127,13 +129,15 @@ def spin_char():
 #                 #
 ###################
 
-A_REG = ConnectRegistry(None, HKEY_CURRENT_USER)
-A_KEY = OpenKeyEx(A_REG, r"Software\Microsoft\Windows\CurrentVersion\Internet Settings",
-                  0, KEY_ALL_ACCESS)
+# Windows Operating Systems only #
+if OS == "Windows":
+    A_REG = ConnectRegistry(None, HKEY_CURRENT_USER)
+    A_KEY = OpenKeyEx(A_REG, r"Software\Microsoft\Windows\CurrentVersion\Internet Settings",
+                    0, KEY_ALL_ACCESS)
 
-if SET_PROXY:
-    print("Disabling Proxy...")
-    SetValueEx(A_KEY, "ProxyEnable", 0, REG_DWORD, 0)
+    if SET_PROXY:
+        print("Disabling Proxy...")
+        SetValueEx(A_KEY, "ProxyEnable", 0, REG_DWORD, 0)
 
 ###############################
 #                             #
@@ -430,8 +434,8 @@ if DEPLOY_MDS:
     call_ucsd_api(mdsPortChannelB)
 
 # MDS Add Port-Channels to VSANs #
-mdsPortChannelVsanA = create_ucsd_module("associateVfctoVsan")
-mdsPortChannelVsanB = create_ucsd_module("associateVfctoVsan")
+mdsPortChannelVsanA = create_ucsd_module("associateVfcToVsan")
+mdsPortChannelVsanB = create_ucsd_module("associateVfcToVsan")
 
 mdsPortChannelVsanA.modulePayload.param0.netdevice = (UCSD_POD + "@" + ACCOUNTS.MDSA.ipAddress)
 mdsPortChannelVsanA.modulePayload.param0.vfcId = (UCSD_POD + "@" + ACCOUNTS.MDSA.ipAddress + "@Fibre@port-channel20")
@@ -2488,9 +2492,9 @@ if DEPLOY_VCENTER:
     max_time = time.time() + 3600
 
     if OS == "Windows":
-        new_call = Popen(['cmd', '/c', '..\\bin\\vcsa\\vcsa-cli-installer\\win32\\vcsa-deploy.exe', 'install', '--no-esx-ssl-verify', '--accept-eula', '--acknowledge-ceip', '..\\bin\\vcsa\\vcsa-cli-installer\\templates\\embedded_vCSA_on_ESXi_CLUS.json'], stdout=DEVNULL)
+        new_call = Popen(['cmd', '/c', '..\\bin\\vcsa-cli-installer\\win32\\vcsa-deploy.exe', 'install', '--no-esx-ssl-verify', '--accept-eula', '--acknowledge-ceip', '..\\bin\\vcsa-cli-installer\\templates\\embedded_vCSA_on_ESXi_CLUS.json'], stdout=DEVNULL)
     elif OS == "Linux" or OS == "Darwin":
-        new_call = Popen(['../bin/vcsa/vcsa-cli-installer/win32/vcsa-deploy.exe', 'install', '--no-esx-ssl-verify', '--accept-eula', '--acknowledge-ceip', '../bin/vcsa/vcsa-cli-installer/templates/embedded_vCSA_on_ESXi_CLUS.json'], stdout=DEVNULL)
+        new_call = Popen(['../bin/vcsa-cli-installer/win32/vcsa-deploy.exe', 'install', '--no-esx-ssl-verify', '--accept-eula', '--acknowledge-ceip', '../bin/vcsa/vcsa-cli-installer/templates/embedded_vCSA_on_ESXi_CLUS.json'], stdout=DEVNULL)
 
     while new_call.poll() == None and time.time() < max_time:
         for i in range(20):
@@ -2675,9 +2679,11 @@ if DEPLOY_VCENTER:
 #                #
 ##################
 
-if SET_PROXY:
-    print("Enabling Proxy...")
-    SetValueEx(A_KEY, "ProxyEnable", 0, REG_DWORD, 1)
+# Windows Operating Systems only #
+if OS == "Windows":
+    if SET_PROXY:
+        print("Enabling Proxy...")
+        SetValueEx(A_KEY, "ProxyEnable", 0, REG_DWORD, 1)
 
 # Collect End Time #
 END_TIME = datetime.datetime.now()
@@ -2685,6 +2691,3 @@ END_TIME = datetime.datetime.now()
 # Print Script Runtime #
 print()
 print('Duration: {}'.format(END_TIME - START_TIME))
-
-# TEST #
-new_call = Popen(['../bin/vcsa/vcsa-cli-installer/win32/vcsa-deploy.exe', 'install', '--no-esx-ssl-verify', '--accept-eula', '--acknowledge-ceip', '../bin/vcsa/vcsa-cli-installer/templates/embedded_vCSA_on_ESXi_CLUS.json'], stdout=DEVNULL)

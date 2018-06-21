@@ -6,6 +6,7 @@ import os
 import sys
 import json
 import socket
+import platform
 import requests
 import urllib3
 from pathlib import Path
@@ -207,14 +208,25 @@ def valid_ip(ip_addr):
     else:
         return False
 
+# Get Operating System #
+def get_os():
+    return platform.system()
+
 # Get Module Path #
 def get_resource_path(resource):
     """
     DOCSTRING
     """
 
+    resource_path = ""
     curr_path = Path().resolve().parent
-    res_path = str(curr_path) + "\\" + resource + "\\"
+
+    if get_os() == "Windows":
+        resource_path = "\\" + resource + "\\"
+    elif get_os() == "Linux" or get_os == "Darwin":
+        resource_path = "/" + resource + "/"
+
+    res_path = str(curr_path) + resource_path
 
     return res_path
 
@@ -224,7 +236,9 @@ def create_ucsd_module(mod_key):
     DOCSTRING
     """
 
-    json_obj = open(get_resource_path("modules") + ("\\" + mod_key + ".json"), "r")
+    key_path = mod_key + ".json"
+
+    json_obj = open(get_resource_path("modules") + key_path, "r")
     mod_obj = json.loads(json_obj.read())
 
     new_module = UcsdModule(mod_obj)
