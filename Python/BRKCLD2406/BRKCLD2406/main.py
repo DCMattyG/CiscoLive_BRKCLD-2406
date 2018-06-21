@@ -39,9 +39,6 @@ set_ucsd_addr(UCSD_ADDR)
 CLOUPIA_KEY = "56593F1D37DD4BECB284C4CEFF74CFFA"
 set_cloupia_key(CLOUPIA_KEY)
 
-print("Resource Path:")
-print(get_resource_path("resources"))
-
 ACCOUNTS_FILE = open(get_resource_path("resources") + "accounts.json", "r")
 ACCOUNTS_JSON = json.loads(ACCOUNTS_FILE.read())
 
