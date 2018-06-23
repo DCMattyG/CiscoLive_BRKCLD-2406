@@ -253,17 +253,17 @@ if DEPLOY_WORKFLOW:
 
 ucsdWorkflow = create_ucsd_module("userAPIUnifiedImport")
 
-ucsdWorkflow.uploadFile = "..\\workflows\\Test.wfdx"
+ucsdWorkflow.uploadFile = "..\\workflows\\BM_Deploy.wfdx"
 
-ucsdWorkflow.modulePayload.param0.uploadPolicy = "Test.wfdx"
-ucsdWorkflow.modulePayload.param0.description = "Test Workflows"
+ucsdWorkflow.modulePayload.param0.uploadPolicy = "BM_Deploy.wfdx"
+ucsdWorkflow.modulePayload.param0.description = "CLUS Bare Metal Deployment"
 
 ucsdWorkflow.modulePayload.param1.workflowImportPolicy = "replace"
 ucsdWorkflow.modulePayload.param1.customTaskImportPolicy = "replace"
 ucsdWorkflow.modulePayload.param1.ScriptModuleImportPolicy = "replace"
 ucsdWorkflow.modulePayload.param1.activityImportPolicy = "replace"
 
-ucsdWorkflow.modulePayload.param2 = "TEST"
+ucsdWorkflow.modulePayload.param2 = "CLUS"
 
 if DEPLOY_WORKFLOW:
     print("Uploading Workflows...")
