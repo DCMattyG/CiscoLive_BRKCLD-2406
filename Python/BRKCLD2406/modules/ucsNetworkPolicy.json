@@ -2,6 +2,7 @@
     "moduleName": "ucsNetworkPolicy",
     "moduleDesc": "Here is a description of this module",
     "operationType": "",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "policyName": "clus-net-pol",

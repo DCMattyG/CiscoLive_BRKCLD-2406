@@ -1,0 +1,22 @@
+{
+    "moduleName": "userAPIUnifiedImport",
+    "moduleDesc": "Here is a description of this module",
+    "operationType": "",
+    "fileUpload": "..\\workflows\\Test.wfdx",
+    "modulePayload": {
+                        "param0": {
+                                        "uploadPolicy":"Test.wfdx",
+		                                "description":"sample"
+                                    },
+                        "param1": {
+                                        "workflowImportPolicy":"replace",
+                                        "customTaskImportPolicy":"replace",
+                                        "ScriptModuleImportPolicy":"replace",
+                                        "activityImportPolicy":"replace"
+                                    },
+                        "param2": "CLUS",
+                        "param3": ""
+                    },
+    "apiType": "json",
+    "apiCall": "/app/api/rest?formatType=json&opName=version:userAPIUnifiedImport&opData="
+}

@@ -2,6 +2,7 @@
     "moduleName": "AddFilterToContractSubjectConfig",
     "moduleDesc": "Here is a description of this module",
     "operationType": "APIC_TENANT_ADD_FILTER_TO_CONTRACT_SUBJECT",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "contractSubject": "ACISIM@CiscoLive@ALLOW_ALL@subj-allow-all",

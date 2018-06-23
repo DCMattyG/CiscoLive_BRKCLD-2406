@@ -2,6 +2,7 @@
     "moduleName": "CreateVPCExplicitProtectionGroupsConfig",
     "moduleDesc": "Here is a description of this module",
     "operationType": "CREATE_VPC_EXPLICIT_PROTECTION_GROUPS",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "apicAccount": "ACISIM",

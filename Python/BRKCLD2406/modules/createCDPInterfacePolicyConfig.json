@@ -2,6 +2,7 @@
     "moduleName": "CreateCDPInterfacePolicyConfig",
     "moduleDesc": "Here is a description of this module",
     "operationType": "",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "apicAccount": "ACISIM",

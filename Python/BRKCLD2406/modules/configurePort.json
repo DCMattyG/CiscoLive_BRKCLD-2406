@@ -2,6 +2,7 @@
     "moduleName": "ConfigurePort",
     "moduleDesc": "Here is a description of this module",
     "operationType": "NETWORK_CONFIG_PORT",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "netdevice": "Default Pod@10.0.0.23",

@@ -2,6 +2,7 @@
     "moduleName": "ucsLanPortChannel",
     "moduleDesc": "Here is a description of this module",
     "operationType": "UPDATE",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "apiAction": "enablePort"

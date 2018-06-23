@@ -2,6 +2,7 @@
     "moduleName": "CreateTenantFilterConfig",
     "moduleDesc": "Here is a description of this module",
     "operationType": "APIC_TENANT_FILTER_CREATE",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "tenantName": "ACISIM@CiscoLive",

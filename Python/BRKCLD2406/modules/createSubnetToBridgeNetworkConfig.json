@@ -2,6 +2,7 @@
     "moduleName": "CreateSubnetToBridgeNetworkConfig",
     "moduleDesc": "Here is a description of this module",
     "operationType": "APIC_TENANT_CREATE_SUBNET_TO_BRIDGE_DOMAIN",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "bridgeDomain": "ACISIM@CiscoLive@CLUS-BD",

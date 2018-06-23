@@ -2,6 +2,7 @@
     "moduleName": "CreateInterfaceProfileConfig",
     "moduleDesc": "Here is a description of this module",
     "operationType": "APIC_TENANT_INTERFACE_PROFILE_CREATE",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "apicAccount": "ACISIM",

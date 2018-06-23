@@ -2,6 +2,7 @@
     "moduleName": "CreateTenantBridgeDomain",
     "moduleDesc": "Here is a description of this module",
     "operationType": "CREATE_TENANT_BRIDGE_DOMAIN",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "tenantName": "ACISIM@CiscoLive",

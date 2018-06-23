@@ -2,6 +2,7 @@
     "moduleName": "ucsSanConnectivityPolicy",
     "moduleDesc": "Here is a description of this module",
     "operationType": "",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "name": "clus-san-con-pol",

@@ -2,6 +2,7 @@
     "moduleName": "ConfigureFeature",
     "moduleDesc": "Here is a description of this module",
     "operationType": "NETWORK_CONFIGURE_FEATURE",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "netdevice": "Default Pod@10.0.0.23",

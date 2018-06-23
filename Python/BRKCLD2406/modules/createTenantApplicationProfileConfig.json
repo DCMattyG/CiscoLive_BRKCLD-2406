@@ -2,6 +2,7 @@
     "moduleName": "CreateTenantApplicationProfileConfig",
     "moduleDesc": "Here is a description of this module",
     "operationType": "APIC_TENANT_APPLN_PROFILE_CREATE",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "tenantName": "ACISIM@CiscoLive",

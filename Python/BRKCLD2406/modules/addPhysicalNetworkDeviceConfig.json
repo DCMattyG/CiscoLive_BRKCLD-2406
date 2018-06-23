@@ -2,6 +2,7 @@
     "moduleName": "AddPhysicalNetworkDeviceConfig",
     "moduleDesc": "Here is a description of this module",
     "operationType": "ADD_NETWORK_ELEMENT",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "podName": "Default Pod",

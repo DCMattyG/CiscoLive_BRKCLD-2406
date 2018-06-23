@@ -2,6 +2,7 @@
     "moduleName": "CollectInventoryConfig",
     "moduleDesc": "Here is a description of this module",
     "operationType": "COLLECT_INVENTORY",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "vmwareAccounts": "",

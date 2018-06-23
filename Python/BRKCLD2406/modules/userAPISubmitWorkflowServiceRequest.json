@@ -2,6 +2,7 @@
     "moduleName": "userAPISubmitWorkflowServiceRequest",
     "moduleDesc": "Here is a description of this module",
     "operationType": "",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": "Bare Metal Deploy v2",
                         "param1": {

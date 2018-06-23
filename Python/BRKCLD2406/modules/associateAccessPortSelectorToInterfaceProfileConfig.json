@@ -2,6 +2,7 @@
     "moduleName": "AssociateAccessPortSelectorToInterfaceProfileConfig",
     "moduleDesc": "Here is a description of this module",
     "operationType": "ASSOCIATE_ACCESS_PORT_SELECTOR_TO_INTERFACE_PROFILE",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "interfaceProfile": "ACISIM@Interface-Profile-LAB",

@@ -2,6 +2,7 @@
     "moduleName": "FlashArrayCreateHostGroup",
     "moduleDesc": "Here is a description of this module",
     "operationType": "Create_HostGroup",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "accountName": "PURE",

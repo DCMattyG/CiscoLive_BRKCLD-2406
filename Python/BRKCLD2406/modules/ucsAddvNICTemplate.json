@@ -2,6 +2,7 @@
     "moduleName": "UcsAddvNICTemplate",
     "moduleDesc": "Here is a description of this module",
     "operationType": "UCS_ADD_VNIC_TEMPLATE",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "name": "vnic-tmp-clus-a",

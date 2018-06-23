@@ -2,6 +2,7 @@
     "moduleName": "ucsCreateServerPool",
     "moduleDesc": "Here is a description of this module",
     "operationType": "UCS_CREATE_SERVER_POOL",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "poolName": "clus-svr-pool",

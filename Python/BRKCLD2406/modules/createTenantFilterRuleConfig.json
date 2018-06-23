@@ -2,6 +2,7 @@
     "moduleName": "CreateTenantFilterRuleConfig",
     "moduleDesc": "Here is a description of this module",
     "operationType": "APIC_TENANT_FILTER_RULE_CREATE",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "filterName": "ACISIM@CiscoLive@filter-allow-all",

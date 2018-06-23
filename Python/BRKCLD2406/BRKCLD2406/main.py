@@ -64,6 +64,7 @@ if OS == "Linux":
 
 SET_PROXY = False
 DEPLOY_ACCOUNTS = False
+DEPLOY_WORKFLOW = False
 DEPLOY_MDS = False
 DEPLOY_UCS = False
 DEPLOY_ACI = False
@@ -234,6 +235,34 @@ if DEPLOY_ACCOUNTS:
 if DEPLOY_ACCOUNTS:
     print("Waiting 30 Seconds for Device Inventory...")
     time.sleep(30)
+
+###########################
+#                         #
+#  Upload UCSD Workflows  #
+#                         #
+###########################
+
+if DEPLOY_WORKFLOW:
+    print()
+    print("#############################")
+    print("#                           #")
+    print("#  Uploading UCSD Workflows #")
+    print("#                           #")
+    print("#############################")
+    print()
+
+ucsdWorkflow = create_ucsd_module("userAPIUnifiedImport")
+
+ucsdWorkflow.uploadFile = "..\\workflows\\Test.wfdx"
+
+ucsdWorkflow.modulePayload.param0.uploadPolicy = "Test.wfdx"
+ucsdWorkflow.modulePayload.param0.description = "Test Workflows"
+
+ucsdWorkflow.modulePayload.param2 = "TEST"
+
+if DEPLOY_WORKFLOW:
+    print("Uploading Workflows...")
+    call_ucsd_api(ucsdWorkflow)
 
 ###########################
 #                         #

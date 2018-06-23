@@ -2,6 +2,7 @@
     "moduleName": "NetworkDeviceCLICommandConfig",
     "moduleDesc": "Here is a description of this module",
     "operationType": "NETWORK_DEVICE_CLI",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "netDevice": "Default Pod@10.0.0.21",

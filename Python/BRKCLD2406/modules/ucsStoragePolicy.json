@@ -2,6 +2,7 @@
     "moduleName": "ucsStoragePolicy",
     "moduleDesc": "Here is a description of this module",
     "operationType": "",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "policyName": "clus-stor-pol",

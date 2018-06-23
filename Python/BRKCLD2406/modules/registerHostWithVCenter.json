@@ -2,6 +2,7 @@
     "moduleName": "RegisterHostwithvCenter",
     "moduleDesc": "Here is a description of this module",
     "operationType": "REGISTER_HOST_WITH_VCENTER",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "accountName": "vSphere",

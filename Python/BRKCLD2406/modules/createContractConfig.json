@@ -2,6 +2,7 @@
     "moduleName": "CreateContractConfig",
     "moduleDesc": "Here is a description of this module",
     "operationType": "APIC_TENANT_CONTRACT_CREATE",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "tenantName": "ACISIM@CiscoLive",

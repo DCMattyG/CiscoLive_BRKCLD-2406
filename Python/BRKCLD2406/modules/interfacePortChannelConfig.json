@@ -2,6 +2,7 @@
     "moduleName": "InterfacePortChannelConfig",
     "moduleDesc": "Here is a description of this module",
     "operationType": "NETWORK_INTERFACE_PORT_CHANNEL",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "netdevice": "Default Pod@10.0.0.21",

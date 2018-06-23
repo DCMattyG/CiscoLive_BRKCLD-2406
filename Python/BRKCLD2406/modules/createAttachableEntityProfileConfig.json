@@ -2,6 +2,7 @@
     "moduleName": "CreateAttachableEntityProfileConfig",
     "moduleDesc": "Here is a description of this module",
     "operationType": "CREATE_FABRIC_ATTACHABLE_ENTITY_PROFILE",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "apicAccount": "ACISIM",

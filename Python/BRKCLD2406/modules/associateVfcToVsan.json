@@ -2,6 +2,7 @@
     "moduleName": "AssociateVfc",
     "moduleDesc": "Here is a description of this module",
     "operationType": "ASSOCIATE_VFC_VSAN",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "netdevice": "Default Pod@10.0.0.21",

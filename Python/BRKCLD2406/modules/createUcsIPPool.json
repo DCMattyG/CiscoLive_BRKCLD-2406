@@ -2,6 +2,7 @@
     "moduleName": "CreateUcsIPPool",
     "moduleDesc": "Here is a description of this module",
     "operationType": "CREATE_UCS_IP_POOL",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "ippoolName": "clus-ext-mgmt",

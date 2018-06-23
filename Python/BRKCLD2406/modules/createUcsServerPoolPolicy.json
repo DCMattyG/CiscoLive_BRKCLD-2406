@@ -2,6 +2,7 @@
     "moduleName": "createUcsServerPoolPolicy",
     "moduleDesc": "Here is a description of this module",
     "operationType": "CREATE_UCS_SERVER_POOL_POLICY",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "name": "clus-blade-pol",

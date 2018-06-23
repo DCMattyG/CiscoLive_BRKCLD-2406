@@ -2,6 +2,7 @@
     "moduleName": "AddBmaAccount",
     "moduleDesc": "Here is a description of this module",
     "operationType": "ADD_BMA_ACCOUNT",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "bmaName": "BMA",

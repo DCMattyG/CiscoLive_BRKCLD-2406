@@ -2,6 +2,7 @@
     "moduleName": "FlashArrayConnectHostToHostGroup",
     "moduleDesc": "Here is a description of this module",
     "operationType": "Connect_Host_To_HostGroup",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "accountName": "PURE",

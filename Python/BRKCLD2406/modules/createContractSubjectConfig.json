@@ -2,6 +2,7 @@
     "moduleName": "CreateContractSubjectConfig",
     "moduleDesc": "Here is a description of this module",
     "operationType": "",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "contract": "ACISIM@CiscoLive@ALLOW_ALL",

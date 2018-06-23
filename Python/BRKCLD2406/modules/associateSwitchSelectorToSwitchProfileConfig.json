@@ -2,6 +2,7 @@
     "moduleName": "AssociateSwitchSelectorToSwitchProfileConfig",
     "moduleDesc": "Here is a description of this module",
     "operationType": "ASSOCIATE_SWITCH_SELECTOR_TO_SWITCH_PROFILE",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "switchProfile": "ACISIM@SwitchProf-LAB",

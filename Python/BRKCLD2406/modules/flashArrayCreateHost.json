@@ -2,6 +2,7 @@
     "moduleName": "FlashArrayCreateHost",
     "moduleDesc": "Here is a description of this module",
     "operationType": "Create_Host",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "accountName": "PURE",

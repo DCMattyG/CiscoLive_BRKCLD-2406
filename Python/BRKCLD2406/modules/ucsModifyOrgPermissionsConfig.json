@@ -2,6 +2,7 @@
     "moduleName": "UcsModifyOrgPermissionsConfig",
     "moduleDesc": "Here is a description of this module",
     "operationType": "UCS_MODIFY_VLAN_VLANGROUP_ORG_PERMISSION",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "vlanType": "VLAN",

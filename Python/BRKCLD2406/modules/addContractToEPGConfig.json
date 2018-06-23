@@ -2,6 +2,7 @@
     "moduleName": "AddContractToEPGConfig",
     "moduleDesc": "Here is a description of this module",
     "operationType": "APIC_TENANT_ADD_CONTRACT_TO_EPG",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "epg": "ACISIM@CiscoLive@CLUS_APP@CLUS_VLAN_001",

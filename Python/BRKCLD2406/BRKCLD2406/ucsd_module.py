@@ -264,6 +264,8 @@ def call_ucsd_api(module):
     """
     DOCSTRING
     """
+
+    file = ""
     api_timeout = 120
 
     if module.get_api_type() == "xml":
@@ -281,7 +283,12 @@ def call_ucsd_api(module):
         json_url = "https://" + get_ucsd_addr() + module.get_api() + str(module.to_json())
         headers = {'Content-Type': 'application/json', 'X-Cloupia-Request-Key': CLOUPIA_KEY}
 
-        response = requests.post(json_url, headers=headers, timeout=api_timeout, verify=False)
+        if module.fileUpload != "":
+            headers = {'X-Cloupia-Request-Key': CLOUPIA_KEY}
+            _, fileName = os.path.split(module.fileUpload)
+            file = {'file': (fileName, open(module.fileUpload, 'rb'))}
+
+        response = requests.post(json_url, headers=headers, files=file, timeout=api_timeout, verify=False)
 
     else:
         print("ERROR!!!")

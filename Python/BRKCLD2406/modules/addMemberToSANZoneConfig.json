@@ -2,6 +2,7 @@
     "moduleName": "AddMemberToSANZoneConfig",
     "moduleDesc": "Here is a description of this module",
     "operationType": "NETWORK_ADD_SAN_ZONE_MEMBER",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "device": "Default Pod@10.0.0.23",

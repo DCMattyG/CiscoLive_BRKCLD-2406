@@ -2,6 +2,7 @@
     "moduleName": "CreateTenantConfig",
     "moduleDesc": "Here is a description of this module",
     "operationType": "APIC_TENANT_CREATE",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "apicAccount": "ACISIM",

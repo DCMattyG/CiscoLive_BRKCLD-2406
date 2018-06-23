@@ -2,6 +2,7 @@
     "moduleName": "CreateEPGConfig",
     "moduleDesc": "Here is a description of this module",
     "operationType": "APIC_TENANT_EPG_CREATE",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "approfName": "ACISIM@CiscoLive@CLUS_APP",

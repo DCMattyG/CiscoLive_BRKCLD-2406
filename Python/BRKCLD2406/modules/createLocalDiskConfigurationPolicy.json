@@ -2,6 +2,7 @@
     "moduleName": "createLocalDiskConfigurationPolicy",
     "moduleDesc": "Here is a description of this module",
     "operationType": "CREATE_LOCAL_DISK_CONFIGURATION_POLICY",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "name": "clus-local-disk",

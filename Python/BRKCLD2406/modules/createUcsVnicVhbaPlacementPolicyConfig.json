@@ -2,6 +2,7 @@
     "moduleName": "CreateUcsVnicVhbaPlacementPolicyConfig",
     "moduleDesc": "Here is a description of this module",
     "operationType": "CREATE_UCS_VNICVHBA_PLACEMENT_POLICY",
+    "fileUpload": "",
     "modulePayload": {
                         "param0": {
                                         "name": "vNIC_Placement_Pol",
