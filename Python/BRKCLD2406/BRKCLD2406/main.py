@@ -258,6 +258,11 @@ ucsdWorkflow.uploadFile = "..\\workflows\\Test.wfdx"
 ucsdWorkflow.modulePayload.param0.uploadPolicy = "Test.wfdx"
 ucsdWorkflow.modulePayload.param0.description = "Test Workflows"
 
+ucsdWorkflow.modulePayload.param1.workflowImportPolicy = "replace"
+ucsdWorkflow.modulePayload.param1.customTaskImportPolicy = "replace"
+ucsdWorkflow.modulePayload.param1.ScriptModuleImportPolicy = "replace"
+ucsdWorkflow.modulePayload.param1.activityImportPolicy = "replace"
+
 ucsdWorkflow.modulePayload.param2 = "TEST"
 
 if DEPLOY_WORKFLOW:
