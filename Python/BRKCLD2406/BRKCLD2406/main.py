@@ -127,7 +127,7 @@ def spin_char():
 #                 #
 ###################
 
-# Windows Operating Systems only #
+# Windows Operating Systems Only #
 if OS == "Windows":
     A_REG = ConnectRegistry(None, HKEY_CURRENT_USER)
     A_KEY = OpenKeyEx(A_REG, r"Software\Microsoft\Windows\CurrentVersion\Internet Settings",
@@ -2710,7 +2710,7 @@ if DEPLOY_VCENTER:
 #                #
 ##################
 
-# Windows Operating Systems only #
+# Windows Operating Systems Only #
 if OS == "Windows":
     if SET_PROXY:
         print("Enabling Proxy...")
