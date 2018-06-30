@@ -223,7 +223,7 @@ def get_resource_path(resource):
 
     if get_os() == "Windows":
         resource_path = "\\" + resource + "\\"
-    elif get_os() == "Linux" or get_os == "Darwin":
+    elif get_os() == "Linux" or get_os() == "Darwin":
         resource_path = "/" + resource + "/"
 
     res_path = str(curr_path) + resource_path
