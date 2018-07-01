@@ -2,8 +2,8 @@
 - - - -
 - [ ] Complete module documentation
 - [ ] Complete function documentation
-- [ ] Add ArgParse for simple program execution
+- [x] Add ArgParse for simple program execution
 - [x] Complete LICENSE
-- [ ] Complete README
+- [ ] Complete README (In progress)
 - [ ] Relocate VCSA templates folder
-- [ ] Finished testing on all Operating Systems (Windows & Linux complete)
+- [x] Finish testing on all Operating Systems
