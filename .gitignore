@@ -1,0 +1,14 @@
+# GitIgnore File
+# .gitignore
+
+# Compiled Python Modules
+*.pyc
+
+# PyCahce Folders
+__pycache__/
+
+# Visual Studio Code Config
+.vscode
+
+# Temporary Files
+/temp/
