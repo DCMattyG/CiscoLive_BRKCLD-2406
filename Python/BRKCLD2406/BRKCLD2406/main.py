@@ -3,18 +3,115 @@ DOCSTRING
 """
 
 import os
+import sys
 import json
 import time
 import datetime
 import threading
+import argparse
 from subprocess import Popen, DEVNULL
 from ucsd_module import JsonObj, get_os, set_ucsd_addr, get_ucsd_addr, set_cloupia_key, get_resource_path, create_ucsd_module, call_ucsd_api
 
-# Import "winreg" on Windows Systems
+# Import "winreg" on Windows Systems #
 try:
     from winreg import SetValueEx, OpenKeyEx, ConnectRegistry, HKEY_CURRENT_USER, KEY_ALL_ACCESS, REG_DWORD
 except ImportError:
     pass
+
+########################
+#                      #
+#  Set Deploy Options  #
+#                      #
+########################
+
+# Automatically Enable/Disable Windows Proxy #
+SET_PROXY = False
+
+# Select Features to be Deployed #
+DEPLOY_ACCOUNTS = False
+DEPLOY_WORKFLOWS = False
+DEPLOY_MDS = False
+DEPLOY_UCS = False
+DEPLOY_ACI = False
+DEPLOY_SERVERS = False
+DEPLOY_VCENTER = False
+DEPLOY_STORAGE = False
+
+#####################
+#                   #
+#  Parse Arguments  #
+#                   #
+#####################
+
+# Initiate Arg Parser #
+PARSER = argparse.ArgumentParser()
+
+# Add Description #
+PARSER = argparse.ArgumentParser(description='This will deploy your new datacenter.')
+
+PARSER.add_argument("-proxy", dest="proxy", action="store_true", help="configure windows proxy", default=False)
+PARSER.add_argument("-accounts", dest="accounts", action="store_true", help="add accounts into UCSD", default=False)
+PARSER.add_argument("-workflows", dest="workflows", action="store_true", help="import workflows into UCSD", default=False)
+PARSER.add_argument("-mds", dest="mds", action="store_true", help="deploy MDS", default=False)
+PARSER.add_argument("-ucs", dest="ucs", action="store_true", help="deploy UCS", default=False)
+PARSER.add_argument("-aci", dest="aci", action="store_true", help="deploy ACI", default=False)
+PARSER.add_argument("-servers", dest="servers", action="store_true", help="deploy servers", default=False)
+PARSER.add_argument("-vcenter", dest="vcenter", action="store_true", help="deploy vcenter", default=False)
+PARSER.add_argument("-storage", dest="storage", action="store_true", help="deploy storage", default=False)
+PARSER.add_argument("-all", dest="all", action="store_true", help="deploy everything", default=False)
+
+# Read Arguments from the Command Line #
+ARGS = PARSER.parse_args()
+
+# Check Arguments and Set Deployment Values #
+if ARGS.proxy:
+    SET_PROXY = True
+if ARGS.accounts:
+    DEPLOY_ACCOUNTS = True
+if ARGS.workflows:
+    DEPLOY_WORKFLOWS = True
+if ARGS.mds:
+    DEPLOY_MDS = True
+if ARGS.ucs:
+    DEPLOY_UCS = True
+if ARGS.aci:
+    DEPLOY_ACI = True
+if ARGS.servers:
+    DEPLOY_SERVERS = True
+if ARGS.vcenter:
+    DEPLOY_VCENTER = True
+if ARGS.storage:
+    DEPLOY_STORAGE = True
+if ARGS.all:
+    DEPLOY_ACCOUNTS = True
+    DEPLOY_WORKFLOWS = True
+    DEPLOY_MDS = True
+    DEPLOY_UCS = True
+    DEPLOY_ACI = True
+    DEPLOY_SERVERS = True
+    DEPLOY_VCENTER = True
+    DEPLOY_STORAGE = True
+
+# Print Selected Deployment Options #
+print("DEPLOY:")
+print("Set Proxy:\t" + str(SET_PROXY))
+print("Accounts:\t" + str(DEPLOY_ACCOUNTS))
+print("Workflows:\t" + str(DEPLOY_WORKFLOWS))
+print("MDS:\t\t" + str(DEPLOY_MDS))
+print("UCS:\t\t" + str(DEPLOY_UCS))
+print("ACI:\t\t" + str(DEPLOY_ACI))
+print("Servers:\t" + str(DEPLOY_SERVERS))
+print("VCenter:\t" + str(DEPLOY_VCENTER))
+print("Storage:\t" + str(DEPLOY_STORAGE))
+print()
+
+# Verify Deployment Options #
+while True:
+    proceed = input("Whould you like to proceed (y/n)? ")
+    if proceed.strip() in ['n','N']:
+        sys.exit()
+    elif proceed.strip() in ['y','Y']:
+        break
 
 #################
 #               #
@@ -50,30 +147,11 @@ ACCOUNTS = JsonObj(ACCOUNTS_JSON)
 #                      #
 ########################
 
-# Set permissions on files in Linux operating systems
+# Set Permissions on Files in Linux Operating Systems #
 if OS == "Linux" or OS == "Darwin":
     print("Modifying file permissions...")
     os.chmod("../bin/vcsa-cli-installer/lin64/vcsa-deploy", 0o777)
     os.chmod("../bin/vcsa-cli-installer/lin64/vcsa-deploy.bin", 0o777)
-
-########################
-#                      #
-#  Set Deploy Options  #
-#                      #
-########################
-
-# Automatically Enable/Disable Windows Proxy #
-SET_PROXY = False
-
-# Select Features to be Deployed #
-DEPLOY_ACCOUNTS = False
-DEPLOY_WORKFLOW = False
-DEPLOY_MDS = False
-DEPLOY_UCS = False
-DEPLOY_ACI = False
-DEPLOY_SERVERS = False
-DEPLOY_VCENTER = False
-DEPLOY_STORAGE = False
 
 ########################
 #                      #
@@ -245,7 +323,7 @@ if DEPLOY_ACCOUNTS:
 #                         #
 ###########################
 
-if DEPLOY_WORKFLOW:
+if DEPLOY_WORKFLOWS:
     print()
     print("#############################")
     print("#                           #")
@@ -268,7 +346,7 @@ ucsdWorkflow.modulePayload.param1.activityImportPolicy = "replace"
 
 ucsdWorkflow.modulePayload.param2 = "CLUS"
 
-if DEPLOY_WORKFLOW:
+if DEPLOY_WORKFLOWS:
     print("Uploading Workflows...")
     call_ucsd_api(ucsdWorkflow)
 
