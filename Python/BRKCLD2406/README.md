@@ -13,11 +13,11 @@
 
 **Linux**
 ```
-user@computer:~/CiscoLive_BRKCLD-2406/Python/BRKCLD2406$ pip3 install -r requirements.txt
+<user>@<computer>:~/CiscoLive_BRKCLD-2406/Python/BRKCLD2406$ pip3 install -r requirements.txt
 ```
 **MAC**
 ```
-computer:BRKCLD2406 user$ pip3 install -r requirements.txt
+<computer>:BRKCLD2406 <user>$ pip3 install -r requirements.txt
 ```
 **Windows**
 ```
