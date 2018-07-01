@@ -62,7 +62,10 @@ if OS == "Linux":
 #                      #
 ########################
 
+# Automatically Enable/Disable Windows Proxy #
 SET_PROXY = False
+
+# Select Features to be Deployed #
 DEPLOY_ACCOUNTS = False
 DEPLOY_WORKFLOW = False
 DEPLOY_MDS = False
