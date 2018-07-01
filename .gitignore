@@ -1,11 +1,23 @@
 # Compiled Python Modules
 *.pyc
 
+# Python Egg Info Folder
+*.egg-Info/
+
 # PyCahce Folders
 __pycache__/
+
+# Dist Folder
+dist/
+
+# Build Folder
+build/
 
 # Visual Studio Code Config
 .vscode
 
 # Temporary Files
-/temp/
+temp/
+
+# Setup File
+setup.py
