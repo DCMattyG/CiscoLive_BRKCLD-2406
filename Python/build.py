@@ -2604,9 +2604,9 @@ if DEPLOY_VCENTER:
     max_time = time.time() + 3600
 
     if OS == "Windows":
-        new_call = Popen(['cmd', '/c', '..\\bin\\vcsa-cli-installer\\win32\\vcsa-deploy.exe', 'install', '--no-esx-ssl-verify', '--accept-eula', '--acknowledge-ceip', '..\\bin\\vcsa-cli-installer\\templates\\embedded_vCSA_on_ESXi_CLUS.json'], stdout=DEVNULL)
+        new_call = Popen(['cmd', '/c', '.\\bin\\vcsa-cli-installer\\win32\\vcsa-deploy.exe', 'install', '--no-esx-ssl-verify', '--accept-eula', '--acknowledge-ceip', '..\\bin\\vcsa-cli-installer\\templates\\embedded_vCSA_on_ESXi_CLUS.json'], stdout=DEVNULL)
     elif OS == "Linux" or OS == "Darwin":
-        new_call = Popen(['../bin/vcsa-cli-installer/win32/vcsa-deploy.exe', 'install', '--no-esx-ssl-verify', '--accept-eula', '--acknowledge-ceip', '../bin/vcsa-cli-installer/templates/embedded_vCSA_on_ESXi_CLUS.json'], stdout=DEVNULL)
+        new_call = Popen(['./bin/vcsa-cli-installer/win32/vcsa-deploy.exe', 'install', '--no-esx-ssl-verify', '--accept-eula', '--acknowledge-ceip', '../bin/vcsa-cli-installer/templates/embedded_vCSA_on_ESXi_CLUS.json'], stdout=DEVNULL)
 
     while new_call.poll() == None and time.time() < max_time:
         for i in range(20):
