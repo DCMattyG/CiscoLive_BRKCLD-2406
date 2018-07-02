@@ -150,8 +150,8 @@ ACCOUNTS = JsonObj(ACCOUNTS_JSON)
 # Set Permissions on Files in Linux Operating Systems #
 if OS == "Linux" or OS == "Darwin":
     print("Modifying file permissions...")
-    os.chmod("../bin/vcsa-cli-installer/lin64/vcsa-deploy", 0o777)
-    os.chmod("../bin/vcsa-cli-installer/lin64/vcsa-deploy.bin", 0o777)
+    os.chmod("./bin/vcsa-cli-installer/lin64/vcsa-deploy", 0o777)
+    os.chmod("./bin/vcsa-cli-installer/lin64/vcsa-deploy.bin", 0o777)
 
 ########################
 #                      #
