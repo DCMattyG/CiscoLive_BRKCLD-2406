@@ -219,7 +219,8 @@ def get_resource_path(resource):
     """
 
     resource_path = ""
-    curr_path = Path().resolve().parent
+    # curr_path = Path().resolve().parent
+    curr_path = Path().resolve()
 
     if get_os() == "Windows":
         resource_path = "\\" + resource + "\\"

@@ -10,7 +10,7 @@ import datetime
 import threading
 import argparse
 from subprocess import Popen, DEVNULL
-from ucsd_module import JsonObj, get_os, set_ucsd_addr, get_ucsd_addr, set_cloupia_key, get_resource_path, create_ucsd_module, call_ucsd_api
+from ucsd.ucsd_module import JsonObj, get_os, set_ucsd_addr, get_ucsd_addr, set_cloupia_key, get_resource_path, create_ucsd_module, call_ucsd_api
 
 # Import "winreg" on Windows Systems #
 try:
