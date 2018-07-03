@@ -7,4 +7,4 @@
 - [x] Complete LICENSE
 - [ ] Complete README (In progress)
 - [x] Relocate VCSA templates folder
-- [x] Finish testing on all Operating Systems
+- [x] Add timing per deployment section
