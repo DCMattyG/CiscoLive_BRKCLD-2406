@@ -6,5 +6,5 @@
 - [x] Add ArgParse for simple program execution
 - [x] Complete LICENSE
 - [ ] Complete README (In progress)
-- [ ] Relocate VCSA templates folder
+- [x] Relocate VCSA templates folder
 - [x] Finish testing on all Operating Systems
