@@ -109,9 +109,12 @@ print()
 while True:
     proceed = input("Whould you like to proceed (y/n)? ")
     if proceed.strip() in ['n','N']:
+        print("Terminating program...")
         sys.exit()
     elif proceed.strip() in ['y','Y']:
         break
+
+print()
 
 #################
 #               #
