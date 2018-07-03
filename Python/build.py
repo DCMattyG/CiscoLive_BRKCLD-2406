@@ -109,6 +109,7 @@ print()
 while True:
     proceed = input("Whould you like to proceed (y/n)? ")
     if proceed.strip() in ['n','N']:
+        print()
         print("Terminating program...")
         sys.exit()
     elif proceed.strip() in ['y','Y']:
@@ -122,14 +123,21 @@ print()
 #               #
 #################
 
-OS = get_os()
+OS_WINDOWS = False
+OS_LINUX = False
+OS_MAC = False
 
-if OS == "Windows":
+OS_DETECT = get_os()
+
+if OS_DETECT == "Windows":
     print("Windows Operating System detected!")
-elif OS == "Linux":
+    OS_WINDOWS = True
+elif OS_DETECT == "Linux":
     print("Linux Operating System detected!")
-elif OS == "Darwin":
+    OS_LINUX = True
+elif OS_DETECT == "Darwin":
     print("Mac Operating System detected!")
+    OS_MAC = True
 else:
     print("Operating System not detected!")
 
@@ -151,7 +159,7 @@ ACCOUNTS = JsonObj(ACCOUNTS_JSON)
 ########################
 
 # Set Permissions on Files in Linux Operating Systems #
-if OS == "Linux" or OS == "Darwin":
+if OS_LINUX or OS_MAC:
     print("Modifying file permissions...")
     os.chmod("./bin/vcsa-cli-installer/lin64/vcsa-deploy", 0o777)
     os.chmod("./bin/vcsa-cli-installer/lin64/vcsa-deploy.bin", 0o777)
@@ -212,7 +220,7 @@ def spin_char():
 ###################
 
 # Windows Operating Systems Only #
-if OS == "Windows":
+if OS_WINDOWS:
     A_REG = ConnectRegistry(None, HKEY_CURRENT_USER)
     A_KEY = OpenKeyEx(A_REG, r"Software\Microsoft\Windows\CurrentVersion\Internet Settings",
                     0, KEY_ALL_ACCESS)
@@ -2606,9 +2614,9 @@ if DEPLOY_VCENTER:
 
     max_time = time.time() + 3600
 
-    if OS == "Windows":
+    if OS_WINDOWS:
         new_call = Popen(['cmd', '/c', '.\\bin\\vcsa-cli-installer\\win32\\vcsa-deploy.exe', 'install', '--no-esx-ssl-verify', '--accept-eula', '--acknowledge-ceip', '.\\templates\\embedded_vCSA_on_ESXi_CLUS.json'], stdout=DEVNULL)
-    elif OS == "Linux" or OS == "Darwin":
+    elif OS_LINUX or OS_MAC:
         new_call = Popen(['./bin/vcsa-cli-installer/win32/vcsa-deploy.exe', 'install', '--no-esx-ssl-verify', '--accept-eula', '--acknowledge-ceip', './templates/embedded_vCSA_on_ESXi_CLUS.json'], stdout=DEVNULL)
 
     while new_call.poll() == None and time.time() < max_time:
@@ -2795,7 +2803,7 @@ if DEPLOY_VCENTER:
 ##################
 
 # Windows Operating Systems Only #
-if OS == "Windows":
+if OS_WINDOWS:
     if SET_PROXY:
         print("Enabling Proxy...")
         SetValueEx(A_KEY, "ProxyEnable", 0, REG_DWORD, 1)
@@ -2806,4 +2814,3 @@ END_TIME = datetime.datetime.now()
 # Print Script Runtime #
 print()
 print('Duration: {}'.format(END_TIME - START_TIME))
-print()
