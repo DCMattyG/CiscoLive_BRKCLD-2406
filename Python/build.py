@@ -2622,17 +2622,27 @@ if DEPLOY_VCENTER:
 
     max_time = time.time() + 3600
 
+    iso_path = get_resource_path("ISO")
+    vcsa_path = iso_path + locate_vcsa()
+
     if OS_WINDOWS:
-        iso_path = get_resource_path("ISO")
-        vcsa_path = iso_path + locate_vcsa()
         os.system("PowerShell Mount-DiskImage " + vcsa_path)
         mount_image = Popen(['PowerShell', 'Get-DiskImage', vcsa_path, '| Get-Volume', '| select -Expand DriveLetter'], stdout=PIPE)
         mount_result = mount_image.communicate()
         mount_drive = mount_result[0].decode('utf-8').strip()
         deploy_location = mount_drive + ":\\vcsa-cli-installer\\win32\\vcsa-deploy.exe"
         new_call = Popen(['cmd', '/c', deploy_location, 'install', '--no-esx-ssl-verify', '--accept-eula', '--acknowledge-ceip', '.\\templates\\embedded_vCSA_on_ESXi_CLUS.json'], stdout=DEVNULL)
-    elif OS_LINUX or OS_MAC:
-        new_call = Popen(['./bin/vcsa-cli-installer/win32/vcsa-deploy.exe', 'install', '--no-esx-ssl-verify', '--accept-eula', '--acknowledge-ceip', './templates/embedded_vCSA_on_ESXi_CLUS.json'], stdout=DEVNULL)
+    elif OS_LINUX:
+        os.system("mkdir /media/vcsa")
+        os.system("mount -o loop " + vcsa_path + " /media/vcsa >/dev/null 2>&1")
+        new_call = Popen(['./media/vcsa/vcsa-cli-installer/win32/vcsa-deploy.exe', 'install', '--no-esx-ssl-verify', '--accept-eula', '--acknowledge-ceip', './templates/embedded_vCSA_on_ESXi_CLUS.json'], stdout=DEVNULL)
+    elif OS_MAC:
+        mount_image = Popen(['hdiutil', 'mount', vcsa_path], stdout=DEVNULL)
+        
+        while mount_image.poll() == None:
+            time.sleep(1)
+
+        new_call = Popen(['./Volumes/CDROM/vcsa/vcsa-cli-installer/win32/vcsa-deploy.exe', 'install', '--no-esx-ssl-verify', '--accept-eula', '--acknowledge-ceip', './templates/embedded_vCSA_on_ESXi_CLUS.json'], stdout=DEVNULL)
 
     while new_call.poll() == None and time.time() < max_time:
         for i in range(20):

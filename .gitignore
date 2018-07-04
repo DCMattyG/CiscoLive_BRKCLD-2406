@@ -13,9 +13,8 @@ dist/
 # Build Folder
 build/
 
-# VCSA ISO File
-iso/*
-!iso/PLACE VCSA ISO FILE IN THIS FOLDER.txt
+# ISO Files
+*.iso
 
 # Visual Studio Code Config
 .vscode
