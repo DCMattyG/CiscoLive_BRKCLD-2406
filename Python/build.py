@@ -9,7 +9,7 @@ import time
 import datetime
 import threading
 import argparse
-from subprocess import Popen, DEVNULL
+from subprocess import Popen, PIPE, DEVNULL
 from ucsd.ucsd_module import JsonObj, get_os, set_ucsd_addr, get_ucsd_addr, set_cloupia_key, get_resource_path, create_ucsd_module, call_ucsd_api
 
 # Import "winreg" on Windows Systems #
@@ -212,6 +212,14 @@ def spin_char():
     time.sleep(spin_delay)
     print("\\", end="\b", flush=True)
     time.sleep(spin_delay)
+
+# Locate VCSA ISO #
+def locate_vcsa():
+    image_path = get_resource_path("iso")
+
+    for image_file in os.listdir(image_path):
+        if image_file.startswith("VMware-VCSA-all-") and image_file.endswith(".iso"):
+            return image_file
 
 ###################
 #                 #
@@ -2615,7 +2623,14 @@ if DEPLOY_VCENTER:
     max_time = time.time() + 3600
 
     if OS_WINDOWS:
-        new_call = Popen(['cmd', '/c', '.\\bin\\vcsa-cli-installer\\win32\\vcsa-deploy.exe', 'install', '--no-esx-ssl-verify', '--accept-eula', '--acknowledge-ceip', '.\\templates\\embedded_vCSA_on_ESXi_CLUS.json'], stdout=DEVNULL)
+        iso_path = get_resource_path("ISO")
+        vcsa_path = iso_path + locate_vcsa()
+        os.system("PowerShell Mount-DiskImage " + vcsa_path)
+        mount_image = Popen(['PowerShell', 'Get-DiskImage', vcsa_path, '| Get-Volume', '| select -Expand DriveLetter'], stdout=PIPE)
+        mount_result = mount_image.communicate()
+        mount_drive = mount_result[0].decode('utf-8').strip()
+        deploy_location = mount_drive + ":\\vcsa-cli-installer\\win32\\vcsa-deploy.exe"
+        new_call = Popen(['cmd', '/c', deploy_location, 'install', '--no-esx-ssl-verify', '--accept-eula', '--acknowledge-ceip', '.\\templates\\embedded_vCSA_on_ESXi_CLUS.json'], stdout=DEVNULL)
     elif OS_LINUX or OS_MAC:
         new_call = Popen(['./bin/vcsa-cli-installer/win32/vcsa-deploy.exe', 'install', '--no-esx-ssl-verify', '--accept-eula', '--acknowledge-ceip', './templates/embedded_vCSA_on_ESXi_CLUS.json'], stdout=DEVNULL)
 

@@ -13,6 +13,9 @@ dist/
 # Build Folder
 build/
 
+# VCSA ISO File
+iso/*
+
 # Visual Studio Code Config
 .vscode
 
