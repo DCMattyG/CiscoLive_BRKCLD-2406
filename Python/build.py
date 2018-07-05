@@ -152,6 +152,23 @@ ACCOUNTS_JSON = json.loads(ACCOUNTS_FILE.read())
 
 ACCOUNTS = JsonObj(ACCOUNTS_JSON)
 
+############################
+#                          #
+#  Check User Permissions  #
+#                          #
+############################
+
+# Check if run as "sudo", if not, re-launch #
+if OS_LINUX:
+    try:
+        user_id = os.geteuid()
+    except AttributeError:
+        user_id = -1
+
+    if user_id < 0:
+        print("Re-executing as root...")
+        os.execvp("sudo", ["sudo", "python3"] + sys.argv)
+
 ########################
 #                      #
 #  Modify Permissions  #
@@ -159,10 +176,10 @@ ACCOUNTS = JsonObj(ACCOUNTS_JSON)
 ########################
 
 # Set Permissions on Files in Linux Operating Systems #
-if OS_LINUX or OS_MAC:
-    print("Modifying file permissions...")
-    os.chmod("./bin/vcsa-cli-installer/lin64/vcsa-deploy", 0o777)
-    os.chmod("./bin/vcsa-cli-installer/lin64/vcsa-deploy.bin", 0o777)
+# if OS_LINUX or OS_MAC:
+#     print("Modifying file permissions...")
+#     os.chmod("./bin/vcsa-cli-installer/lin64/vcsa-deploy", 0o777)
+#     os.chmod("./bin/vcsa-cli-installer/lin64/vcsa-deploy.bin", 0o777)
 
 ########################
 #                      #
