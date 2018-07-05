@@ -230,6 +230,11 @@ def locate_vcsa():
         if image_file.startswith("VMware-VCSA-all-") and image_file.endswith(".iso"):
             return image_file
 
+    # Terminate program if VCSA isn't found #
+    print()
+    print("VCSA ISO not found! Terminating program...")
+    sys.exit()
+
 ###################
 #                 #
 #  Disable Proxy  #
