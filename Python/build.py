@@ -55,7 +55,7 @@ if OS_LINUX:
     except AttributeError:
         user_id = -1
 
-    if user_id < 0:
+    if user_id != 0:
         print("Re-executing as root...")
         os.execvp("sudo", ["sudo", "python3"] + sys.argv)
 
