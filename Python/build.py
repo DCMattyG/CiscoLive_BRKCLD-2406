@@ -181,6 +181,7 @@ ACCOUNTS = JsonObj(ACCOUNTS_JSON)
 
 UCSD_POD = "Default Pod"
 UCS_ORG = "org-root"
+COPY_RUN_START = "false"
 
 # Collect Start Time #
 START_TIME = datetime.datetime.now()
@@ -413,7 +414,7 @@ mdsFeaturesA1.modulePayload.param0.featureName = (UCSD_POD + "@" +
                                                  ACCOUNTS.MDSA.ipAddress +
                                                  "@npiv@1")
 mdsFeaturesA1.modulePayload.param0.enable = "true"
-mdsFeaturesA1.modulePayload.param0.copyRunToStartConfig = "false"
+mdsFeaturesA1.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 
 mdsFeaturesA2.modulePayload.param0.netdevice = (UCSD_POD + "@" +
                                                ACCOUNTS.MDSA.ipAddress)
@@ -421,7 +422,7 @@ mdsFeaturesA2.modulePayload.param0.featureName = (UCSD_POD + "@" +
                                                  ACCOUNTS.MDSA.ipAddress +
                                                  "@fport-channel-trunk@1")
 mdsFeaturesA2.modulePayload.param0.enable = "true"
-mdsFeaturesA2.modulePayload.param0.copyRunToStartConfig = "false"
+mdsFeaturesA2.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 
 mdsFeaturesB1.modulePayload.param0.netdevice = (UCSD_POD + "@" +
                                                ACCOUNTS.MDSB.ipAddress)
@@ -429,7 +430,7 @@ mdsFeaturesB1.modulePayload.param0.featureName = (UCSD_POD + "@" +
                                                  ACCOUNTS.MDSB.ipAddress +
                                                  "@npiv@1")
 mdsFeaturesB1.modulePayload.param0.enable = "true"
-mdsFeaturesB1.modulePayload.param0.copyRunToStartConfig = "false"
+mdsFeaturesB1.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 
 mdsFeaturesB2.modulePayload.param0.netdevice = (UCSD_POD + "@" +
                                                ACCOUNTS.MDSB.ipAddress)
@@ -437,7 +438,7 @@ mdsFeaturesB2.modulePayload.param0.featureName = (UCSD_POD + "@" +
                                                  ACCOUNTS.MDSB.ipAddress +
                                                  "@fport-channel-trunk@1")
 mdsFeaturesB2.modulePayload.param0.enable = "true"
-mdsFeaturesB2.modulePayload.param0.copyRunToStartConfig = "false"
+mdsFeaturesB2.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 
 if DEPLOY_MDS:
     print("Enabling MDS Features...")
@@ -455,14 +456,14 @@ mdsVSANA.modulePayload.param0.netdevice = (UCSD_POD + "@" +
 mdsVSANA.modulePayload.param0.vsanId = "20"
 mdsVSANA.modulePayload.param0.vsanName = "VSAN20"
 mdsVSANA.modulePayload.param0.enhance = "true"
-mdsVSANA.modulePayload.param0.copyRunToStartConfig = "false"
+mdsVSANA.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 
 mdsVSANB.modulePayload.param0.netdevice = (UCSD_POD + "@" +
                                            ACCOUNTS.MDSB.ipAddress)
 mdsVSANB.modulePayload.param0.vsanId = "30"
 mdsVSANB.modulePayload.param0.vsanName = "VSAN30"
 mdsVSANB.modulePayload.param0.enhance = "true"
-mdsVSANB.modulePayload.param0.copyRunToStartConfig = "false"
+mdsVSANB.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 
 if DEPLOY_MDS:
     print("Creating VSANs...")
@@ -485,7 +486,7 @@ mdsVSANPortA1.modulePayload.param0.fcPort = (UCSD_POD + "@" +
                                              ACCOUNTS.MDSA.ipAddress +
                                              "@fc1/1")
 mdsVSANPortA1.modulePayload.param0.vsanId = "20"
-mdsVSANPortA1.modulePayload.param0.copyRunToStartConfig = "false"
+mdsVSANPortA1.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 mdsVSANPortA1.modulePayload.param0.enable = "true"
 
 mdsVSANPortA2.modulePayload.param0.netdevice = (UCSD_POD + "@" +
@@ -494,7 +495,7 @@ mdsVSANPortA2.modulePayload.param0.fcPort = (UCSD_POD + "@" +
                                              ACCOUNTS.MDSA.ipAddress +
                                              "@fc1/2")
 mdsVSANPortA2.modulePayload.param0.vsanId = "20"
-mdsVSANPortA2.modulePayload.param0.copyRunToStartConfig = "false"
+mdsVSANPortA2.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 mdsVSANPortA2.modulePayload.param0.enable = "true"
 
 mdsVSANPortA3.modulePayload.param0.netdevice = (UCSD_POD + "@" +
@@ -503,7 +504,7 @@ mdsVSANPortA3.modulePayload.param0.fcPort = (UCSD_POD + "@" +
                                              ACCOUNTS.MDSA.ipAddress +
                                              "@fc1/13")
 mdsVSANPortA3.modulePayload.param0.vsanId = "20"
-mdsVSANPortA3.modulePayload.param0.copyRunToStartConfig = "false"
+mdsVSANPortA3.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 mdsVSANPortA3.modulePayload.param0.enable = "true"
 
 mdsVSANPortA4.modulePayload.param0.netdevice = (UCSD_POD + "@" +
@@ -512,7 +513,7 @@ mdsVSANPortA4.modulePayload.param0.fcPort = (UCSD_POD + "@" +
                                              ACCOUNTS.MDSA.ipAddress +
                                              "@fc1/14")
 mdsVSANPortA4.modulePayload.param0.vsanId = "20"
-mdsVSANPortA4.modulePayload.param0.copyRunToStartConfig = "false"
+mdsVSANPortA4.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 mdsVSANPortA4.modulePayload.param0.enable = "true"
 
 mdsVSANPortB1.modulePayload.param0.netdevice = (UCSD_POD + "@" +
@@ -521,7 +522,7 @@ mdsVSANPortB1.modulePayload.param0.fcPort = (UCSD_POD + "@" +
                                              ACCOUNTS.MDSB.ipAddress +
                                              "@fc1/1")
 mdsVSANPortB1.modulePayload.param0.vsanId = "30"
-mdsVSANPortB1.modulePayload.param0.copyRunToStartConfig = "false"
+mdsVSANPortB1.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 mdsVSANPortB1.modulePayload.param0.enable = "true"
 
 mdsVSANPortB2.modulePayload.param0.netdevice = (UCSD_POD + "@" +
@@ -530,7 +531,7 @@ mdsVSANPortB2.modulePayload.param0.fcPort = (UCSD_POD + "@" +
                                              ACCOUNTS.MDSB.ipAddress +
                                              "@fc1/2")
 mdsVSANPortB2.modulePayload.param0.vsanId = "30"
-mdsVSANPortB2.modulePayload.param0.copyRunToStartConfig = "false"
+mdsVSANPortB2.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 mdsVSANPortB2.modulePayload.param0.enable = "true"
 
 mdsVSANPortB3.modulePayload.param0.netdevice = (UCSD_POD + "@" +
@@ -539,7 +540,7 @@ mdsVSANPortB3.modulePayload.param0.fcPort = (UCSD_POD + "@" +
                                              ACCOUNTS.MDSB.ipAddress +
                                              "@fc1/13")
 mdsVSANPortB3.modulePayload.param0.vsanId = "30"
-mdsVSANPortB3.modulePayload.param0.copyRunToStartConfig = "false"
+mdsVSANPortB3.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 mdsVSANPortB3.modulePayload.param0.enable = "true"
 
 mdsVSANPortB4.modulePayload.param0.netdevice = (UCSD_POD + "@" +
@@ -548,7 +549,7 @@ mdsVSANPortB4.modulePayload.param0.fcPort = (UCSD_POD + "@" +
                                              ACCOUNTS.MDSB.ipAddress +
                                              "@fc1/14")
 mdsVSANPortB4.modulePayload.param0.vsanId = "30"
-mdsVSANPortB4.modulePayload.param0.copyRunToStartConfig = "false"
+mdsVSANPortB4.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 mdsVSANPortB4.modulePayload.param0.enable = "true"
 
 if DEPLOY_MDS:
@@ -588,10 +589,12 @@ mdsPortChannelVsanB = create_ucsd_module("associateVfcToVsan")
 mdsPortChannelVsanA.modulePayload.param0.netdevice = (UCSD_POD + "@" + ACCOUNTS.MDSA.ipAddress)
 mdsPortChannelVsanA.modulePayload.param0.vfcId = (UCSD_POD + "@" + ACCOUNTS.MDSA.ipAddress + "@Fibre@port-channel20")
 mdsPortChannelVsanA.modulePayload.param0.vsanId = (UCSD_POD + "@" + ACCOUNTS.MDSA.ipAddress + "@20")
+mdsPortChannelVsanA.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 
 mdsPortChannelVsanB.modulePayload.param0.netdevice = (UCSD_POD + "@" + ACCOUNTS.MDSB.ipAddress)
 mdsPortChannelVsanB.modulePayload.param0.vfcId = (UCSD_POD + "@" + ACCOUNTS.MDSB.ipAddress + "@Fibre@port-channel30")
 mdsPortChannelVsanB.modulePayload.param0.vsanId = (UCSD_POD + "@" + ACCOUNTS.MDSB.ipAddress + "@30")
+mdsPortChannelVsanB.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 
 if DEPLOY_MDS:
     print("Associating Port Channels to Vsans...")
@@ -623,18 +626,22 @@ mdsPortToChannelB2 = create_ucsd_module("interfacePortChannelConfig")
 mdsPortToChannelA1.modulePayload.param0.netdevice = (UCSD_POD + "@" + ACCOUNTS.MDSA.ipAddress)
 mdsPortToChannelA1.modulePayload.param0.port = (UCSD_POD + "@" + ACCOUNTS.MDSA.ipAddress + "@Fibre Channel@fc1/13")
 mdsPortToChannelA1.modulePayload.param0.portChannel = (UCSD_POD + "@" + ACCOUNTS.MDSA.ipAddress + "@Fibre@port-channel20")
+mdsPortToChannelA1.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 
 mdsPortToChannelA2.modulePayload.param0.netdevice = (UCSD_POD + "@" + ACCOUNTS.MDSA.ipAddress)
 mdsPortToChannelA2.modulePayload.param0.port = (UCSD_POD + "@" + ACCOUNTS.MDSA.ipAddress + "@Fibre Channel@fc1/14")
 mdsPortToChannelA2.modulePayload.param0.portChannel = (UCSD_POD + "@" + ACCOUNTS.MDSA.ipAddress + "@Fibre@port-channel20")
+mdsPortToChannelA2.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 
 mdsPortToChannelB1.modulePayload.param0.netdevice = (UCSD_POD + "@" + ACCOUNTS.MDSB.ipAddress)
 mdsPortToChannelB1.modulePayload.param0.port = (UCSD_POD + "@" + ACCOUNTS.MDSB.ipAddress + "@Fibre Channel@fc1/13")
 mdsPortToChannelB1.modulePayload.param0.portChannel = (UCSD_POD + "@" + ACCOUNTS.MDSB.ipAddress + "@Fibre@port-channel30")
+mdsPortToChannelB1.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 
 mdsPortToChannelB2.modulePayload.param0.netdevice = (UCSD_POD + "@" + ACCOUNTS.MDSB.ipAddress)
 mdsPortToChannelB2.modulePayload.param0.port = (UCSD_POD + "@" + ACCOUNTS.MDSB.ipAddress + "@Fibre Channel@fc1/14")
 mdsPortToChannelB2.modulePayload.param0.portChannel = (UCSD_POD + "@" + ACCOUNTS.MDSB.ipAddress + "@Fibre@port-channel30")
+mdsPortToChannelB2.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 
 if DEPLOY_MDS:
     print("Associating Ports to Port Channels...")
@@ -658,56 +665,56 @@ mdsPortConfigA1.modulePayload.param0.netdevice = (UCSD_POD + "@" +
 mdsPortConfigA1.modulePayload.param0.port = "fc1/1"
 mdsPortConfigA1.modulePayload.param0.description = "Connection to SAN"
 mdsPortConfigA1.modulePayload.param0.enable = "true"
-mdsPortConfigA1.modulePayload.param0.copyRunToStartConfig = "false"
+mdsPortConfigA1.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 
 mdsPortConfigA2.modulePayload.param0.netdevice = (UCSD_POD + "@" +
                                                   ACCOUNTS.MDSA.ipAddress)
 mdsPortConfigA2.modulePayload.param0.port = "fc1/2"
 mdsPortConfigA2.modulePayload.param0.description = "Connection to SAN"
 mdsPortConfigA2.modulePayload.param0.enable = "true"
-mdsPortConfigA2.modulePayload.param0.copyRunToStartConfig = "false"
+mdsPortConfigA2.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 
 mdsPortConfigA3.modulePayload.param0.netdevice = (UCSD_POD + "@" +
                                                   ACCOUNTS.MDSA.ipAddress)
 mdsPortConfigA3.modulePayload.param0.port = "fc1/13"
 mdsPortConfigA3.modulePayload.param0.description = "Connection to UCS"
 mdsPortConfigA3.modulePayload.param0.enable = "true"
-mdsPortConfigA3.modulePayload.param0.copyRunToStartConfig = "false"
+mdsPortConfigA3.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 
 mdsPortConfigA4.modulePayload.param0.netdevice = (UCSD_POD + "@" +
                                                   ACCOUNTS.MDSA.ipAddress)
 mdsPortConfigA4.modulePayload.param0.port = "fc1/14"
 mdsPortConfigA4.modulePayload.param0.description = "Connection to UCS"
 mdsPortConfigA4.modulePayload.param0.enable = "true"
-mdsPortConfigA4.modulePayload.param0.copyRunToStartConfig = "false"
+mdsPortConfigA4.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 
 mdsPortConfigB1.modulePayload.param0.netdevice = (UCSD_POD + "@" +
                                                   ACCOUNTS.MDSB.ipAddress)
 mdsPortConfigB1.modulePayload.param0.port = "fc1/1"
 mdsPortConfigB1.modulePayload.param0.description = "Connection to SAN"
 mdsPortConfigB1.modulePayload.param0.enable = "true"
-mdsPortConfigB1.modulePayload.param0.copyRunToStartConfig = "false"
+mdsPortConfigB1.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 
 mdsPortConfigB2.modulePayload.param0.netdevice = (UCSD_POD + "@" +
                                                   ACCOUNTS.MDSB.ipAddress)
 mdsPortConfigB2.modulePayload.param0.port = "fc1/2"
 mdsPortConfigB2.modulePayload.param0.description = "Connection to SAN"
 mdsPortConfigB2.modulePayload.param0.enable = "true"
-mdsPortConfigB2.modulePayload.param0.copyRunToStartConfig = "false"
+mdsPortConfigB2.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 
 mdsPortConfigB3.modulePayload.param0.netdevice = (UCSD_POD + "@" +
                                                   ACCOUNTS.MDSB.ipAddress)
 mdsPortConfigB3.modulePayload.param0.port = "fc1/13"
 mdsPortConfigB3.modulePayload.param0.description = "Connection to UCS"
 mdsPortConfigB3.modulePayload.param0.enable = "true"
-mdsPortConfigB3.modulePayload.param0.copyRunToStartConfig = "false"
+mdsPortConfigB3.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 
 mdsPortConfigB4.modulePayload.param0.netdevice = (UCSD_POD + "@" +
                                                   ACCOUNTS.MDSB.ipAddress)
 mdsPortConfigB4.modulePayload.param0.port = "fc1/14"
 mdsPortConfigB4.modulePayload.param0.description = "Connection to UCS"
 mdsPortConfigB4.modulePayload.param0.enable = "true"
-mdsPortConfigB4.modulePayload.param0.copyRunToStartConfig = "false"
+mdsPortConfigB4.modulePayload.param0.copyRunToStartConfig = COPY_RUN_START
 
 if DEPLOY_MDS:
     print("Enabling Ports...")
@@ -731,7 +738,7 @@ mdsZoneSetA.modulePayload.param0.vsan = (UCSD_POD + "@" +
                                          ACCOUNTS.MDSA.ipAddress + "@" +
                                          mdsVSANPortA1.modulePayload.param0.vsanId)
 mdsZoneSetA.modulePayload.param0.enhanced = "true"
-mdsZoneSetA.modulePayload.param0.copyToStartup = "false"
+mdsZoneSetA.modulePayload.param0.copyToStartup = COPY_RUN_START
 
 mdsZoneSetB.modulePayload.param0.netdevice = (UCSD_POD + "@" +
                                               ACCOUNTS.MDSB.ipAddress)
@@ -740,7 +747,7 @@ mdsZoneSetB.modulePayload.param0.vsan = (UCSD_POD + "@" +
                                          ACCOUNTS.MDSB.ipAddress + "@" +
                                          mdsVSANPortB1.modulePayload.param0.vsanId)
 mdsZoneSetB.modulePayload.param0.enhanced = "true"
-mdsZoneSetB.modulePayload.param0.copyToStartup = "false"
+mdsZoneSetB.modulePayload.param0.copyToStartup = COPY_RUN_START
 
 if DEPLOY_MDS:
     print("Creating ZoneSets...")
