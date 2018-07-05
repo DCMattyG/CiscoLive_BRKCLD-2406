@@ -18,6 +18,47 @@ try:
 except ImportError:
     pass
 
+##################
+#                #
+#  OS Detection  #
+#                #
+##################
+
+OS_WINDOWS = False
+OS_LINUX = False
+OS_MAC = False
+
+OS_DETECT = get_os()
+
+if OS_DETECT == "Windows":
+    print("Windows Operating System detected!")
+    OS_WINDOWS = True
+elif OS_DETECT == "Linux":
+    print("Linux Operating System detected!")
+    OS_LINUX = True
+elif OS_DETECT == "Darwin":
+    print("Mac Operating System detected!")
+    OS_MAC = True
+else:
+    print("Operating System not detected!")
+
+############################
+#                          #
+#  Check User Permissions  #
+#                          #
+############################
+
+# Check if run as "sudo", if not, re-launch #
+if OS_LINUX:
+    try:
+        user_id = os.geteuid()
+    except AttributeError:
+        user_id = -1
+
+    if user_id < 0:
+        print("Re-executing as root...")
+        os.execvp("sudo", ["sudo", "python3"] + sys.argv)
+
 ########################
 #                      #
 #  Set Deploy Options  #
@@ -123,24 +164,6 @@ print()
 #               #
 #################
 
-OS_WINDOWS = False
-OS_LINUX = False
-OS_MAC = False
-
-OS_DETECT = get_os()
-
-if OS_DETECT == "Windows":
-    print("Windows Operating System detected!")
-    OS_WINDOWS = True
-elif OS_DETECT == "Linux":
-    print("Linux Operating System detected!")
-    OS_LINUX = True
-elif OS_DETECT == "Darwin":
-    print("Mac Operating System detected!")
-    OS_MAC = True
-else:
-    print("Operating System not detected!")
-
 UCSD_ADDR = "10.0.0.80"
 set_ucsd_addr(UCSD_ADDR)
 
@@ -151,23 +174,6 @@ ACCOUNTS_FILE = open(get_resource_path("resources") + "accounts.json", "r")
 ACCOUNTS_JSON = json.loads(ACCOUNTS_FILE.read())
 
 ACCOUNTS = JsonObj(ACCOUNTS_JSON)
-
-############################
-#                          #
-#  Check User Permissions  #
-#                          #
-############################
-
-# Check if run as "sudo", if not, re-launch #
-if OS_LINUX:
-    try:
-        user_id = os.geteuid()
-    except AttributeError:
-        user_id = -1
-
-    if user_id < 0:
-        print("Re-executing as root...")
-        os.execvp("sudo", ["sudo", "python3"] + sys.argv)
 
 ########################
 #                      #
