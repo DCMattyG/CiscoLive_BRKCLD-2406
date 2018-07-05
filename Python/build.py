@@ -156,8 +156,6 @@ while True:
     elif proceed.strip() in ['y','Y']:
         break
 
-print()
-
 #################
 #               #
 #  Set Globals  #
