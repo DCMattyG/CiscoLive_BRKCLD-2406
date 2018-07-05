@@ -1,6 +1,3 @@
-# Compiled Python Modules
-*.pyc
-
 # Python Egg Info Folders
 *.egg-Info/
 
@@ -16,11 +13,14 @@ build/
 # Temporary Files
 temp/
 
-# ISO Files
-*.iso
-
 # Visual Studio Code Config
 .vscode
+
+# Compiled Python Modules
+*.pyc
+
+# ISO Files
+*.iso
 
 # Setup File
 setup.py
