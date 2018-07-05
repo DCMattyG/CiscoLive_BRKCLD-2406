@@ -263,6 +263,10 @@ def list_modules():
     return modules
 
 def check_status(response):
+    """
+    DOCSTRING
+    """
+
     result = 0
     error = ""
 
