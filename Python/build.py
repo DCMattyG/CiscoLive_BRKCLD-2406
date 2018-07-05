@@ -173,11 +173,11 @@ ACCOUNTS_JSON = json.loads(ACCOUNTS_FILE.read())
 
 ACCOUNTS = JsonObj(ACCOUNTS_JSON)
 
-########################
-#                      #
-#  Set Temp Variables  #
-#                      #
-########################
+###########################
+#                         #
+#  Set Runtime Variables  #
+#                         #
+###########################
 
 UCSD_POD = "Default Pod"
 UCS_ORG = "org-root"
