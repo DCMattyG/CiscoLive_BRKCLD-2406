@@ -8,5 +8,5 @@
 - [ ] Complete README (In progress)
 - [x] Relocate VCSA templates folder
 - [x] Add timing per deployment section
-- [ ] Mount VCSA image vs. distributing VCSA files
+- [x] Mount VCSA image vs. distributing VCSA files
 - [ ] Auto-generate VCSA template file
