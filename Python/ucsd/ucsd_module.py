@@ -10,6 +10,8 @@ import platform
 import requests
 import urllib3
 from pathlib import Path
+import re
+from xml.etree.ElementTree import XML
 
 # Disable Self-Signed SSL Warning
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -260,7 +262,24 @@ def list_modules():
 
     return modules
 
-# UCSD API Request Call #
+def check_status(response):
+    if (re.match(r'^<.+>$', response)):
+        xml_response = XML(response)
+        result = xml_response.find("operationStatus").text
+    elif (re.match(r'^{.+}$', response)):
+        json_response = json.loads(response)
+        result = json_response['serviceError']
+    else:
+        result = -1
+
+    try:
+        if result == None:
+            result = 0
+    except:
+        pass
+
+    return int(result)
+
 def call_ucsd_api(module):
     """
     DOCSTRING
