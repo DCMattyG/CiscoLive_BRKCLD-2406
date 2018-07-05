@@ -367,7 +367,10 @@ if DEPLOY_WORKFLOWS:
 
 ucsdWorkflow = create_ucsd_module("userAPIUnifiedImport")
 
-ucsdWorkflow.uploadFile = "..\\workflows\\BM_Deploy.wfdx"
+if OS_WINDOWS:
+    ucsdWorkflow.uploadFile = ".\\workflows\\BM_Deploy.wfdx"
+elif OS_LINUX or OS_MAC:
+    ucsdWorkflow.uploadFile = "./workflows/BM_Deploy.wfdx"
 
 ucsdWorkflow.modulePayload.param0.uploadPolicy = "BM_Deploy.wfdx"
 ucsdWorkflow.modulePayload.param0.description = "CLUS Bare Metal Deployment"
