@@ -18,6 +18,21 @@ try:
 except ImportError:
     pass
 
+#################
+#               #
+#  Print Intro  #
+#               #
+#################
+
+intro_text = r"""
+   ___  ___  __ _________   ___      ___ ____ ___  ____
+  / _ )/ _ \/ //_/ ___/ /  / _ \____|_  / / // _ \/ __/
+ / _  / , _/ ,< / /__/ /__/ // /___/ __/_  _/ // / _ \ 
+/____/_/|_/_/|_|\___/____/____/   /____//_/ \___/\___/ 
+"""
+
+print(intro_text)
+
 ##################
 #                #
 #  OS Detection  #
@@ -32,15 +47,19 @@ OS_DETECT = get_os()
 
 if OS_DETECT == "Windows":
     print("Windows Operating System detected!")
+    print()
     OS_WINDOWS = True
 elif OS_DETECT == "Linux":
     print("Linux Operating System detected!")
+    print()
     OS_LINUX = True
 elif OS_DETECT == "Darwin":
     print("Mac Operating System detected!")
+    print()
     OS_MAC = True
 else:
     print("Operating System not detected!")
+    print()
 
 ############################
 #                          #
