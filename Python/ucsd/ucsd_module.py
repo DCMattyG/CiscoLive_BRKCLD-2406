@@ -263,22 +263,25 @@ def list_modules():
     return modules
 
 def check_status(response):
+    result = 0
+    error = ""
+
     if (re.match(r'^<.+>$', response)):
         xml_response = XML(response)
         result = xml_response.find("operationStatus").text
+
+        if int(result) > 0:
+            error = result = xml_response.find("errorMessage").text
     elif (re.match(r'^{.+}$', response)):
         json_response = json.loads(response)
-        result = json_response['serviceError']
-    else:
-        result = -1
+        error = json_response['serviceError']
 
-    try:
-        if result == None:
+        if error == None:
             result = 0
-    except:
-        pass
+        else:
+            result = 1
 
-    return int(result)
+    return (result, error)
 
 def call_ucsd_api(module):
     """
