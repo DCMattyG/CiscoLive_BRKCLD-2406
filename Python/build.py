@@ -47,19 +47,19 @@ OS_DETECT = get_os()
 
 if OS_DETECT == "Windows":
     print("Windows Operating System detected!")
-    print()
     OS_WINDOWS = True
 elif OS_DETECT == "Linux":
     print("Linux Operating System detected!")
-    print()
     OS_LINUX = True
 elif OS_DETECT == "Darwin":
     print("Mac Operating System detected!")
-    print()
     OS_MAC = True
 else:
-    print("Operating System not detected!")
-    print()
+    print("Operating System not detected/supported!")
+    print("Aborting...")
+    sys.exit()
+
+print()
 
 ############################
 #                          #
