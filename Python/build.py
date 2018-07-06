@@ -18,6 +18,36 @@ try:
 except ImportError:
     pass
 
+####################
+#                  #
+#  ArgParse Setup  #
+#                  #
+####################
+
+# Initiate Arg Parser #
+PARSER = argparse.ArgumentParser()
+
+argparse_desc = r"""
+This will deploy your new datacenter.
+"""
+
+# Add Description #
+PARSER = argparse.ArgumentParser(description=argparse_desc)
+
+PARSER.add_argument("-proxy", dest="proxy", action="store_true", help="configure windows proxy", default=False)
+PARSER.add_argument("-accounts", dest="accounts", action="store_true", help="add accounts into UCSD", default=False)
+PARSER.add_argument("-workflows", dest="workflows", action="store_true", help="import workflows into UCSD", default=False)
+PARSER.add_argument("-mds", dest="mds", action="store_true", help="deploy MDS", default=False)
+PARSER.add_argument("-ucs", dest="ucs", action="store_true", help="deploy UCS", default=False)
+PARSER.add_argument("-aci", dest="aci", action="store_true", help="deploy ACI", default=False)
+PARSER.add_argument("-servers", dest="servers", action="store_true", help="deploy servers", default=False)
+PARSER.add_argument("-vcenter", dest="vcenter", action="store_true", help="deploy vcenter", default=False)
+PARSER.add_argument("-storage", dest="storage", action="store_true", help="deploy storage", default=False)
+PARSER.add_argument("-all", dest="all", action="store_true", help="deploy everything", default=False)
+
+# Read Arguments from the Command Line #
+ARGS = PARSER.parse_args()
+
 #################
 #               #
 #  Print Intro  #
@@ -99,29 +129,9 @@ DEPLOY_STORAGE = False
 
 #####################
 #                   #
-#  Parse Arguments  #
+#  ArgParse Parser  #
 #                   #
 #####################
-
-# Initiate Arg Parser #
-PARSER = argparse.ArgumentParser()
-
-# Add Description #
-PARSER = argparse.ArgumentParser(description='This will deploy your new datacenter.')
-
-PARSER.add_argument("-proxy", dest="proxy", action="store_true", help="configure windows proxy", default=False)
-PARSER.add_argument("-accounts", dest="accounts", action="store_true", help="add accounts into UCSD", default=False)
-PARSER.add_argument("-workflows", dest="workflows", action="store_true", help="import workflows into UCSD", default=False)
-PARSER.add_argument("-mds", dest="mds", action="store_true", help="deploy MDS", default=False)
-PARSER.add_argument("-ucs", dest="ucs", action="store_true", help="deploy UCS", default=False)
-PARSER.add_argument("-aci", dest="aci", action="store_true", help="deploy ACI", default=False)
-PARSER.add_argument("-servers", dest="servers", action="store_true", help="deploy servers", default=False)
-PARSER.add_argument("-vcenter", dest="vcenter", action="store_true", help="deploy vcenter", default=False)
-PARSER.add_argument("-storage", dest="storage", action="store_true", help="deploy storage", default=False)
-PARSER.add_argument("-all", dest="all", action="store_true", help="deploy everything", default=False)
-
-# Read Arguments from the Command Line #
-ARGS = PARSER.parse_args()
 
 # Check Arguments and Set Deployment Values #
 if ARGS.proxy:
