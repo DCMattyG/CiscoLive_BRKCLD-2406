@@ -262,6 +262,40 @@ def list_modules():
 
     return modules
 
+def match_keys(module, data):
+	missing_keys = []
+
+	if isinstance(module, dict) and isinstance(data, dict):
+		for subkey in module.keys():
+			if subkey in data.keys():
+				if isinstance(module[subkey], dict) and isinstance(data[subkey], dict):
+					for key in match_keys(module[subkey], data[subkey]):
+						missing_keys.append((subkey + "->" + key))
+			else:
+				missing_keys.append(subkey)
+	else:
+		if not isinstance(module, dict):
+			try:
+				module = json.loads(module)
+			except ValueError:
+				print("Invalid Module Format!")
+				return
+			except TypeError:
+			    pass
+
+		if not isinstance(data, dict):
+			try:
+				data = json.loads(data)
+			except ValueError:
+				print("Invalid Data Format!")
+				return
+			except TypeError:
+				pass
+
+		missing_keys = match_keys(module, data)
+
+	return missing_keys
+
 def check_status(response):
     """
     DOCSTRING
