@@ -224,7 +224,25 @@ START_TIME = datetime.datetime.now()
 # Monitor Server Deploy Threads #
 def server_thread_deploy(sr_call, thread_id, return_values):
     """
-    DOCSTRING
+    This function is used to monitor the status of UCSD workflow executions via the "userAPIGetWorkflowStatus" API call.
+    You can start this as an argument for threading.Thread().
+
+    Example
+    -------
+    new_thread = threading.Thread(target=server_thread_deploy, kwargs={"sr_call":sr_call00, "thread_id":0, "return_values":deploy_results})
+
+    Parameters
+    ----------
+    sr_call : UcsdModule
+        create_ucsd_module("userAPIGetWorkflowStatus") format
+    thread_id : int
+        used to identify the thread number
+    return_values : list
+        stores the execution results returned from UCSD
+
+    Returns
+    -------
+    none
     """
 
     max_time = time.time() + 3600
@@ -240,9 +258,26 @@ def server_thread_deploy(sr_call, thread_id, return_values):
     return_values[thread_id] = int(srResult.json()['serviceResult'])
 
 # Display Progress Spinner #
-spin_delay = 1
+def spin_char(spin_delay=1):
+    """
+    Displays a flashy spinning cursor. Useful for waiting periods during code execution.
 
-def spin_char():
+    Example
+    -------
+    for i in range(20):
+        spin_char()
+
+    Parameters
+    ----------
+    spin_delay : int
+        time in seconds between movements
+        default = 1 second
+
+    Returns
+    -------
+    none
+    """
+
     print("|", end="\b", flush=True)
     time.sleep(spin_delay)
     print("/", end="\b", flush=True)
@@ -253,8 +288,24 @@ def spin_char():
     time.sleep(spin_delay)
 
 # Locate VCSA ISO #
-def locate_vcsa():
-    image_path = get_resource_path("iso")
+def locate_vcsa(image_path):
+    """
+    Gets the dynamic VCSA ISO name by searching the "iso" folder for a match.
+
+    Example
+    -------
+    iso_name = locate_vcsa(get_resource_path("iso"))
+    or
+    iso_name = locate_vcsa("~/iso/")
+
+    Parameters
+    ----------
+    none
+
+    Returns
+    -------
+    none
+    """
 
     for image_file in os.listdir(image_path):
         if image_file.startswith("VMware-VCSA-all-") and image_file.endswith(".iso"):
@@ -2383,6 +2434,7 @@ bmDeployServerBlade08 = create_ucsd_module("userAPISubmitWorkflowServiceRequest"
 
 bmWorkFlowName = "Bare Metal Deploy v2"
 
+# Deploy ESX MGMT Server 00 #
 bmDeployServerRack00.modulePayload.param0 = bmWorkFlowName
 bmDeployServerRack00.modulePayload.param1.list[1]['value'] = "ESX-SERVER-00"
 bmDeployServerRack00.modulePayload.param1.list[3]['value'] = "ESX_Template_Rack"
@@ -2396,6 +2448,7 @@ bmDeployServerRack00.modulePayload.param1.list[13]['value'] = "0"
 bmDeployServerRack00.modulePayload.param1.list[25]['value'] = "ESX-SERVER-00-A"
 bmDeployServerRack00.modulePayload.param1.list[26]['value'] = "ESX-SERVER-00-B"
 
+# Deploy ESX Host Server 01 #
 bmDeployServerBlade01.modulePayload.param0 = bmWorkFlowName
 bmDeployServerBlade01.modulePayload.param1.list[1]['value'] = "ESX-SERVER-01"
 bmDeployServerBlade01.modulePayload.param1.list[3]['value'] = "ESX_Template_Blade"
@@ -2409,6 +2462,7 @@ bmDeployServerBlade01.modulePayload.param1.list[13]['value'] = "0"
 bmDeployServerBlade01.modulePayload.param1.list[25]['value'] = "ESX-SERVER-01-A"
 bmDeployServerBlade01.modulePayload.param1.list[26]['value'] = "ESX-SERVER-01-B"
 
+# Deploy ESX Host Server 02 #
 bmDeployServerBlade02.modulePayload.param0 = bmWorkFlowName
 bmDeployServerBlade02.modulePayload.param1.list[1]['value'] = "ESX-SERVER-02"
 bmDeployServerBlade02.modulePayload.param1.list[3]['value'] = "ESX_Template_Blade"
@@ -2422,6 +2476,7 @@ bmDeployServerBlade02.modulePayload.param1.list[13]['value'] = "0"
 bmDeployServerBlade02.modulePayload.param1.list[25]['value'] = "ESX-SERVER-02-A"
 bmDeployServerBlade02.modulePayload.param1.list[26]['value'] = "ESX-SERVER-02-B"
 
+# Deploy ESX Host Server 03 #
 bmDeployServerBlade03.modulePayload.param0 = bmWorkFlowName
 bmDeployServerBlade03.modulePayload.param1.list[1]['value'] = "ESX-SERVER-03"
 bmDeployServerBlade03.modulePayload.param1.list[3]['value'] = "ESX_Template_Blade"
@@ -2435,6 +2490,7 @@ bmDeployServerBlade03.modulePayload.param1.list[13]['value'] = "0"
 bmDeployServerBlade03.modulePayload.param1.list[25]['value'] = "ESX-SERVER-03-A"
 bmDeployServerBlade03.modulePayload.param1.list[26]['value'] = "ESX-SERVER-03-B"
 
+# Deploy ESX Host Server 04 #
 bmDeployServerBlade04.modulePayload.param0 = bmWorkFlowName
 bmDeployServerBlade04.modulePayload.param1.list[1]['value'] = "ESX-SERVER-04"
 bmDeployServerBlade04.modulePayload.param1.list[3]['value'] = "ESX_Template_Blade"
@@ -2448,6 +2504,7 @@ bmDeployServerBlade04.modulePayload.param1.list[13]['value'] = "0"
 bmDeployServerBlade04.modulePayload.param1.list[25]['value'] = "ESX-SERVER-04-A"
 bmDeployServerBlade04.modulePayload.param1.list[26]['value'] = "ESX-SERVER-04-B"
 
+# Deploy ESX Host Server 05 #
 bmDeployServerBlade05.modulePayload.param0 = bmWorkFlowName
 bmDeployServerBlade05.modulePayload.param1.list[1]['value'] = "ESX-SERVER-05"
 bmDeployServerBlade05.modulePayload.param1.list[3]['value'] = "ESX_Template_Blade"
@@ -2461,6 +2518,7 @@ bmDeployServerBlade05.modulePayload.param1.list[13]['value'] = "0"
 bmDeployServerBlade05.modulePayload.param1.list[25]['value'] = "ESX-SERVER-05-A"
 bmDeployServerBlade05.modulePayload.param1.list[26]['value'] = "ESX-SERVER-05-B"
 
+# Deploy ESX Host Server 06 #
 bmDeployServerBlade06.modulePayload.param0 = bmWorkFlowName
 bmDeployServerBlade06.modulePayload.param1.list[1]['value'] = "ESX-SERVER-06"
 bmDeployServerBlade06.modulePayload.param1.list[3]['value'] = "ESX_Template_Blade"
@@ -2474,6 +2532,7 @@ bmDeployServerBlade06.modulePayload.param1.list[13]['value'] = "0"
 bmDeployServerBlade06.modulePayload.param1.list[25]['value'] = "ESX-SERVER-06-A"
 bmDeployServerBlade06.modulePayload.param1.list[26]['value'] = "ESX-SERVER-06-B"
 
+# Deploy ESX Host Server 07 #
 bmDeployServerBlade07.modulePayload.param0 = bmWorkFlowName
 bmDeployServerBlade07.modulePayload.param1.list[1]['value'] = "ESX-SERVER-07"
 bmDeployServerBlade07.modulePayload.param1.list[3]['value'] = "ESX_Template_Blade"
@@ -2487,6 +2546,7 @@ bmDeployServerBlade07.modulePayload.param1.list[13]['value'] = "0"
 bmDeployServerBlade07.modulePayload.param1.list[25]['value'] = "ESX-SERVER-07-A"
 bmDeployServerBlade07.modulePayload.param1.list[26]['value'] = "ESX-SERVER-07-B"
 
+# Deploy ESX Host Server 08 #
 bmDeployServerBlade08.modulePayload.param0 = bmWorkFlowName
 bmDeployServerBlade08.modulePayload.param1.list[1]['value'] = "ESX-SERVER-08"
 bmDeployServerBlade08.modulePayload.param1.list[3]['value'] = "ESX_Template_Blade"
@@ -2539,8 +2599,10 @@ if DEPLOY_SERVERS:
     srMonitor07.modulePayload.param0 = sr07.json()['serviceResult']
     srMonitor08.modulePayload.param0 = sr08.json()['serviceResult']
 
+    # Create Array to Store Thread Results #
     deploy_results = [None] * 9
 
+    # Create Server Deploy Threads #
     srThread0 = threading.Thread(target=server_thread_deploy, kwargs={"sr_call":srMonitor00, "thread_id":0, "return_values":deploy_results})
     srThread1 = threading.Thread(target=server_thread_deploy, kwargs={"sr_call":srMonitor01, "thread_id":1, "return_values":deploy_results})
     srThread2 = threading.Thread(target=server_thread_deploy, kwargs={"sr_call":srMonitor02, "thread_id":2, "return_values":deploy_results})
@@ -2551,6 +2613,7 @@ if DEPLOY_SERVERS:
     srThread7 = threading.Thread(target=server_thread_deploy, kwargs={"sr_call":srMonitor07, "thread_id":7, "return_values":deploy_results})
     srThread8 = threading.Thread(target=server_thread_deploy, kwargs={"sr_call":srMonitor08, "thread_id":8, "return_values":deploy_results})
 
+    # Start Server Deploy Threads #
     srThread0.start()
     srThread1.start()
     srThread2.start()
@@ -2561,6 +2624,7 @@ if DEPLOY_SERVERS:
     srThread7.start()
     srThread8.start()
 
+    # Monitor Server Deploy Threads #
     while threading.active_count() > 1:
         active = threading.active_count() - 1
         if active > 1:
@@ -2675,9 +2739,11 @@ if DEPLOY_VCENTER:
 
     max_time = time.time() + 3600
 
-    iso_path = get_resource_path("ISO")
-    vcsa_path = iso_path + locate_vcsa()
+    # Locate vCenter ISO #
+    iso_path = get_resource_path("iso")
+    vcsa_path = iso_path + locate_vcsa(iso_path)
 
+    # Deploy Based on Running OS #
     if OS_WINDOWS:
         os.system("PowerShell Mount-DiskImage " + vcsa_path)
         mount_image = Popen(['PowerShell', 'Get-DiskImage', vcsa_path, '| Get-Volume', '| select -Expand DriveLetter'], stdout=PIPE)
@@ -2697,6 +2763,7 @@ if DEPLOY_VCENTER:
 
         new_call = Popen(['./Volumes/CDROM/vcsa/vcsa-cli-installer/win32/vcsa-deploy.exe', 'install', '--no-esx-ssl-verify', '--accept-eula', '--acknowledge-ceip', './templates/embedded_vCSA_on_ESXi_CLUS.json'], stdout=DEVNULL)
 
+    # Monitor vCenter Deploy #
     while new_call.poll() == None and time.time() < max_time:
         for i in range(20):
             spin_char()
@@ -2779,6 +2846,7 @@ vmHost06 = create_ucsd_module("registerHostWithVCenter")
 vmHost07 = create_ucsd_module("registerHostWithVCenter")
 vmHost08 = create_ucsd_module("registerHostWithVCenter")
 
+# Add ESX Host 01 #
 vmHost01.modulePayload.param0.accountName = "vSphere"
 vmHost01.modulePayload.param0.isPXEHost = "false"
 vmHost01.modulePayload.param0.hostNode = "10.0.0.211"
@@ -2787,6 +2855,7 @@ vmHost01.modulePayload.param0.password = "password"
 vmHost01.modulePayload.param0.associationType = "CLUSTER"
 vmHost01.modulePayload.param0.clusterOrDC = "CLUS-CLUSTER"
 
+# Add ESX Host 02 #
 vmHost02.modulePayload.param0.accountName = "vSphere"
 vmHost02.modulePayload.param0.isPXEHost = "false"
 vmHost02.modulePayload.param0.hostNode = "10.0.0.212"
@@ -2795,6 +2864,7 @@ vmHost02.modulePayload.param0.password = "password"
 vmHost02.modulePayload.param0.associationType = "CLUSTER"
 vmHost02.modulePayload.param0.clusterOrDC = "CLUS-CLUSTER"
 
+# Add ESX Host 03 #
 vmHost03.modulePayload.param0.accountName = "vSphere"
 vmHost03.modulePayload.param0.isPXEHost = "false"
 vmHost03.modulePayload.param0.hostNode = "10.0.0.213"
@@ -2803,6 +2873,7 @@ vmHost03.modulePayload.param0.password = "password"
 vmHost03.modulePayload.param0.associationType = "CLUSTER"
 vmHost03.modulePayload.param0.clusterOrDC = "CLUS-CLUSTER"
 
+# Add ESX Host 04 #
 vmHost04.modulePayload.param0.accountName = "vSphere"
 vmHost04.modulePayload.param0.isPXEHost = "false"
 vmHost04.modulePayload.param0.hostNode = "10.0.0.214"
@@ -2811,6 +2882,7 @@ vmHost04.modulePayload.param0.password = "password"
 vmHost04.modulePayload.param0.associationType = "CLUSTER"
 vmHost04.modulePayload.param0.clusterOrDC = "CLUS-CLUSTER"
 
+# Add ESX Host 05 #
 vmHost05.modulePayload.param0.accountName = "vSphere"
 vmHost05.modulePayload.param0.isPXEHost = "false"
 vmHost05.modulePayload.param0.hostNode = "10.0.0.215"
@@ -2819,6 +2891,7 @@ vmHost05.modulePayload.param0.password = "password"
 vmHost05.modulePayload.param0.associationType = "CLUSTER"
 vmHost05.modulePayload.param0.clusterOrDC = "CLUS-CLUSTER"
 
+# Add ESX Host 06 #
 vmHost06.modulePayload.param0.accountName = "vSphere"
 vmHost06.modulePayload.param0.isPXEHost = "false"
 vmHost06.modulePayload.param0.hostNode = "10.0.0.216"
@@ -2827,6 +2900,7 @@ vmHost06.modulePayload.param0.password = "password"
 vmHost06.modulePayload.param0.associationType = "CLUSTER"
 vmHost06.modulePayload.param0.clusterOrDC = "CLUS-CLUSTER"
 
+# Add ESX Host 07 #
 vmHost07.modulePayload.param0.accountName = "vSphere"
 vmHost07.modulePayload.param0.isPXEHost = "false"
 vmHost07.modulePayload.param0.hostNode = "10.0.0.217"
@@ -2835,6 +2909,7 @@ vmHost07.modulePayload.param0.password = "password"
 vmHost07.modulePayload.param0.associationType = "CLUSTER"
 vmHost07.modulePayload.param0.clusterOrDC = "CLUS-CLUSTER"
 
+# Add ESX Host 08 #
 vmHost08.modulePayload.param0.accountName = "vSphere"
 vmHost08.modulePayload.param0.isPXEHost = "false"
 vmHost08.modulePayload.param0.hostNode = "10.0.0.218"
