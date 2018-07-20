@@ -1,7 +1,7 @@
 ### To Be Completed: ###
 - - - -
-- [ ] Complete module documentation
-- [ ] Complete function documentation
+- [ ] Complete module documentation (In progress)
+- [ ] Complete function documentation (In progress)
 - [ ] Complete ArgParse help information (In progress)
 - [x] Add ArgParse for simple program execution
 - [x] Complete LICENSE
